@@ -1,6 +1,6 @@
 ---
-date: '2026-04-23T23:01:25+02:00'
-draft: true
+date: '2026-04-24T00:01:25+02:00'
+draft: false
 title: 'Windows 11 und FIDO2: Standard-Gerät auf Hardware-Key setzen'
 tags: ["windows", "fido2", "sicherheit", "powershell", "tipps"]
 ---
@@ -29,3 +29,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\FIDO" /v EnableFIDODeviceLogon /t REG_
 ```
 
 Beides scheint nicht zu funktionieren... warum auch immer... **Lösung gesucht!**
+
+Nachdem ich mich noch eine Weile mit dem Thema beschäftigt habe, bin ich auf folgendes Tool gestoßen: [AuthenticatorChooser](https://github.com/Aldaviva/AuthenticatorChooser)
+
+Diese kleine Drittanbieter Anwendung emuliert die notwendigen Klicks um den Dialog zu "überspringen". Aber es ist halt leider kein Windows-Board-Mittel sondern ein zusätzliches Programm - ich weiß noch nicht wie gut ich das wirklich finden soll...
