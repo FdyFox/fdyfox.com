@@ -1,0 +1,142 @@
+/* Catppuccin Latte (light mode) */
+:root {
+  --theme:     #eff1f5;
+  --entry:     #e6e9ef;
+  --primary:   #4c4f69;
+  --secondary: #6c6f85;
+  --tertiary:  #ccd0da;
+  --content:   #4c4f69;
+  --code-bg:   #dce0e8;
+  --border:    #bcc0cc;
+  --hljs-bg:   #dce0e8;
+}
+
+/* Catppuccin Mocha (dark mode) */
+.dark {
+  --theme:     #1e1e2e;
+  --entry:     #313244;
+  --primary:   #cdd6f4;
+  --secondary: #a6adc8;
+  --tertiary:  #45475a;
+  --content:   #cdd6f4;
+  --code-bg:   #313244;
+  --border:    #45475a;
+  --hljs-bg:   #313244;
+}
+
+/* Akzentfarben */
+:root {
+  --accent:    #89b4fa;
+  --accent2:   #cba6f7;
+  --green:     #a6e3a1;
+}
+.dark {
+  --accent:    #89b4fa;
+  --accent2:   #cba6f7;
+  --green:     #a6e3a1;
+}
+
+/* Links */
+a { color: var(--accent); }
+a:hover { color: var(--accent2); }
+
+/* Post-Titel & Überschriften */
+.post-title a,
+h1, h2, h3 { color: var(--primary); }
+
+.post-title a:hover { color: var(--accent); }
+
+/* Navigationsleiste */
+.logo a { color: var(--accent2); }
+.nav a:hover,
+.logo a:hover { color: var(--accent); }
+
+/* Tags */
+.post-tags a {
+  background: var(--tertiary);
+  border-color: var(--border);
+  color: var(--accent);
+}
+.post-tags a:hover {
+  background: var(--accent);
+  color: var(--theme);
+}
+
+/* Trennlinie nach Header */
+.post-header { border-color: var(--border); }
+
+/* Monospace-Font für Code im Text */
+code {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.85em;
+  color: var(--accent2);
+  background: var(--code-bg);
+}
+
+/* Suchfeld */
+#searchInput {
+  background: var(--entry);
+  border-color: var(--border);
+  color: var(--primary);
+}
+
+/* Footer Links */
+.footer-links {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: var(--secondary);
+}
+.footer-links a { color: var(--secondary); }
+.footer-links a:hover { color: var(--accent); }
+.footer-links span { margin: 0 0.4rem; }
+
+/* Startseite ASCII-Art */
+.home-info h1:empty { display: none; }
+.home-ascii {
+  color: var(--accent2);
+  font-family: "Courier New", "Lucida Console", monospace;
+  font-size: clamp(0.6rem, 2.2vw, 1.05rem);
+  line-height: 1.25;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.4rem 0;
+  overflow-x: auto;
+}
+
+/* Neofetch-Block */
+.neofetch {
+  background: var(--entry);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.88rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  color: var(--primary);
+  line-height: 1.7;
+}
+.nf-ascii {
+  color: var(--accent);
+  margin: 0;
+  line-height: 1.4;
+  flex-shrink: 0;
+  user-select: none;
+}
+.nf-key     { color: var(--accent); }
+.nf-sep     { color: var(--secondary); }
+.nf-val     { color: var(--primary); }
+.nf-title   { color: var(--accent2); font-weight: bold; }
+.nf-hr      { color: var(--secondary); }
+.nf-section { color: var(--green); font-weight: bold; }
+.nf-colors  { margin-top: 0.4rem; }
+.nf-colors span {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 3px;
+}
+@media (max-width: 500px) {
+  .neofetch { font-size: 0.8rem; padding: 1rem; }
+  .nf-ascii { display: none; }
+}

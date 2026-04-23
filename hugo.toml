@@ -1,0 +1,74 @@
+baseURL = "https://ferdyverse.de/"
+languageCode = "de"
+title = "ferdyverse"
+theme = "PaperMod"
+enableRobotsTXT = true
+paginate = 10
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params.footer]
+  text = "[Impressum](/impressum/) · [Datenschutz](/datenschutz/)"
+
+[params]
+  author = "Ferdy"
+  description = "Notizen, Gedanken und Kram"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = false
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowToc = false
+
+[params.cover]
+  hidden = false
+  hiddenInList = false
+  hiddenInSingle = false
+  linkFullImages = true
+
+[params.homeInfoParams]
+  Title = ""
+  Content = '''<pre class="home-ascii">  __              _
+ / _| ___ _ __ __| |_   ___   _____ _ __ ___  ___
+| |_ / _ \ '__/ _` | | | \ \ / / _ \ '__/ __|/ _ \
+|  _|  __/ | | (_| | |_| |\ V /  __/ |  \__ \  __/
+|_|  \___|_|  \__,_|\__, | \_/ \___|_|  |___/\___|
+                    |___/</pre>
+
+Notizen, Gedanken und Kram.'''
+
+[[params.socialIcons]]
+  name = "email"
+  url = "mailto:ferdy@ferdyverse.de"
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/Ferdyverse"
+
+[menu]
+  [[menu.main]]
+    name = "Logbuch"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
+    name = "Suche"
+    url = "/search/"
+    weight = 3
+  [[menu.main]]
+    name = "Der Pilot"
+    url = "/pilot/"
+    weight = 4
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[markup.goldmark.renderer]
+  unsafe = true
