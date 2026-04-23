@@ -1,0 +1,31 @@
+---
+date: '2026-04-23T23:01:25+02:00'
+draft: true
+title: 'Windows 11 und FIDO2: Standard-Gerät auf Hardware-Key setzen'
+tags: ["windows", "fido2", "sicherheit", "powershell", "tipps"]
+---
+
+Für alle, denen es auf die Nerven geht, dass Windows 11 bei der Abfrage eines Hardware-Security-Keys standardmäßig immer "iPhone, iPad oder Android-Gerät" vorauswählt - habt ihr eine Lösung gefunden?
+
+Ich habe Dinge wie das hier versucht - leider ohne Erfolg:
+
+```powershell
+# Create registry key
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\SecondaryAuthenticationFactor" -Force
+
+# Set property
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\SecondaryAuthenticationFactor" `
+  -Name "AllowSecondaryAuthenticationDevice" -Value 0 -Type DWord -Force
+
+# Check result
+Get-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows\SecondaryAuthenticationFactor"
+```
+
+oder aber auch:
+
+```cmd
+# FIDO2-Sicherheitsschlüssel deaktivieren
+reg add "HKLM\SOFTWARE\Policies\Microsoft\FIDO" /v EnableFIDODeviceLogon /t REG_DWORD /d 0 /f
+```
+
+Beides scheint nicht zu funktionieren... warum auch immer... **Lösung gesucht!**
