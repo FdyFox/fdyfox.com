@@ -7,8 +7,8 @@ noindex: true
 
 ## Angaben gemäß § 5 TMG
 
-Ferdinand Berger
-Leimenacker 12
+Ferdinand Berger  
+Leimenacker 12  
 79312 Emmendingen
 
 ## Kontakt
