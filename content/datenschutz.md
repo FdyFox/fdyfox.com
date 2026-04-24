@@ -7,9 +7,9 @@ noindex: true
 
 ## Verantwortlicher
 
-Ferdinand Berger
-Leimenacker 12
-79312 Emmendingen
+Ferdinand Berger  
+Leimenacker 12  
+79312 Emmendingen  
 E-Mail: [ferdy@ferdyverse.de](mailto:ferdy@ferdyverse.de)
 
 ## Erhebung und Speicherung personenbezogener Daten
