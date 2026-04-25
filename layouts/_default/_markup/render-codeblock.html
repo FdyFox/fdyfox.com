@@ -1,0 +1,7 @@
+{{ $result := transform.HighlightCodeBlock . -}}
+<div class="highlight{{ if .Attributes.title }} has-title{{ end }}">
+  {{- with .Attributes.title }}
+  <span class="highlight__title">{{ . }}</span>
+  {{- end }}
+  <pre class="chroma"><code class="language-{{ .Type }}" data-lang="{{ .Type }}">{{ $result.Inner }}</code></pre>
+</div>

@@ -1,0 +1,18 @@
+{{- $emojis := dict "note" ":information_source:" "tip" ":bulb:" "important" ":exclamation:" "warning" ":warning:" "caution" ":fire:" -}}
+{{- $labels := dict "note" "Hinweis" "tip" "Tipp" "important" "Wichtig" "warning" "Achtung" "caution" "Vorsicht" -}}
+
+{{ if eq .Type "alert" }}
+<div class="callout callout-{{ .AlertType }}">
+  <div class="callout-title">
+    <span class="callout-icon">{{ transform.Emojify (index $emojis .AlertType) }}</span>
+    {{ with .AlertTitle }}
+      {{ . }}
+    {{ else }}
+      {{ index $labels .AlertType | default (.AlertType | title) }}
+    {{ end }}
+  </div>
+  <div class="callout-content">{{ .Text }}</div>
+</div>
+{{ else }}
+<blockquote>{{ .Text }}</blockquote>
+{{ end }}

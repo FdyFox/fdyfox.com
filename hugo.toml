@@ -72,3 +72,9 @@ Notizen, Gedanken und Kram.'''
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[markup.goldmark.extensions.extras.alerts]
+  enable = true
+
+[markup.highlight]
+  noClasses = false

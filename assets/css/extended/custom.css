@@ -103,6 +103,30 @@ code {
   overflow-x: auto;
 }
 
+/* Code-Block Titel */
+.highlight__title {
+  display: block;
+  background: var(--tertiary);
+  color: var(--accent2);
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.78rem;
+  padding: 0.3rem 1rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.highlight.has-title pre {
+  border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+.highlight pre code {
+  padding: 10px;
+}
+.highlight pre.chroma {
+  padding: 10px;
+}
+.highlight pre.chroma code {
+  padding: 0;
+}
+
 /* Neofetch-Block */
 .neofetch {
   background: var(--entry);
@@ -140,3 +164,110 @@ code {
   .neofetch { font-size: 0.8rem; padding: 1rem; }
   .nf-ascii { display: none; }
 }
+
+/* Syntax Highlighting - Catppuccin Latte (light mode) */
+.chroma { color:#4c4f69;background-color:#eff1f5; }
+.chroma .err { color:#d20f39 }
+.chroma .hl { background-color:#bcc0cc }
+.chroma .lnt,.chroma .ln { color:#8c8fa1 }
+.chroma .line { display:flex; }
+.chroma .k { color:#8839ef }
+.chroma .kc { color:#fe640b }
+.chroma .kd { color:#d20f39 }
+.chroma .kn { color:#179299 }
+.chroma .kp,.chroma .kr { color:#8839ef }
+.chroma .kt { color:#d20f39 }
+.chroma .na,.chroma .nf,.chroma .fm { color:#1e66f5 }
+.chroma .nc,.chroma .no,.chroma .nn,.chroma .py { color:#df8e1d }
+.chroma .nd { color:#1e66f5;font-weight:bold }
+.chroma .ni { color:#179299 }
+.chroma .ne { color:#fe640b }
+.chroma .nl { color:#04a5e5 }
+.chroma .nt { color:#8839ef }
+.chroma .nb,.chroma .bp { color:#04a5e5 }
+.chroma .nv,.chroma .vc,.chroma .vg,.chroma .vi,.chroma .vm { color:#dc8a78 }
+.chroma .s,.chroma .sb,.chroma .sc,.chroma .s2,.chroma .si,.chroma .sx,.chroma .s1,.chroma .ss { color:#40a02b }
+.chroma .sa { color:#d20f39 }
+.chroma .dl,.chroma .se { color:#1e66f5 }
+.chroma .sd,.chroma .sh { color:#9ca0b0 }
+.chroma .sr { color:#179299 }
+.chroma .m,.chroma .mb,.chroma .mf,.chroma .mh,.chroma .mi,.chroma .il,.chroma .mo { color:#fe640b }
+.chroma .o,.chroma .ow { color:#04a5e5;font-weight:bold }
+.chroma .c,.chroma .cm,.chroma .c1,.chroma .cs,.chroma .cp { color:#9ca0b0;font-style:italic }
+.chroma .ch { color:#acb0be;font-style:italic }
+.chroma .cpf { color:#9ca0b0;font-weight:bold;font-style:italic }
+.chroma .gd { color:#d20f39;background-color:#ccd0da }
+.chroma .ge { font-style:italic }
+.chroma .gr,.chroma .gt { color:#d20f39 }
+.chroma .gh,.chroma .gu { color:#fe640b;font-weight:bold }
+.chroma .gi { color:#40a02b;background-color:#ccd0da }
+.chroma .gs { font-weight:bold }
+.chroma .gl { text-decoration:underline }
+
+/* Syntax Highlighting - Catppuccin Mocha (dark mode) */
+[data-theme="dark"] .chroma { color:#cdd6f4;background-color:#1e1e2e; }
+[data-theme="dark"] .chroma .err { color:#f38ba8 }
+[data-theme="dark"] .chroma .hl { background-color:#45475a }
+[data-theme="dark"] .chroma .lnt,[data-theme="dark"] .chroma .ln { color:#7f849c }
+[data-theme="dark"] .chroma .line { display:flex; }
+[data-theme="dark"] .chroma .k,.chroma .kp,.chroma .kr,.chroma .nt { color:#cba6f7 }
+[data-theme="dark"] .chroma .kc { color:#fab387 }
+[data-theme="dark"] .chroma .kd,.chroma .kt { color:#f38ba8 }
+[data-theme="dark"] .chroma .kn { color:#94e2d5 }
+[data-theme="dark"] .chroma .na,.chroma .nf,.chroma .fm { color:#89b4fa }
+[data-theme="dark"] .chroma .nc,.chroma .no,.chroma .nn,.chroma .py { color:#f9e2af }
+[data-theme="dark"] .chroma .nd { color:#89b4fa;font-weight:bold }
+[data-theme="dark"] .chroma .ni { color:#94e2d5 }
+[data-theme="dark"] .chroma .ne { color:#fab387 }
+[data-theme="dark"] .chroma .nl { color:#89dceb }
+[data-theme="dark"] .chroma .nb,.chroma .bp { color:#89dceb }
+[data-theme="dark"] .chroma .nv,.chroma .vc,.chroma .vg,.chroma .vi,.chroma .vm { color:#f5e0dc }
+[data-theme="dark"] .chroma .s,.chroma .sb,.chroma .sc,.chroma .s2,.chroma .si,.chroma .sx,.chroma .s1,.chroma .ss { color:#a6e3a1 }
+[data-theme="dark"] .chroma .sa { color:#f38ba8 }
+[data-theme="dark"] .chroma .dl,.chroma .se { color:#89b4fa }
+[data-theme="dark"] .chroma .sd,.chroma .sh { color:#6c7086 }
+[data-theme="dark"] .chroma .sr { color:#94e2d5 }
+[data-theme="dark"] .chroma .m,.chroma .mb,.chroma .mf,.chroma .mh,.chroma .mi,.chroma .il,.chroma .mo { color:#fab387 }
+[data-theme="dark"] .chroma .o,.chroma .ow { color:#89dceb;font-weight:bold }
+[data-theme="dark"] .chroma .c,.chroma .cm,.chroma .c1,.chroma .cs,.chroma .cp { color:#6c7086;font-style:italic }
+[data-theme="dark"] .chroma .ch { color:#585b70;font-style:italic }
+[data-theme="dark"] .chroma .cpf { color:#6c7086;font-weight:bold;font-style:italic }
+[data-theme="dark"] .chroma .gd { color:#f38ba8;background-color:#313244 }
+[data-theme="dark"] .chroma .ge { font-style:italic }
+[data-theme="dark"] .chroma .gr,.chroma .gt { color:#f38ba8 }
+[data-theme="dark"] .chroma .gh,.chroma .gu { color:#fab387;font-weight:bold }
+[data-theme="dark"] .chroma .gi { color:#a6e3a1;background-color:#313244 }
+[data-theme="dark"] .chroma .gs { font-weight:bold }
+[data-theme="dark"] .chroma .gl { text-decoration:underline }
+
+/* Callouts */
+.callout {
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  margin-bottom: var(--content-gap);
+  border-left: 4px solid;
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+.callout-content p { margin-bottom: 0; }
+
+.callout-note    { background: color-mix(in srgb, #89b4fa 10%, var(--entry)); border-color: #89b4fa; }
+.callout-note .callout-title { color: #89b4fa; }
+
+.callout-tip     { background: color-mix(in srgb, #a6e3a1 10%, var(--entry)); border-color: #a6e3a1; }
+.callout-tip .callout-title { color: #a6e3a1; }
+
+.callout-important { background: color-mix(in srgb, #cba6f7 10%, var(--entry)); border-color: #cba6f7; }
+.callout-important .callout-title { color: #cba6f7; }
+
+.callout-warning { background: color-mix(in srgb, #f9e2af 10%, var(--entry)); border-color: #f9e2af; }
+.callout-warning .callout-title { color: #f9e2af; }
+
+.callout-caution { background: color-mix(in srgb, #f38ba8 10%, var(--entry)); border-color: #f38ba8; }
+.callout-caution .callout-title { color: #f38ba8; }

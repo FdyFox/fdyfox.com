@@ -17,7 +17,7 @@ Im Zuge der Vorbereitungen für den Umzug habe ich einen alten Router, mit dem i
 
 ## TFTP-Server starten
 
-```bash
+```bash {title="I use Arch btw"}
 # uftpd installieren (AUR)
 aur -S uftpd
 

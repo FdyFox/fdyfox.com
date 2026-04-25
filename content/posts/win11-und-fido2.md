@@ -9,7 +9,7 @@ Für alle, denen es auf die Nerven geht, dass Windows 11 bei der Abfrage eines H
 
 Ich habe Dinge wie das hier versucht - leider ohne Erfolg:
 
-```powershell
+```powershell {title="Set GPO via Powershell"}
 # Create registry key
 New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\SecondaryAuthenticationFactor" -Force
 
@@ -23,7 +23,7 @@ Get-ItemProperty "HKLM:\SOFTWARE\Policies\Microsoft\Windows\SecondaryAuthenticat
 
 oder aber auch:
 
-```cmd
+```cmd {title="Disable FIDO2"}
 # FIDO2-Sicherheitsschlüssel deaktivieren
 reg add "HKLM\SOFTWARE\Policies\Microsoft\FIDO" /v EnableFIDODeviceLogon /t REG_DWORD /d 0 /f
 ```
