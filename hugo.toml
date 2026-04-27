@@ -22,6 +22,7 @@ paginate = 10
   ShowCodeCopyButtons = true
   ShowRssButtonInSectionTermList = true
   ShowToc = false
+  disableThemeToggle = true
 
 [params.cover]
   hidden = false
