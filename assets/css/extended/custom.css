@@ -240,6 +240,59 @@ code {
 [data-theme="dark"] .chroma .gs { font-weight:bold }
 [data-theme="dark"] .chroma .gl { text-decoration:underline }
 
+/* Kontaktformular */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 560px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.form-group label {
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+.contact-form input,
+.contact-form textarea {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
+  transition: border-color 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+.contact-form textarea {
+  resize: vertical;
+}
+.contact-submit {
+  align-self: flex-start;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: var(--theme);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 1.4rem;
+  transition: background 0.15s;
+}
+.contact-submit:hover {
+  background: var(--accent2);
+}
+
 /* Callouts */
 .callout {
   border-radius: var(--radius);

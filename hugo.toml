@@ -65,6 +65,10 @@ Notizen, Gedanken und Kram.'''
     name = "Der Pilot"
     url = "/pilot/"
     weight = 4
+  [[menu.main]]
+    name = "Kontakt"
+    url = "/kontakt/"
+    weight = 5
 
 [taxonomies]
   tag = "tags"
