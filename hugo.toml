@@ -14,7 +14,7 @@ paginate = 10
 [params]
   author = "Ferdy"
   description = "Notizen, Gedanken und Kram"
-  defaultTheme = "auto"
+  defaultTheme = "dark"
   ShowReadingTime = true
   ShowShareButtons = false
   ShowPostNavLinks = true
