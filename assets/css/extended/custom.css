@@ -240,6 +240,26 @@ code {
 [data-theme="dark"] .chroma .gs { font-weight:bold }
 [data-theme="dark"] .chroma .gl { text-decoration:underline }
 
+/* 404 */
+.fourohfour {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem 0;
+  gap: 0.5rem;
+}
+.fourohfour h1 {
+  margin: 0.5rem 0 0;
+  font-size: 1.8rem;
+}
+.fourohfour p {
+  color: var(--secondary);
+  margin: 0;
+}
+.fourohfour a {
+  margin-top: 0.5rem;
+}
+
 /* Kontaktformular */
 .contact-form {
   display: flex;
