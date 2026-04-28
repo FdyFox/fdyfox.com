@@ -15,6 +15,8 @@ hugo server
 
 Die Seite ist dann unter [http://localhost:1313](http://localhost:1313) erreichbar.
 
+Herunterladen der Submodules: `git submodule update --init --recursive`
+
 ## Neuen Beitrag erstellen
 
 ```bash
