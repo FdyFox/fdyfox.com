@@ -2,7 +2,7 @@
 title: "Analog vs. Digital"
 date: 2026-04-29T22:27:50+02:00
 tags: ["analog", "digital", "notizen", "obsidian", "produktivität", "adhs"]
-draft: true
+draft: false
 ---
 
 Wie ich [bereits geschrieben habe](/posts/erster-beitrag/), schreibe ich meine Notizen normalerweise in [Obsidian](https://obsidian.md). Für Dokumentation, How-Tos und Code-Schnipsel funktioniert das auch wirklich gut - schnell durchsuchen, ordentlich formatieren, irgendwann wieder rauskramen.
