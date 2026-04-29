@@ -5,9 +5,9 @@ tags: ["router", "openwrt", "tftp", "netzwerk", "linux"]
 draft: false
 ---
 
-Im Zuge der Vorbereitungen für den Umzug habe ich einen alten Router, mit dem ich OpenWrt ausprobiert hatte, wieder auf die Stock-Firmware geflasht. Dabei bin ich zum ersten Mal mit `tftp` in Berührung gekommen.
+Für den Umzug habe ich einen alten Router, auf dem ich mal OpenWrt ausprobiert hatte, wieder auf die originale Firmware zurückgeflasht. Dabei bin ich zum ersten Mal mit `tftp` in Berührung gekommen.
 
-`TFTP` steht für "Trivial File Transfer Protocol", arbeitet standardmäßig auf Port 69 über UDP und wird vom Router im Recovery-Modus genutzt, um eine neue Firmware zu empfangen. Als TFTP-Server habe ich [uftpd](https://github.com/troglobit/uftpd) verwendet - lässt sich ohne Konfiguration direkt in der Konsole starten. Als Referenz habe ich die [OpenWrt-Dokumentation zum Archer C7](https://openwrt.org/toh/tp-link/archer_c7#installation_or_restore_with_tftp_on_linux) genutzt.
+`TFTP` (Trivial File Transfer Protocol) läuft auf Port 69 über UDP - der Router nutzt es im Recovery-Modus, um eine neue Firmware zu empfangen. Als TFTP-Server hab ich [uftpd](https://github.com/troglobit/uftpd) verwendet, das lässt sich ohne Konfiguration direkt in der Konsole starten. Die [OpenWrt-Dokumentation zum Archer C7](https://openwrt.org/toh/tp-link/archer_c7#installation_or_restore_with_tftp_on_linux) hat dabei geholfen.
 
 ## Vorbereitung
 

@@ -32,4 +32,4 @@ Beides scheint nicht zu funktionieren... warum auch immer... **Lösung gesucht!*
 
 Nachdem ich mich noch eine Weile mit dem Thema beschäftigt habe, bin ich auf folgendes Tool gestoßen: [AuthenticatorChooser](https://github.com/Aldaviva/AuthenticatorChooser)
 
-Diese kleine Drittanbieter Anwendung emuliert die notwendigen Klicks um den Dialog zu "überspringen". Aber es ist halt leider kein Windows-Board-Mittel sondern ein zusätzliches Programm - ich weiß noch nicht wie gut ich das wirklich finden soll...
+Das kleine Tool klickt den Dialog im Hintergrund quasi automatisch weg - kein echter Fix, aber es funktioniert. Schön ist was anderes, ein zusätzliches Drittanbieter-Programm für sowas zu brauchen... aber gut.
