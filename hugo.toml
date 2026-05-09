@@ -49,6 +49,10 @@ Notizen, Gedanken und Kram.'''
   name = "github"
   url = "https://github.com/Ferdyverse"
 
+[[params.socialIcons]]
+  name = "telegram"
+  url = "https://t.me/brazier85"
+
 [menu]
   [[menu.main]]
     name = "Logbuch"
