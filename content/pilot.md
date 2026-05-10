@@ -3,6 +3,8 @@ title: "Der Pilot"
 layout: "page"
 url: "/pilot/"
 summary: "Über den Piloten des ferdyverse"
+ShowReadingTime: false
+hideAuthor: true
 ---
 
 Ich bin Ferdy — der Pilot dieses kleinen Universums.
