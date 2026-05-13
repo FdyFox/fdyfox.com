@@ -129,6 +129,10 @@ code {
 .highlight pre.chroma code {
   padding: 0;
 }
+.highlight pre.chroma code.has-scrollbar {
+  overflow-x: scroll;
+  padding-bottom: 15px;
+}
 
 /* Neofetch-Block */
 .neofetch {

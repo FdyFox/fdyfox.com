@@ -7,8 +7,7 @@ BROWSER := $(shell which powershell.exe 2>/dev/null || which xdg-open 2>/dev/nul
 
 help:
 	@echo "Verfügbare Befehle:"
-	@echo "  make dev            Dev-Server starten (ohne Drafts)"
-	@echo "  make drafts         Dev-Server starten (mit Drafts)"
+	@echo "  make dev            Dev-Server starten"
 	@echo "  make build          Seite bauen (public/)"
 	@echo "  make clean          public/ löschen"
 	@echo "  make deploy         Bauen und per FTP deployen"
@@ -17,10 +16,7 @@ help:
 	@echo "  make open           Lokale Seite im Browser öffnen"
 
 dev:
-	$(HUGO) server
-
-drafts:
-	$(HUGO) server --buildDrafts
+	$(HUGO) server -D
 
 build:
 	$(HUGO) --minify

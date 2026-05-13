@@ -1,0 +1,11 @@
+<script>
+(function () {
+  function checkScrollbars() {
+    document.querySelectorAll('.highlight pre code').forEach(function (el) {
+      el.classList.toggle('has-scrollbar', el.scrollWidth > el.clientWidth);
+    });
+  }
+  checkScrollbars();
+  window.addEventListener('resize', checkScrollbars);
+})();
+</script>
