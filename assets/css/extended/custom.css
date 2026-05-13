@@ -50,9 +50,20 @@ h1, h2, h3 { color: var(--primary); }
 .post-title a:hover { color: var(--accent); }
 
 /* Navigationsleiste */
-.logo a { color: var(--accent2); }
+.logo a,
+.menu a {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+.logo a { font-size: 1.2rem; }
+.menu a { font-size: 1rem; }
 .nav a:hover,
-.logo a:hover { color: var(--accent); }
+.logo a:hover { opacity: 0.8; }
+
+.prompt-bracket { color: var(--secondary); }
+.prompt-user    { color: var(--accent); }
+.prompt-arrow   { color: var(--secondary); }
+.prompt-section { color: var(--primary); }
+.prompt-git     { color: var(--green); }
 
 /* Tags */
 .post-tags a {

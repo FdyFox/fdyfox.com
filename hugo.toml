@@ -15,6 +15,7 @@ paginate = 10
   author = "Ferdy"
   description = "Notizen, Gedanken und Kram"
   defaultTheme = "dark"
+  disableThemeToggle = true
   ShowReadingTime = true
   ShowShareButtons = false
   ShowPostNavLinks = true
@@ -22,7 +23,6 @@ paginate = 10
   ShowCodeCopyButtons = true
   ShowRssButtonInSectionTermList = true
   ShowToc = false
-  disableThemeToggle = true
 
 [params.cover]
   hidden = false
@@ -55,23 +55,23 @@ Notizen, Gedanken und Kram.'''
 
 [menu]
   [[menu.main]]
-    name = "Logbuch"
+    name = "~/Logbuch"
     url = "/posts/"
     weight = 1
   [[menu.main]]
-    name = "Tags"
+    name = "~/Tags"
     url = "/tags/"
     weight = 2
   [[menu.main]]
-    name = "Suche"
+    name = "~/Suche"
     url = "/search/"
     weight = 3
   [[menu.main]]
-    name = "Der Pilot"
+    name = "~/Pilot"
     url = "/pilot/"
     weight = 4
   [[menu.main]]
-    name = "Kontakt"
+    name = "~/Kontakt"
     url = "/kontakt/"
     weight = 5
 

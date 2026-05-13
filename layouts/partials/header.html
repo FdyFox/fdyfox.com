@@ -1,0 +1,40 @@
+<header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            {{- if site.Title }}
+            {{- $section := "~" }}
+            {{- if not .IsHome }}
+              {{- if .Section }}
+                {{- $section = .Section }}
+              {{- else if .File }}
+                {{- $section = .File.ContentBaseName }}
+              {{- else }}
+                {{- $section = .Title | lower }}
+              {{- end }}
+            {{- end }}
+            <a href="{{ "" | absLangURL }}" accesskey="h" title="(Alt + H)">
+                <span class="prompt-bracket">[</span><span class="prompt-user">ferdy@ferdyverse.de</span><span class="prompt-bracket">]</span>
+                <span class="prompt-arrow"> → </span>
+                <span class="prompt-section">{{ $section }}</span>
+                <span class="prompt-git"> (<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-1px"><path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Z"/></svg> main)</span>
+            </a>
+            {{- end }}
+        </div>
+        {{- $currentPage := . }}
+        <ul id="menu" class="menu">
+            {{- range site.Menus.main }}
+            {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
+            {{- $page_url:= $currentPage.Permalink | absLangURL }}
+            {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
+            <li>
+                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
+                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
+                    <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
+                        {{- .Pre }}{{- .Name -}}{{ .Post -}}
+                    </span>
+                </a>
+            </li>
+            {{- end }}
+        </ul>
+    </nav>
+</header>
