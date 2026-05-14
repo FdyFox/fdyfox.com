@@ -65,6 +65,15 @@ h1, h2, h3 { color: var(--primary); }
 .prompt-section { color: var(--primary); }
 .prompt-git     { color: var(--green); }
 
+@media (max-width: 640px) {
+  .logo a { font-size: 0.85rem; }
+  .menu a  { font-size: 0.85rem; }
+  .prompt-git    { display: none; }
+  .prompt-bracket,
+  .prompt-arrow  { display: none; }
+  .prompt-user   { font-size: 0.85rem; }
+}
+
 /* Tags */
 .post-tags a {
   background: var(--tertiary);
