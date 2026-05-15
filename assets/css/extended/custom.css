@@ -1,5 +1,6 @@
 /* Startseite - kein Mindestabstand */
 .first-entry.home-info { min-height: unset; }
+.home-divider { margin: 0; }
 
 /* Catppuccin Latte (light mode) */
 :root {

@@ -6,6 +6,7 @@
     <div class="entry-content md-content">
         {{ $opts := dict "display" "block" }}
         {{ .Content | $.Page.RenderString $opts }}
+        <hr class="home-divider" />
     </div>
 </article>
 {{- end -}}
