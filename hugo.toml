@@ -1,5 +1,7 @@
 baseURL = "https://ferdyverse.de/"
-languageCode = "de"
+languageCode = "de-de"
+language = "de-de"
+defaultContentLanguage = "de-de"
 title = "ferdyverse"
 theme = "PaperMod"
 enableRobotsTXT = true
