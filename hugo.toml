@@ -55,6 +55,10 @@ Notizen, Gedanken und Kram.'''
   name = "telegram"
   url = "https://t.me/brazier85"
 
+[[params.socialIcons]]
+  name = "signal"
+  url = "https://signal.me/#eu/E5WqkEwvgEPOcT0rofLpNThsJ72WBqw7qnQ-G7aqz9slVXpsQFhJSpUWiv0q6pVK"
+
 [menu]
   [[menu.main]]
     name = "~/Logbuch"
