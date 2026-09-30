@@ -1,8 +1,8 @@
-baseURL = "https://ferdyverse.de/"
+baseURL = "https://fdyfox.com/"
 languageCode = "de-de"
 language = "de-de"
 defaultContentLanguage = "de-de"
-title = "ferdyverse"
+title = "FdyFox"
 theme = "PaperMod"
 enableRobotsTXT = true
 paginate = 10
@@ -49,7 +49,7 @@ Notizen, Gedanken und Kram.'''
 
 [[params.socialIcons]]
   name = "github"
-  url = "https://github.com/Ferdyverse"
+  url = "https://github.com/FdyFox"
 
 [[params.socialIcons]]
   name = "telegram"
