@@ -73,8 +73,8 @@ Notizen, Gedanken und Kram.'''
     url = "/search/"
     weight = 3
   [[menu.main]]
-    name = "~/Pilot"
-    url = "/pilot/"
+    name = "~/About"
+    url = "/about/"
     weight = 4
   [[menu.main]]
     name = "~/Kontakt"

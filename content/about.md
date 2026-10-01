@@ -1,13 +1,13 @@
 ---
-title: "Der Pilot"
+title: "Über mich"
 layout: "page"
-url: "/pilot/"
-summary: "Über den Piloten des FdyFox"
+url: "/about/"
+summary: "Über den Fuchs hinter FdyFox"
 ShowReadingTime: false
 hideAuthor: true
 ---
 
-Ich bin Ferdy — der Pilot dieses kleinen Universums.
+Ich bin Ferdy — der Fuchs hinter FdyFox.
 
 Hier landen meine Notizen, Gedanken und alles, was ich nicht vergessen will.
 
