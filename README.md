@@ -1,4 +1,4 @@
-# ferdyverse.de
+# FdyFox.com
 
 Persönliche Website von Ferdinand Berger — gebaut mit [Hugo](https://gohugo.io/) und dem Theme [PaperMod](https://github.com/adityatelange/hugo-PaperMod).
 
