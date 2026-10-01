@@ -52,7 +52,7 @@ FTP-Zugangsdaten müssen als GitHub Secrets hinterlegt sein:
 ```
 content/
 ├── posts/          # Logbuch-Beiträge
-├── pilot.md        # Über-mich-Seite
+├── about.md        # Über-mich-Seite
 ├── search.md       # Suchseite
 ├── impressum.md
 └── datenschutz.md
