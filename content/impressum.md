@@ -15,7 +15,7 @@ Leimenacker 12<br>
 
 ## Kontakt
 
-E-Mail: [ferdy@ferdyverse.de](mailto:ferdy@ferdyverse.de)
+E-Mail: [ferdy@fdyfox.com](mailto:ferdy@fdyfox.com)
 
 ## Haftung für Inhalte
 

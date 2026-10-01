@@ -2,7 +2,7 @@
 title: "Der Pilot"
 layout: "page"
 url: "/pilot/"
-summary: "Über den Piloten des ferdyverse"
+summary: "Über den Piloten des FdyFox"
 ShowReadingTime: false
 hideAuthor: true
 ---
@@ -24,7 +24,7 @@ Hier landen meine Notizen, Gedanken und alles, was ich nicht vergessen will.
 
 </pre>
 <div class="nf-info">
-  <div><span class="nf-title">ferdy@ferdyverse.de</span></div>
+  <div><span class="nf-title">ferdy@fdyfox.com</span></div>
   <div><span class="nf-hr">────────────────</span></div>
   <div><span class="nf-key">Name</span><span class="nf-sep">: </span><span class="nf-val">Ferdinand Berger</span></div>
   <div><span class="nf-key">Alter</span><span class="nf-sep">: </span><span class="nf-val">40</span></div>

@@ -14,7 +14,7 @@ Du hast eine Frage, einen Fehler gefunden oder willst einfach Hallo sagen? Schre
 
 <div id="msg-error" class="callout callout-caution" style="display:none">
   <div class="callout-title"><span class="callout-icon">🔥</span> Fehler</div>
-  <div class="callout-content"><p>Etwas ist schiefgelaufen. Versuch es erneut oder schreib mir direkt an <a href="mailto:ferdy@ferdyverse.de">ferdy@ferdyverse.de</a>.</p></div>
+  <div class="callout-content"><p>Etwas ist schiefgelaufen. Versuch es erneut oder schreib mir direkt an <a href="mailto:ferdy@fdyfox.com">ferdy@fdyfox.com</a>.</p></div>
 </div>
 
 <form class="contact-form" action="/contact.php" method="POST">

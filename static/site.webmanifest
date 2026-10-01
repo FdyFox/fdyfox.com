@@ -1,6 +1,6 @@
 {
-  "name": "ferdyverse",
-  "short_name": "ferdyverse",
+  "name": "FdyFox",
+  "short_name": "FdyFox",
   "icons": [
     { "src": "/favicon-48x48.png", "sizes": "48x48", "type": "image/png" },
     { "src": "/favicon-512x512.png", "sizes": "512x512", "type": "image/png" }

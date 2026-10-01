@@ -12,7 +12,7 @@ hideAuthor: true
 Ferdinand Berger<br>
 Leimenacker 12<br>
 79312 Emmendingen<br>
-E-Mail: [ferdy@ferdyverse.de](mailto:ferdy@ferdyverse.de)
+E-Mail: [ferdy@fdyfox.com](mailto:ferdy@fdyfox.com)
 
 ## Erhebung und Speicherung personenbezogener Daten
 
@@ -24,7 +24,7 @@ Der Hosting-Anbieter dieser Seite erhebt beim Zugriff automatisch technische Inf
 
 ## Ihre Rechte
 
-Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten sowie das Recht auf Datenübertragbarkeit gemäß DSGVO. Bei Fragen wenden Sie sich an: [ferdy@ferdyverse.de](mailto:ferdy@ferdyverse.de)
+Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten sowie das Recht auf Datenübertragbarkeit gemäß DSGVO. Bei Fragen wenden Sie sich an: [ferdy@fdyfox.com](mailto:ferdy@fdyfox.com)
 
 ## Beschwerderecht
 

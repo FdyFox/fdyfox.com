@@ -28,11 +28,11 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $name  = str_replace(["\r", "\n"], '', $name);
 $email = str_replace(["\r", "\n"], '', $email);
 
-$to      = 'ferdy@ferdyverse.de';
-$subject = '[ferdyverse.de] Neue Nachricht von ' . $name;
+$to      = 'ferdy@fdyfox.com';
+$subject = '[fdyfox.com] Neue Nachricht von ' . $name;
 $body    = "Name:    {$name}\nE-Mail:  {$email}\n\nNachricht:\n{$message}";
 $headers = implode("\r\n", [
-    'From: noreply@ferdyverse.de',
+    'From: noreply@fdyfox.com',
     'Reply-To: ' . $email,
     'Content-Type: text/plain; charset=UTF-8',
     'X-Mailer: PHP/' . PHP_VERSION,
