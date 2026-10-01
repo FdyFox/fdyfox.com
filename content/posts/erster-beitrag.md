@@ -5,7 +5,7 @@ tags: ["meta", "blog", "obsidian", "adhs", "open-source"]
 draft: false
 ---
 
-Willkommen im FdyFox - meinem kleinen "universe".
+Willkommen bei FdyFox.com - meinem kleinen "Fuchsbau".
 
 Ja, ein Blog im Jahr 2026! Warum? Das weiß ich im Moment selbst noch nicht so genau… Ausschlaggebend war die Seite von [knuspermagier.de](https://knuspermagier.de) - und vermutlich mein ADHS (ja, ein neues Projekt, in das ich Energie stecken kann). Im Ernst: Ich habe früher schon oft kleine Blogs geschrieben und dabei immer darauf geachtet, ein Thema einzuhalten und die Posts möglichst "useful" für andere Menschen zu gestalten - aber warum? Eigentlich will ich doch nur eine Sammlung von Sachen und Gedanken haben, die ich immer und überall abrufen kann. Und wenn das dann noch zufällig für andere hilfreich oder relevant ist - warum nicht auch online zur Verfügung stellen?
 
