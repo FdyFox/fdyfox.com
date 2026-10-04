@@ -10,8 +10,8 @@ hideAuthor: true
 ## Verantwortlicher
 
 Ferdinand Berger<br>
-Leimenacker 12<br>
-79312 Emmendingen<br>
+In der Humes 8<br>
+66346 Püttlingen<br>
 E-Mail: [ferdy@fdyfox.com](mailto:ferdy@fdyfox.com)
 
 ## Erhebung und Speicherung personenbezogener Daten

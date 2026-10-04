@@ -10,8 +10,8 @@ hideAuthor: true
 ## Angaben gemäß § 5 TMG
 
 Ferdinand Berger<br>
-Leimenacker 12<br>
-79312 Emmendingen
+In der Humes 8<br>
+66346 Püttlingen
 
 ## Kontakt
 
