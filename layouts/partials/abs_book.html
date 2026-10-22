@@ -1,0 +1,16 @@
+{{- $b := .book }}
+<figure class="abs-book" title="{{ $b.title }} – {{ $b.author }}">
+  {{- with and $b.cover (resources.Get $b.cover) }}
+  {{- $img := .Fill "240x240 webp q80" }}
+  <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="Cover: {{ $b.title }}" loading="lazy">
+  {{- else }}
+  <div class="abs-nocover">{{ $b.title }}</div>
+  {{- end }}
+  {{- if $.progress }}
+  <div class="abs-progress" role="progressbar" aria-valuenow="{{ $b.progress }}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{ $b.progress }}%"></span></div>
+  {{- end }}
+  <figcaption>
+    <span class="abs-book-title">{{ $b.title }}</span>
+    <span class="abs-book-meta">{{ $b.author }}{{ if $.progress }} · {{ $b.progress }} %{{ else if $b.finished }} · {{ time.Format "02.01.2006" $b.finished }}{{ end }}</span>
+  </figcaption>
+</figure>

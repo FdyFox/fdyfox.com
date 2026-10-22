@@ -461,3 +461,182 @@ code {
 .status-test   { color: #f9e2af; border-color: #f9e2af; }
 .status-selbst { color: var(--accent2); border-color: var(--accent2); }
 .status-alt    { color: var(--secondary); border-color: var(--secondary); text-decoration: line-through; }
+
+/* Hörbücher (Wiki) */
+.abs-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.abs-tile {
+  background: var(--entry);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.abs-tile-value {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+.abs-tile-label {
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+.abs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem 2rem;
+}
+.post-content .abs-bars h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+.post-content .abs-bars ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post-content .abs-bars li {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  margin: 0 0 0.3rem;
+}
+.abs-bar-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--primary);
+}
+.abs-bar-track { height: 0.6rem; }
+.abs-bar {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  background: var(--accent);
+  border-radius: 0 4px 4px 0;
+}
+.abs-bars li:hover .abs-bar { background: var(--accent2); }
+.abs-bar-value {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  color: var(--secondary);
+  font-size: 0.8rem;
+}
+.abs-covers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+}
+.post-content .abs-book { margin: 0; }
+.post-content .abs-book img,
+.abs-nocover {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin: 0;
+}
+.abs-nocover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  background: var(--entry);
+  color: var(--secondary);
+}
+.abs-progress {
+  height: 4px;
+  background: var(--tertiary);
+  border-radius: 2px;
+  margin-top: 0.3rem;
+}
+.abs-progress span {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  border-radius: 2px;
+}
+.post-content .abs-book figcaption {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.3rem;
+  text-align: left;
+  line-height: 1.3;
+}
+.abs-book-title {
+  font-size: 0.85rem;
+  color: var(--primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.abs-book-meta {
+  font-size: 0.75rem;
+  color: var(--secondary);
+}
+
+/* Hörzeit-Heatmap */
+.abs-heatmap { margin-bottom: 1.8rem; }
+.post-content .abs-heatmap h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+.abs-heatmap-scroll { overflow-x: auto; }
+.abs-heatmap-grid {
+  display: flex;
+  gap: 3px;
+  width: max-content;
+}
+.abs-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.abs-month,
+.abs-weekdays span {
+  height: 10px;
+  font-size: 0.65rem;
+  line-height: 10px;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+.abs-week .abs-month {
+  width: 10px;
+  height: 1rem;
+}
+.abs-weekdays { width: 1.4rem; }
+.abs-day {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--entry);
+}
+.abs-day.l1 { background: color-mix(in srgb, var(--accent) 30%, var(--entry)); }
+.abs-day.l2 { background: color-mix(in srgb, var(--accent) 55%, var(--entry)); }
+.abs-day.l3 { background: color-mix(in srgb, var(--accent) 80%, var(--entry)); }
+.abs-day.l4 { background: var(--accent); }
+.abs-week .abs-day:hover { outline: 1px solid var(--primary); }
+.abs-heatmap-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--secondary);
+}
+.abs-heatmap-scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}

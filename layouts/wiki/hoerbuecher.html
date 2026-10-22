@@ -1,0 +1,74 @@
+{{- define "main" }}
+{{- $d := hugo.Data.hoerbuecher }}
+<article class="post-single wiki-page">
+  <header class="post-header">
+    {{ partial "wiki_breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    {{- if not $d }}
+    <p>Noch keine Daten - <code>make hoerbuecher</code> ausführen.</p>
+    {{- else }}
+
+    <h2 id="statistiken">Statistiken</h2>
+    <div class="abs-tiles">
+      <div class="abs-tile"><span class="abs-tile-value">{{ $d.totals.books }}</span><span class="abs-tile-label">Hörbücher</span></div>
+      <div class="abs-tile"><span class="abs-tile-value">{{ $d.totals.finished }}</span><span class="abs-tile-label">gehört</span></div>
+      <div class="abs-tile"><span class="abs-tile-value">{{ lang.FormatNumber 0 $d.totals.listened_hours }} h</span><span class="abs-tile-label">Hörzeit</span></div>
+      <div class="abs-tile"><span class="abs-tile-value">{{ lang.FormatNumber 0 $d.totals.library_hours }} h</span><span class="abs-tile-label">in der Bibliothek</span></div>
+    </div>
+
+    {{- with $d.heatmap }}
+    <section class="abs-heatmap">
+      <h3>Hörzeit der letzten 12 Monate</h3>
+      <div class="abs-heatmap-scroll">
+        <div class="abs-heatmap-grid" role="img" aria-label="Heatmap der Hörzeit: an {{ .active_days }} Tagen der letzten 12 Monate gehört">
+          <div class="abs-week abs-weekdays" aria-hidden="true">
+            <span class="abs-month"></span>
+            {{- range slice "Mo" "" "Mi" "" "Fr" "" "" }}<span>{{ . }}</span>{{ end }}
+          </div>
+          {{- range .weeks }}
+          <div class="abs-week">
+            <span class="abs-month">{{ .month }}</span>
+            {{- range .days }}<span class="abs-day l{{ .l }}" title="{{ .t }}"></span>{{ end }}
+          </div>
+          {{- end }}
+        </div>
+      </div>
+      <div class="abs-heatmap-legend">
+        <span>an {{ .active_days }} Tagen gehört</span>
+        <span class="abs-heatmap-scale">weniger {{ range seq 0 4 }}<span class="abs-day l{{ . }}"></span>{{ end }} mehr</span>
+      </div>
+    </section>
+    {{- end }}
+
+    <div class="abs-grid">
+      {{- partial "abs_bars.html" (dict "title" "Bücher gehört pro Jahr" "rows" $d.finished_per_year "unit" "") }}
+      {{- partial "abs_bars.html" (dict "title" "Hörzeit pro Jahr" "rows" $d.hours_per_year "unit" " h") }}
+      {{- partial "abs_bars.html" (dict "title" "Meistgehörte Autor:innen" "rows" $d.top_authors "unit" "") }}
+      {{- partial "abs_bars.html" (dict "title" "Meistgehörte Serien" "rows" $d.top_series "unit" "") }}
+    </div>
+
+    {{- with $d.in_progress }}
+    <h2 id="gerade">Gerade am Hören</h2>
+    <div class="abs-covers">
+      {{- range . }}{{ partial "abs_book.html" (dict "book" . "progress" true) }}{{ end }}
+    </div>
+    {{- end }}
+
+    {{- end }}
+  </div>
+
+  <footer class="post-footer">
+    {{- with $d }}
+    <p class="wiki-lastmod">Daten aus <a href="https://www.audiobookshelf.org/">Audiobookshelf</a>, Stand {{ time.Format "02.01.2006" .updated }}.</p>
+    {{- end }}
+  </footer>
+</article>
+{{- end }}

@@ -1,0 +1,17 @@
+{{- with .rows }}
+{{- $max := 1 }}
+{{- range . }}{{ $max = math.Max $max (index . 1) }}{{ end }}
+<section class="abs-bars">
+  <h3>{{ $.title }}</h3>
+  <ul>
+    {{- range . }}
+    {{- $value := index . 1 }}
+    <li title="{{ index . 0 }}: {{ $value }}{{ $.unit }}">
+      <span class="abs-bar-label">{{ index . 0 }}</span>
+      <span class="abs-bar-track"><span class="abs-bar" style="width: {{ math.Round (mul 100 (div (float $value) $max)) }}%"></span></span>
+      <span class="abs-bar-value">{{ $value }}{{ $.unit }}</span>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

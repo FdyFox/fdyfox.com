@@ -3,7 +3,7 @@ BROWSER := $(shell which powershell.exe 2>/dev/null || which xdg-open 2>/dev/nul
 
 .DEFAULT_GOAL := help
 
-.PHONY: help dev drafts build clean deploy post page wiki open
+.PHONY: help dev drafts build clean deploy post page wiki hoerbuecher open
 
 help:
 	@echo "Verfügbare Befehle:"
@@ -14,6 +14,7 @@ help:
 	@echo "  make post <name>    Neuen Beitrag anlegen"
 	@echo "  make page <name>    Neue Seite anlegen"
 	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
+	@echo "  make hoerbuecher    Hörbuch-Daten aus Audiobookshelf holen"
 	@echo "  make open           Lokale Seite im Browser öffnen"
 
 dev:
@@ -45,6 +46,9 @@ wiki:
 	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make wiki homelab/proxmox" && exit 1)
 	$(HUGO) new --kind wiki content/wiki/$(NAME).md
 	@echo "→ Wiki-Seite erstellt: content/wiki/$(NAME).md"
+
+hoerbuecher:
+	python3 scripts/abs-sync.py
 
 %:
 	@:
