@@ -20,25 +20,25 @@ Auf den beiden Proxmox-Nodes läuft fast alles in eigenen LXC-Containern. Angele
 
 Zwei LXC-Container dienen als Docker-Hosts, verwaltet mit [Komodo](https://komo.do/).
 
-##### [Komodo](https://komo.do/)
+#### [Komodo](https://komo.do/)
 
 Verwaltet die Docker-Hosts und deployt die Stacks. Container, Logs und Updates habe ich damit an einer Stelle im Blick.
 
 {{< status "fest" >}}
 
-##### [meshcore-mux](https://github.com/FdyFox/meshcore-mux)
+#### [meshcore-mux](https://github.com/FdyFox/meshcore-mux)
 
 Verteilt die eine TCP-Verbindung zu meinem MeshCore-Node auf mehrere Clients. Mehr dazu im [Beitrag zum MeshCore TCP-Node](/posts/meshcore-tcp-node/).
 
 {{< status "selbst" >}}
 
-##### Minecraft
+#### Minecraft
 
 Ein Minecraft-Server. Braucht man eben.
 
 {{< status "fest" >}}
 
-##### [Paperless-ngx](https://docs.paperless-ngx.com/)
+#### [Paperless-ngx](https://docs.paperless-ngx.com/)
 
 Jeder Brief wird gescannt und landet hier – durchsuchbar, verschlagwortet und das Papier kann weg.
 
@@ -46,31 +46,31 @@ Jeder Brief wird gescannt und landet hier – durchsuchbar, verschlagwortet und 
 
 ## Infrastruktur
 
-##### [AdGuard Home](https://adguard.com/de/adguard-home/overview.html)
+#### [AdGuard Home](https://adguard.com/de/adguard-home/overview.html)
 
 DNS mit Werbe- und Trackingfilter, doppelt ausgelegt. Abgelöst durch den Adblocker des UniFi Dream Routers.
 
 {{< status "alt" >}}
 
-##### [Authentik](https://goauthentik.io/)
+#### [Authentik](https://goauthentik.io/)
 
 Single Sign-On für die Dienste, die selbst keine vernünftige Anmeldung mitbringen.
 
 {{< status "fest" >}}
 
-##### [Caddy](https://caddyserver.com/)
+#### [Caddy](https://caddyserver.com/)
 
 Reverse Proxy vor allem, was eine Weboberfläche hat. TLS kommt automatisch, die Vhosts generiert Ansible direkt aus den Host-Variablen der einzelnen Container.
 
 {{< status "fest" >}}
 
-##### [Forgejo](https://forgejo.org/)
+#### [Forgejo](https://forgejo.org/)
 
 Eigener Git-Server inklusive Actions-Runner, unter anderem für die Runner-Images, in denen Ansible läuft.
 
 {{< status "fest" >}}
 
-##### [Pangolin](https://github.com/fosrl/pangolin)
+#### [Pangolin](https://github.com/fosrl/pangolin)
 
 Läuft auf einem vServer im Internet und gibt ausgewählte Anwendungen öffentlich frei. Die Verbindung nach Hause baut ein Tunnel von innen nach außen auf, zu Hause bleibt also weiterhin kein Port offen.
 
@@ -78,13 +78,13 @@ Läuft auf einem vServer im Internet und gibt ausgewählte Anwendungen öffentli
 
 ## Medien
 
-##### [Audiobookshelf](https://www.audiobookshelf.org/)
+#### [Audiobookshelf](https://www.audiobookshelf.org/)
 
 Hörbücher und Podcasts. Dazu [Libation](https://github.com/rmcrackan/Libation), das meine Audible-Bibliothek automatisch herunterlädt.
 
 {{< status "fest" >}}
 
-##### [Jellyfin](https://jellyfin.org/)
+#### [Jellyfin](https://jellyfin.org/)
 
 Der Medienserver, in einem eigenen Container und eigenem VLAN.
 
@@ -92,13 +92,13 @@ Der Medienserver, in einem eigenen Container und eigenem VLAN.
 
 ## Monitoring & Benachrichtigungen
 
-##### [ntfy](https://ntfy.sh/)
+#### [ntfy](https://ntfy.sh/)
 
 Push-Benachrichtigungen aufs Handy – von Uptime Kuma, Watchtower-Updates und allem anderen, was etwas zu sagen hat.
 
 {{< status "fest" >}}
 
-##### [Uptime Kuma](https://uptime.kuma.pet/)
+#### [Uptime Kuma](https://uptime.kuma.pet/)
 
 Schaut regelmäßig, ob alles noch antwortet.
 
@@ -106,7 +106,7 @@ Schaut regelmäßig, ob alles noch antwortet.
 
 ## Smart Home
 
-##### [Home Assistant](https://www.home-assistant.io/)
+#### [Home Assistant](https://www.home-assistant.io/)
 
 Die Zentrale für alles, was im Haus blinkt und misst, samt MQTT-Broker. Läuft in einem eigenen VLAN.
 
@@ -114,7 +114,7 @@ Die Zentrale für alles, was im Haus blinkt und misst, samt MQTT-Broker. Läuft 
 
 <!-- Vorlage für weitere Dienste:
 
-##### [Name](https://link-zum-projekt)
+#### [Name](https://link-zum-projekt)
 
 Ein, zwei Sätze, was der Dienst macht und warum er da ist.
 
