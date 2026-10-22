@@ -13,9 +13,9 @@ hugo --minify
 
 echo "→ Upload via FTP..."
 lftp -c "
-  set ftp:ssl-allow no;
+  set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate yes;
   open ftp://$FTP_USER:$FTP_PASS@$FTP_HOST;
-  mirror --reverse --delete --verbose public/ $FTP_PATH
+  mirror --reverse --delete --parallel=8 --verbose public/ $FTP_PATH
 "
 
 echo "✓ Deploy abgeschlossen."

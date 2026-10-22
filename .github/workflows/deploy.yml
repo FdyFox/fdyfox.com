@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get install -y lftp
           lftp -c "
-            set ftp:ssl-allow no;
+            set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate yes;
             open ftp://${{ secrets.FTP_USER }}:${{ secrets.FTP_PASS }}@${{ secrets.FTP_HOST }};
-            mirror --reverse --delete public/ ${{ secrets.FTP_PATH }}
+            mirror --reverse --delete --parallel=8 public/ ${{ secrets.FTP_PATH }}
           "
