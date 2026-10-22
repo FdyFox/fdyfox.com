@@ -1,0 +1,8 @@
+<nav class="breadcrumbs wiki-breadcrumbs" aria-label="Breadcrumb">
+  {{- range .Ancestors.Reverse }}
+  {{- if not .IsHome }}
+  <a href="{{ .Permalink }}">{{ .Title | lower }}</a><span class="wiki-sep">/</span>
+  {{- end }}
+  {{- end }}
+  <span>{{ .Title | lower }}</span>
+</nav>

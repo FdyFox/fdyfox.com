@@ -3,7 +3,7 @@ BROWSER := $(shell which powershell.exe 2>/dev/null || which xdg-open 2>/dev/nul
 
 .DEFAULT_GOAL := help
 
-.PHONY: help dev drafts build clean deploy post page open
+.PHONY: help dev drafts build clean deploy post page wiki open
 
 help:
 	@echo "Verfügbare Befehle:"
@@ -13,6 +13,7 @@ help:
 	@echo "  make deploy         Bauen und per FTP deployen"
 	@echo "  make post <name>    Neuen Beitrag anlegen"
 	@echo "  make page <name>    Neue Seite anlegen"
+	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
 	@echo "  make open           Lokale Seite im Browser öffnen"
 
 dev:
@@ -38,6 +39,12 @@ page:
 	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make page ueber-mich" && exit 1)
 	$(HUGO) new content/$(NAME).md
 	@echo "→ Seite erstellt: content/$(NAME).md"
+
+wiki:
+	$(eval NAME := $(filter-out $@,$(MAKECMDGOALS)))
+	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make wiki homelab/proxmox" && exit 1)
+	$(HUGO) new --kind wiki content/wiki/$(NAME).md
+	@echo "→ Wiki-Seite erstellt: content/wiki/$(NAME).md"
 
 %:
 	@:

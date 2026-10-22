@@ -5,6 +5,7 @@ defaultContentLanguage = "de-de"
 title = "FdyFox"
 theme = "PaperMod"
 enableRobotsTXT = true
+enableGitInfo = true
 paginate = 10
 
 [outputs]
@@ -25,6 +26,7 @@ paginate = 10
   ShowCodeCopyButtons = true
   ShowRssButtonInSectionTermList = true
   ShowToc = false
+  mainSections = ["posts"]
 
 [params.cover]
   hidden = false
@@ -65,21 +67,25 @@ Notizen, Gedanken und Kram.'''
     url = "/posts/"
     weight = 1
   [[menu.main]]
+    name = "~/Wiki"
+    url = "/wiki/"
+    weight = 2
+  [[menu.main]]
     name = "~/Tags"
     url = "/tags/"
-    weight = 2
+    weight = 3
   [[menu.main]]
     name = "~/Suche"
     url = "/search/"
-    weight = 3
+    weight = 4
   [[menu.main]]
     name = "~/About"
     url = "/about/"
-    weight = 4
+    weight = 5
   [[menu.main]]
     name = "~/Kontakt"
     url = "/kontakt/"
-    weight = 5
+    weight = 6
 
 [taxonomies]
   tag = "tags"

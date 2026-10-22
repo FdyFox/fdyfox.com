@@ -1,0 +1,83 @@
+{{- define "main" }}
+{{- $isRoot := eq . .FirstSection }}
+<article class="post-single wiki-index">
+  <header class="post-header">
+    {{- if not $isRoot }}
+    {{ partial "wiki_breadcrumbs.html" . }}
+    {{- end }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  {{- if .Content }}
+  <div class="post-content md-content">
+    {{ .Content }}
+  </div>
+  {{- end }}
+
+  {{- if $isRoot }}
+  {{- $pages := .RegularPagesRecursive }}
+  {{- with $pages }}
+  <div class="wiki-recent">
+    {{- with index .ByDate.Reverse 0 }}
+    <div class="wiki-box">
+      <div class="wiki-box-title">Neueste Seite</div>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <span class="wiki-meta">{{ .Date | time.Format "02.01.2006" }} · {{ .Parent.Title }}</span>
+    </div>
+    {{- end }}
+    <div class="wiki-box">
+      <div class="wiki-box-title">Letzte Änderungen</div>
+      <ul class="wiki-list">
+        {{- range first 8 .ByLastmod.Reverse }}
+        <li>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <span class="wiki-meta">{{ .Lastmod | time.Format "02.01.2006" }} · {{ .Parent.Title }}</span>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+    {{- $urls := slice }}
+    {{- range . }}{{ $urls = $urls | append .RelPermalink }}{{ end }}
+    <button type="button" class="wiki-random" data-pages="{{ jsonify $urls }}">Zufällige Seite →</button>
+  </div>
+  {{- end }}
+  {{- end }}
+
+  {{- range .Sections }}
+  <section class="wiki-section">
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    {{- with .Description }}<p class="wiki-desc">{{ . }}</p>{{ end }}
+    <ul class="wiki-list">
+      {{- range .Pages }}
+      <li><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .IsSection }}<span class="wiki-meta">{{ len .RegularPagesRecursive }} Seiten</span>{{ end }}</li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+
+  {{- if not $isRoot }}
+  {{- with .RegularPages }}
+  <ul class="wiki-list">
+    {{- range . }}
+    <li>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      {{- with .Description }}<span class="wiki-meta">{{ . }}</span>{{ end }}
+    </li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- end }}
+</article>
+
+{{- if $isRoot }}
+<script>
+  document.querySelector('.wiki-random')?.addEventListener('click', e => {
+    const pages = JSON.parse(e.currentTarget.dataset.pages);
+    location.href = pages[Math.floor(Math.random() * pages.length)];
+  });
+</script>
+{{- end }}
+{{- end }}

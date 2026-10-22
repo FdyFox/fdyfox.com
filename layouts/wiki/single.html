@@ -1,0 +1,31 @@
+{{- define "main" }}
+<article class="post-single wiki-page">
+  <header class="post-header">
+    {{ partial "wiki_breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  {{- if (.Param "ShowToc") }}
+  {{- partial "toc.html" . }}
+  {{- end }}
+
+  {{- if .Content }}
+  <div class="post-content md-content">
+    {{- partial "anchored_headings.html" .Content -}}
+  </div>
+  {{- end }}
+
+  <footer class="post-footer">
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    <ul class="post-tags">
+      {{- range ($.GetTerms $tags) }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    <p class="wiki-lastmod">Diese Seite wurde zuletzt am {{ .Lastmod | time.Format "02.01.2006" }} bearbeitet.</p>
+  </footer>
+</article>
+{{- end }}
