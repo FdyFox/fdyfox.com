@@ -447,3 +447,17 @@ code {
   border-color: var(--accent);
   color: var(--accent2);
 }
+
+/* Status-Labels (Wiki) */
+.status {
+  display: inline-block;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid;
+}
+.status-fest   { color: var(--green); border-color: var(--green); }
+.status-test   { color: #f9e2af; border-color: #f9e2af; }
+.status-selbst { color: var(--accent2); border-color: var(--accent2); }
+.status-alt    { color: var(--secondary); border-color: var(--secondary); text-decoration: line-through; }
