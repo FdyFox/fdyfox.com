@@ -7,12 +7,12 @@ draft: false
 
 Das Homelab besteht im Moment aus folgender Hardware:
 
-<!-- TODO: Modelle, CPU, RAM, Platten ergänzen -->
-- **Evoli** – Proxmox-Node
+<!-- TODO: Platten der Nodes, Modell und Platten des NAS ergänzen -->
+- **Evoli** – Proxmox-Node, Lenovo ThinkCentre M900 Tiny mit Core i5-6600T und 32 GB RAM
 - **Hardbase** – Synology-NAS
-- **Pikachu** – Proxmox-Node
+- **Pikachu** – Proxmox-Node, Lenovo ThinkCentre M900 Tiny mit Core i5-6600T und 32 GB RAM
 - **UniFi Dream Router (UDR)** als Router, Firewall und VLAN-Zentrale
-- **vServer** im Internet als öffentlicher Eingang
+- **vServer** bei [Hetzner](https://www.hetzner.com/cloud/) (CX23) als öffentlicher Eingang
 
 Auf den beiden Proxmox-Nodes läuft fast alles in eigenen LXC-Containern. Angelegt und konfiguriert werden die komplett per Ansible – das Setup liegt in meinem [HomeLab-Repo](https://github.com/FdyFox/HomeLab). Was dort nicht drinsteht, gibt es nicht. Zumindest nicht lange.
 
@@ -72,7 +72,7 @@ Eigener Git-Server inklusive Actions-Runner, unter anderem für die Runner-Image
 
 ### [Pangolin](https://github.com/fosrl/pangolin)
 
-Läuft auf einem vServer im Internet und gibt ausgewählte Anwendungen öffentlich frei. Die Verbindung nach Hause baut ein Tunnel von innen nach außen auf, zu Hause bleibt also weiterhin kein Port offen.
+Läuft auf dem vServer bei Hetzner und gibt ausgewählte Anwendungen öffentlich frei. Die Verbindung nach Hause baut ein Tunnel von innen nach außen auf, zu Hause bleibt also weiterhin kein Port offen.
 
 {{< status "fest" >}}
 
