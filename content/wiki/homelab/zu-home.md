@@ -2,7 +2,7 @@
 title: "Zu Hause"
 description: "Was bei mir zu Hause so läuft."
 date: 2026-10-22T09:00:00+02:00
-draft: true
+draft: false
 ---
 
 Das Homelab besteht im Moment aus folgender Hardware:
