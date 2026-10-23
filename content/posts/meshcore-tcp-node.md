@@ -11,6 +11,9 @@ Ich wollte einen stationären Node haben, der nicht nur per BLE oder USB erreich
 
 ## WLAN-Zugangsdaten in die Firmware patchen
 
+> [!NOTE]
+> Seit Companion-Firmware v1.18.0 lassen sich die WLAN-Zugangsdaten bei vielen Boards direkt per CLI oder App setzen - siehe [Update](#update-seit-firmware-v1180-kein-patcher-mehr-nötig) am Ende des Beitrags.
+
 MeshCore-Companion-Firmware kann grundsätzlich auch per WiFi/TCP statt nur über BLE oder USB angesprochen werden - praktisch für einen stationären Gateway-Node. Laut [offizieller MeshCore-Doku](https://docs.meshcore.io/faq/) muss man dafür aber selbst kompilieren: SSID und Passwort trägt man als `WIFI_SSID`/`WIFI_PWD` fest in der `platformio.ini` der jeweiligen Board-Variante ein, bevor man baut und flasht - mit eigener Toolchain und für jedes WLAN ein eigener Build.
 
 Genau das nimmt einem der [ESP32 SSID Patcher](https://www.weyhmueller.org/webtools/esp32_ssid_patcher.html) von O. Weyhmüller ab. Im zugehörigen Firmware-Archiv liegen für dieses Tool vorbereitete WiFi-Companion-Builds, bei denen statt echter Zugangsdaten nur Platzhalter (`myssid_patchable` / `mypwd_patchable`) im Binary stehen. Firmware auswählen, SSID und Passwort eintragen - fertig. Der Patch läuft komplett lokal im Browser, es wird nichts an einen Server geschickt. Das Tool ersetzt die Platzhalter im Binary und passt anschließend Checksumme und SHA256 an, damit der ESP32 das Image beim Boot als gültig akzeptiert - kein eigener Build nötig.
@@ -100,4 +103,5 @@ set wifi.pwd geheim
 
 Nach einem Neustart bucht sich der Node ins WLAN ein und ist wie gehabt per TCP erreichbar. Alternativ geht das seit MeshCore-App v1.50.0 auch bequem über den neuen Bereich „WiFi Settings“: per BLE verbinden, Zugangsdaten eintragen, Node neu starten.
 
-Wichtig: Das gilt nur für die **BLE**-Variante der Firmware. Die USB-Builds bekommen kein WiFi - laut Release Notes wird die USB-Schnittstelle in den BLE+WiFi-Builds für Serial-Logging gebraucht. Wer also einen WLAN-Node will, flasht ab sofort einfach das reguläre `companion_radio_ble`-Image und braucht weder eigenen Build noch SSID Patcher.
+> [!WARNING]
+> Das gilt nur für die **BLE**-Variante der Firmware. Die USB-Builds bekommen kein WiFi - laut Release Notes wird die USB-Schnittstelle in den BLE+WiFi-Builds für Serial-Logging gebraucht. Für einen WLAN-Node ist also das `companion_radio_ble`-Image des jeweiligen Boards die richtige Wahl.
