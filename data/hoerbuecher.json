@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-23",
   "totals": {
-    "books": 122,
+    "books": 123,
     "finished": 63,
-    "library_hours": 1253,
-    "listened_hours": 550
+    "library_hours": 1268,
+    "listened_hours": 553
   },
   "finished_per_year": [
     [
@@ -23,7 +23,7 @@
   "hours_per_year": [
     [
       "2026",
-      192
+      195
     ],
     [
       "2025",
@@ -36,27 +36,27 @@
   ],
   "top_authors": [
     [
-      "Oleg Sapphire, Alexey Kovtunov",
-      9
+      "Vasily Mahanenko",
+      19
+    ],
+    [
+      "Oleg Sapphire",
+      10
     ],
     [
       "Jason Cheek",
       9
     ],
     [
-      "Vasily Mahanenko",
-      7
+      "Alexey Kovtunov",
+      9
     ],
     [
       "G. Akella",
       5
     ],
     [
-      "Vasily Mahanenko, Eva Leitner - Übersetzer",
-      5
-    ],
-    [
-      "Vasily Mahanenko, Jared Firth - translator",
+      "Dan Brown",
       4
     ],
     [
@@ -64,15 +64,15 @@
       3
     ],
     [
-      "Dan Brown",
-      3
-    ],
-    [
-      "Vasily Mahanenko, Eva Leitner",
-      3
+      "Marc Elsberg",
+      2
     ],
     [
       "Andreas Suchanek",
+      2
+    ],
+    [
+      "Scott Meyer",
       2
     ]
   ],
@@ -121,7 +121,7 @@
   "languages": [
     [
       "German",
-      113
+      114
     ],
     [
       "English",
@@ -142,7 +142,7 @@
       "hours": 10.3,
       "added": "2026-10-19",
       "finished": "",
-      "progress": 50,
+      "progress": 81,
       "cover": "hoerbuecher/covers/d31bf9f3-12c0-43f5-ae24-3108da2cf101.jpg"
     },
     {
@@ -1912,12 +1912,16 @@
             "l": 4
           },
           {
-            "t": "Do 22.10.2026 · 5 min",
+            "t": "Do 22.10.2026 · 2,9 h",
+            "l": 4
+          },
+          {
+            "t": "Fr 23.10.2026 · 11 min",
             "l": 1
           }
         ]
       }
     ],
-    "active_days": 204
+    "active_days": 205
   }
 }

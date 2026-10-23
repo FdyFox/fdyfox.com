@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_FILE = ROOT / "data" / "hoerbuecher.json"
 COVER_DIR = ROOT / "assets" / "hoerbuecher" / "covers"
 WEEKDAYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+TRANSLATOR_MARKERS = ("übersetzer", "translator")
 MONTHS = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
 
 
@@ -40,6 +41,21 @@ def api(path, raw=False):
     with urllib.request.urlopen(req, timeout=30) as res:
         body = res.read()
     return body if raw else json.loads(body)
+
+
+def split_authors(author_name):
+    """Zerlegt "A, B - Übersetzer" in (Autor:innen, Übersetzer:innen)."""
+    authors, translators = [], set()
+    for name in (author_name or "").split(","):
+        name = name.strip()
+        base = name.rsplit(" - ", 1)[0].strip() if " - " in name else name
+        if not base:
+            continue
+        if any(m in name.lower() for m in TRANSLATOR_MARKERS):
+            translators.add(base)
+        else:
+            authors.append(base)
+    return authors, translators
 
 
 def from_ms(ms):
@@ -94,6 +110,11 @@ def main():
     progress = {p["libraryItemId"]: p for p in api("/api/me")["mediaProgress"] if not p.get("episodeId")}
     listening = api("/api/me/listening-stats")
 
+    # Übersetzer:innen sammeln, damit sie auch ohne Zusatz ("A, B") erkannt werden
+    translators = set()
+    for item in items:
+        translators |= split_authors(item["media"]["metadata"].get("authorName"))[1]
+
     COVER_DIR.mkdir(parents=True, exist_ok=True)
     books = []
     used_covers = set()
@@ -116,9 +137,11 @@ def main():
                 cover = f"hoerbuecher/covers/{cover_file.name}"
                 used_covers.add(cover_file.name)
 
+        authors = [a for a in split_authors(meta.get("authorName"))[0] if a not in translators]
         books.append({
             "title": meta.get("title") or "Unbekannt",
-            "author": meta.get("authorName") or "Unbekannt",
+            "author": ", ".join(authors) or "Unbekannt",
+            "_authors": authors,
             "series": meta.get("seriesName") or "",
             "narrator": meta.get("narratorName") or "",
             "year": meta.get("publishedYear") or "",
@@ -138,8 +161,10 @@ def main():
         (b for b in books if not b["finished"] and b["progress"] > 0),
         key=lambda b: b["_last"], reverse=True,
     )
+    authors_by_book = []
     for b in books:
         del b["_last"]
+        authors_by_book.append(b.pop("_authors"))
     for f in COVER_DIR.glob("*.jpg"):
         if f.name not in used_covers:
             f.unlink()
@@ -148,7 +173,9 @@ def main():
     for day, seconds in listening.get("days", {}).items():
         hours_per_year[day[:4]] += seconds / 3600
 
-    finished_authors = Counter(b["author"] for b in finished_books)
+    finished_authors = Counter(
+        a for b, authors in zip(books, authors_by_book) if b["finished"] for a in authors
+    )
     series = Counter(b["series"].split(" #")[0] for b in finished_books if b["series"])
 
     data = {
