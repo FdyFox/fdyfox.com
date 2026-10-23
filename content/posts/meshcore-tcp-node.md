@@ -88,3 +88,16 @@ Im lokalen Netz spreche ich den Mux einfach über die Server-IP und den jeweilig
 ## Fazit
 
 Am Ende steht ein stationärer MeshCore-Node, auf den ich mit mehreren Geräten und Apps gleichzeitig zugreifen kann - egal ob ich im selben Netz sitze oder über WireGuard von unterwegs. Ohne eigenen Firmware-Build dank SSID Patcher, und dank meshcore-mux gehen auch bei Neustarts keine Nachrichten verloren.
+
+## Update: Seit Firmware v1.18.0 kein Patcher mehr nötig
+
+Mit der [Companion-Firmware v1.18.0](https://blog.meshcore.io/2026/10/15/release-1-18-0) vom 15. Oktober 2026 hat sich das Thema WLAN-Zugangsdaten erledigt: Für eine Reihe von ESP32-Boards - darunter Heltec v3, Heltec v4, Heltec Wireless Paper, RAK3112 und Xiao S3 - enthalten die offiziellen **BLE**-Builds jetzt zusätzlich das WiFi-Interface. SSID und Passwort lassen sich zur Laufzeit per CLI setzen und landen dauerhaft in den Node-Einstellungen:
+
+```text
+set wifi.ssid MeinWLAN
+set wifi.pwd geheim
+```
+
+Nach einem Neustart bucht sich der Node ins WLAN ein und ist wie gehabt per TCP erreichbar. Alternativ geht das seit MeshCore-App v1.50.0 auch bequem über den neuen Bereich „WiFi Settings“: per BLE verbinden, Zugangsdaten eintragen, Node neu starten.
+
+Wichtig: Das gilt nur für die **BLE**-Variante der Firmware. Die USB-Builds bekommen kein WiFi - laut Release Notes wird die USB-Schnittstelle in den BLE+WiFi-Builds für Serial-Logging gebraucht. Wer also einen WLAN-Node will, flasht ab sofort einfach das reguläre `companion_radio_ble`-Image und braucht weder eigenen Build noch SSID Patcher.
