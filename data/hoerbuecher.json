@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-10-30",
   "totals": {
-    "books": 123,
+    "books": 124,
     "finished": 64,
-    "library_hours": 1268,
-    "listened_hours": 555
+    "library_hours": 1278,
+    "listened_hours": 561
   },
   "finished_per_year": [
     [
@@ -23,7 +23,7 @@
   "hours_per_year": [
     [
       "2026",
-      197
+      202
     ],
     [
       "2025",
@@ -121,7 +121,7 @@
   "languages": [
     [
       "German",
-      114
+      115
     ],
     [
       "English",
@@ -142,7 +142,7 @@
       "hours": 10.0,
       "added": "2026-10-19",
       "finished": "",
-      "progress": 4,
+      "progress": 56,
       "cover": "hoerbuecher/covers/79c87cf9-b8f7-4cf4-9d46-0342ea5cf135.jpg"
     },
     {
@@ -791,7 +791,7 @@
           },
           {
             "t": "Do 05.03.2026 · 55 min",
-            "l": 3
+            "l": 2
           },
           {
             "t": "Fr 06.03.2026 · 43 min",
@@ -878,7 +878,7 @@
         "days": [
           {
             "t": "Mo 23.03.2026 · 23 min",
-            "l": 2
+            "l": 1
           },
           {
             "t": "Di 24.03.2026 · 1,5 h",
@@ -1096,7 +1096,7 @@
           },
           {
             "t": "Sa 09.05.2026 · 55 min",
-            "l": 3
+            "l": 2
           },
           {
             "t": "So 10.05.2026 · nichts gehört",
@@ -1900,12 +1900,28 @@
         "month": "",
         "days": [
           {
-            "t": "Mo 26.10.2026 · 22 min",
-            "l": 1
+            "t": "Mo 26.10.2026 · 1,2 h",
+            "l": 3
+          },
+          {
+            "t": "Di 27.10.2026 · 58 min",
+            "l": 3
+          },
+          {
+            "t": "Mi 28.10.2026 · 2,3 h",
+            "l": 4
+          },
+          {
+            "t": "Do 29.10.2026 · 56 min",
+            "l": 3
+          },
+          {
+            "t": "Fr 30.10.2026 · nichts gehört",
+            "l": 0
           }
         ]
       }
     ],
-    "active_days": 208
+    "active_days": 211
   }
 }
