@@ -3,27 +3,27 @@ name: Deploy
 on:
   push:
     branches: [main]
+  pull_request:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: true
           fetch-depth: 0  # vollständige Historie für Git-Lastmod im Wiki
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: "0.160.1"
-          extended: true
+        uses: jdx/mise-action@v5  # Version aus mise.toml
 
       - name: Build
         run: hugo --minify
 
+      # Bei Pull Requests (z.B. Renovate-Updates) nur testweise bauen
       - name: Deploy via FTP
+        if: github.event_name == 'push'
         run: |
           sudo apt-get install -y lftp
           lftp -c "

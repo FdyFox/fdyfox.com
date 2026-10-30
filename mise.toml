@@ -1,0 +1,4 @@
+# Tool-Versionen für lokal und GitHub Actions (jdx/mise-action).
+# Updates kommen per Renovate-PR, siehe renovate.json.
+[tools]
+hugo-extended = "0.169.0"
