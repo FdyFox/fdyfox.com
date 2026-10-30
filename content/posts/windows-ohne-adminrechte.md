@@ -18,23 +18,23 @@ Nicht ganz.
 
 ### Das offene Fenster
 
-Seit Windows 10 1809 gibt es neben dem systemweiten Schriftordner einen **pro Benutzer** - und der gehört, Überraschung, dem Benutzer:
+Seit Windows 10 1809 gibt es neben dem systemweiten Schriftordner auch einen **pro Benutzer**. Er liegt im eigenen Profil, Schreibrechte hat man dort also immer:
 
 ```text
 %LOCALAPPDATA%\Microsoft\Windows\Fonts
 ```
 
-Registriert wird dort auch nicht unter `HKLM`, sondern in `HKCU` - also ebenfalls in unserem eigenen Revier:
+Die passenden Registry-Einträge landen entsprechend nicht unter `HKLM`, sondern unter `HKCU` - ebenfalls ohne Adminrechte beschreibbar:
 
 ```text
 HKCU\Software\Microsoft\Windows NT\CurrentVersion\Fonts
 ```
 
-Genau das macht Windows intern, wenn man auf "Installieren" klickt. Die GPO sperrt nur den Knopf, nicht den Mechanismus dahinter. Wir machen also einfach von Hand, was der Knopf gemacht hätte. Datei nur reinkopieren reicht übrigens nicht - ohne Registry-Eintrag ignoriert Windows die Schrift eiskalt.
+Genau dorthin installiert Windows eine Schrift auch selbst, wenn man ohne Adminrechte auf "Installieren" klickt. Die Sperre greift aber nur beim Installieren über den Explorer - Ordner und Registry-Schlüssel bleiben beschreibbar. Also erledigen wir die beiden Schritte eben selbst: Datei in den Ordner kopieren, Registry-Eintrag anlegen. Nur die Datei zu kopieren reicht nicht - ohne Eintrag in der Registry lädt Windows die Schrift nicht.
 
 ### Das Skript
 
-Registry-Einträge von Hand zu tippen ist was für Masochisten. Also ein Skript: Es schnappt sich alle `.ttf`, `.otf` und `.ttc` im Benutzer-Schriftordner, trägt fehlende in die Registry ein und schiebt sie per Win32-API direkt in die laufende Sitzung. Kein Abmelden, kein Neustart, kein Ticket.
+Registry-Einträge von Hand zu tippen ist was für Masochisten. Also ein Skript: Es schnappt sich alle `.ttf`, `.otf` und `.ttc` im Benutzer-Schriftordner, trägt fehlende in die Registry ein und schiebt sie per Win32-API direkt in die laufende Sitzung. Abmelden ist in der Regel nicht nötig, ein Ticket schon gar nicht.
 
 ```powershell {title="install_fonts_user.ps1"}
 <#
@@ -178,7 +178,7 @@ Benutzer-Schriften sieht nur der eigene Benutzer - für fast alles reicht das. E
 
 Mal eben gucken, in welchen AD-Gruppen man steckt oder welche Domain Controller rumstehen? `Get-ADUser`: *"The term is not recognized..."*. Klar, die Cmdlets kommen mit **RSAT**, und RSAT installieren braucht - richtig - Admin.
 
-Brauchen wir aber gar nicht. Das ganze `ActiveDirectory`-Modul ist im Kern eine einzige DLL: `Microsoft.ActiveDirectory.Management.dll`. Und eine DLL kann man einfach importieren. Von überall.
+Brauchen wir aber gar nicht. Das ganze `ActiveDirectory`-Modul ist im Kern eine einzige DLL: `Microsoft.ActiveDirectory.Management.dll`. Und eine DLL kann man einfach importieren - ganz ohne Installation.
 
 ### Die DLL organisieren
 
@@ -191,11 +191,11 @@ C:\Windows\Microsoft.NET\assembly\GAC_64\Microsoft.ActiveDirectory.Management\
 Die schnelle Variante: [Download bei dllme.com](https://www.dllme.com/dll/files/microsoft_activedirectory_management).
 
 > [!WARNING]
-> DLLs von irgendwelchen Download-Seiten sind russisches Roulette - ihr ladet fremden Code in eure Session, mit euren Domänen-Credentials. Mindestens die digitale Signatur checken (Rechtsklick → Eigenschaften → Digitale Signaturen → Microsoft). Besser: selbst von einer RSAT-Maschine holen.
+> DLLs von irgendwelchen Download-Seiten sind russisches Roulette - ihr ladet fremden Code in eure Session, und der läuft mit euren Rechten in der Domäne. Mindestens die digitale Signatur checken (Rechtsklick → Eigenschaften → Digitale Signaturen → Microsoft). Besser: selbst von einer RSAT-Maschine holen.
 
 ### Laden und loslegen
 
-Erst den "aus dem Internet"-Stempel entfernen, dann importieren - mit vollem Pfad, sonst sucht PowerShell in den Modulordnern und findet nix:
+Kommt die DLL aus dem Internet, erst den "aus dem Internet"-Stempel entfernen. Dann importieren - und zwar mit Pfad, sonst sucht PowerShell nur in den Modulordnern und findet nix:
 
 ```powershell {title="AD-Cmdlets ohne RSAT"}
 # Unblock the file
