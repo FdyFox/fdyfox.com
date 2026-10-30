@@ -1,5 +1,5 @@
 baseURL = "https://fdyfox.com/"
-languageCode = "de-de"
+locale = "de-de"
 language = "de-de"
 defaultContentLanguage = "de-de"
 title = "FdyFox"
