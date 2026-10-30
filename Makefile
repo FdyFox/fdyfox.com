@@ -1,5 +1,19 @@
 HUGO    := $(shell which hugo || echo ~/.local/bin/hugo)
+# code-server setzt BROWSER auf seinen Helper (öffnet URLs im Client-Browser);
+# vor dem Überschreiben sichern.
+ENV_BROWSER := $(BROWSER)
 BROWSER := $(shell which powershell.exe 2>/dev/null || which xdg-open 2>/dev/null || echo echo)
+PORT    := 1313
+
+# In code-server-Terminals ist VSCODE_PROXY_URI gesetzt (…/proxy/{{port}}/).
+# Dann über /absproxy/ ausliefern, damit Hugo den Pfad-Präfix kennt.
+ifdef VSCODE_PROXY_URI
+DEV_URL   := $(subst {{port}},$(PORT),$(subst /proxy/,/absproxy/,$(VSCODE_PROXY_URI)))
+DEV_FLAGS := --baseURL $(DEV_URL) --appendPort=false --liveReloadPort=443
+DEV_OPEN  := $(ENV_BROWSER)
+else
+DEV_URL   := http://localhost:$(PORT)/
+endif
 
 .DEFAULT_GOAL := help
 
@@ -18,7 +32,14 @@ help:
 	@echo "  make open           Lokale Seite im Browser öffnen"
 
 dev:
-	$(HUGO) server -D
+	@echo "→ $(DEV_URL)"
+ifneq ($(DEV_OPEN),)
+	@( for i in $$(seq 40); do \
+	     curl -s -o /dev/null localhost:$(PORT) && exec $(DEV_OPEN) $(DEV_URL); \
+	     sleep 0.5; \
+	   done ) >/dev/null 2>&1 &
+endif
+	$(HUGO) server -D -p $(PORT) $(DEV_FLAGS)
 
 build:
 	$(HUGO) --minify
