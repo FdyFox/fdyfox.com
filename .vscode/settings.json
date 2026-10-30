@@ -1,0 +1,9 @@
+{
+  // Hugo-Dev-Server: Popup würde /proxy/ statt /absproxy/ anbieten (siehe make dev)
+  "remote.portsAttributes": {
+    "1313": {
+      "label": "Hugo",
+      "onAutoForward": "silent"
+    }
+  }
+}
