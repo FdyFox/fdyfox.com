@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "Europe/Berlin",
+  "git-submodules": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": "Hugo, Theme und Actions automatisch mergen, wenn der Testbuild grün ist",
+      "matchManagers": ["mise", "git-submodules", "github-actions"],
+      "automerge": true
+    }
+  ]
+}

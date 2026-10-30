@@ -4,7 +4,7 @@ Persönliche Website von Ferdinand Berger — gebaut mit [Hugo](https://gohugo.i
 
 ## Voraussetzungen
 
-- [Hugo Extended](https://gohugo.io/installation/) ≥ 0.160.1
+- [mise](https://mise.jdx.dev/) - installiert die in `mise.toml` festgelegte Hugo-Extended-Version (`mise install`)
 - `lftp` für FTP-Deployment
 
 ## Lokale Entwicklung
@@ -46,6 +46,10 @@ FTP-Zugangsdaten müssen als GitHub Secrets hinterlegt sein:
 | `FTP_USER` | Benutzername |
 | `FTP_PASS` | Passwort |
 | `FTP_PATH` | Zielpfad auf dem Server |
+
+### Updates
+
+Hugo-Version (`mise.toml`), Theme (Submodul) und GitHub Actions werden von [Renovate](https://docs.renovatebot.com/) überwacht. Neue Versionen kommen als Pull Request, werden dort testweise gebaut und bei grünem Build automatisch gemergt (und damit deployed).
 
 ## Struktur
 
