@@ -1,7 +1,7 @@
 ---
 title: "long time - no see"
 date: 2026-09-05T12:00:00+02:00
-tags: ["meta", "blog"]
+tags: ["meta"]
 draft: false
 ---
 

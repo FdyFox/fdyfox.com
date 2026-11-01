@@ -1,7 +1,7 @@
 ---
 title: "Selbsterziehung durch Hooks"
 date: 2026-10-22T09:30:00+02:00
-tags: ["git", "hooks", "bash", "regex", "tipps"]
+tags: ["git", "linux", "tipps"]
 draft: false
 ---
 

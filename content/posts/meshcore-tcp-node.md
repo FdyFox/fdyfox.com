@@ -1,7 +1,7 @@
 ---
 title: "Ein MeshCore TCP-Node für LAN und VPN"
 date: 2026-10-01T18:00:00+02:00
-tags: ["meshcore", "lora", "netzwerk", "wireguard", "selfhosting"]
+tags: ["funk", "netzwerk", "homelab"]
 draft: false
 ---
 

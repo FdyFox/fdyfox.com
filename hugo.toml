@@ -121,10 +121,6 @@ Notizen, Gedanken und Kram.'''
     url = "/wiki/"
     weight = 2
   [[menu.main]]
-    name = "~/Tags"
-    url = "/tags/"
-    weight = 3
-  [[menu.main]]
     name = "~/Suche"
     url = "/search/"
     weight = 4

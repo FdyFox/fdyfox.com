@@ -1,7 +1,7 @@
 ---
 title: "TP-Link Archer C7 - Stock-Firmware via TFTP wiederherstellen"
 date: 2026-04-24T14:08:33+02:00
-tags: ["router", "openwrt", "tftp", "netzwerk", "linux"]
+tags: ["netzwerk", "linux"]
 draft: false
 ---
 

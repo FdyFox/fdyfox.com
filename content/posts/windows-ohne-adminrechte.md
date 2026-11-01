@@ -1,7 +1,7 @@
 ---
 title: "Windows ohne Adminrechte: Schriften und AD-Cmdlets durch die Hintertür"
 date: 2026-10-30T08:00:00+01:00
-tags: ["windows", "powershell", "gpo", "schriften", "active-directory", "hacks"]
+tags: ["windows", "powershell", "tipps"]
 draft: false
 ---
 

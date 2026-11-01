@@ -1,7 +1,7 @@
 ---
 title: "Analog vs. Digital"
 date: 2026-04-29T22:27:50+02:00
-tags: ["analog", "digital", "notizen", "obsidian", "produktivität", "adhs"]
+tags: ["produktivität", "obsidian", "adhs"]
 draft: false
 ---
 
