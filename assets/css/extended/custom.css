@@ -1,5 +1,5 @@
 /* Startseite - kein Mindestabstand */
-.first-entry.home-info { min-height: unset; }
+.first-entry.home-info { min-height: unset; margin-bottom: var(--gap); }
 .home-divider { margin: 0; }
 
 /* Catppuccin Latte (light mode) */
@@ -60,6 +60,43 @@ h1, h2, h3 { color: var(--primary); }
 .nav a:hover,
 .logo a:hover { opacity: 0.8; }
 
+/* Menü umbrechen statt horizontal scrollen (keine Scrollbar) */
+.menu {
+  flex-wrap: wrap;
+  overflow: visible;
+  white-space: normal;
+}
+/* Burger-Menü (nur mobil, ohne JS über Checkbox) */
+.nav-toggle-input,
+.nav-toggle { display: none; }
+
+@media (max-width: 640px) {
+  .header-nav { align-items: center; }
+  .nav-toggle {
+    display: block;
+    cursor: pointer;
+    user-select: none;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 1.4rem;
+    color: var(--accent);
+    padding: 0 0.2rem;
+  }
+  .nav-toggle:hover { color: var(--accent2); }
+  .nav-toggle-close { display: none; }
+  .nav-toggle-input:checked + .nav-toggle .nav-toggle-open { display: none; }
+  .nav-toggle-input:checked + .nav-toggle .nav-toggle-close { display: inline; }
+
+  .menu {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    line-height: 2.4rem;
+    padding: 0.3rem 0 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  .nav-toggle-input:checked ~ .menu { display: flex; }
+}
+
 .prompt-bracket { color: var(--secondary); }
 .prompt-user    { color: var(--accent); }
 .prompt-arrow   { color: var(--secondary); }
@@ -69,8 +106,6 @@ h1, h2, h3 { color: var(--primary); }
 @media (max-width: 640px) {
   .logo a { font-size: 0.85rem; }
   .menu a  { font-size: 0.85rem; }
-  .prompt-git    { display: none; }
-  .prompt-bracket,
   .prompt-arrow  { display: none; }
   .prompt-user   { font-size: 0.85rem; }
 }

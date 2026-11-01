@@ -21,6 +21,10 @@
             {{- end }}
         </div>
         {{- $currentPage := . }}
+        <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true">
+        <label for="nav-toggle" class="nav-toggle" aria-label="Menü öffnen/schließen" title="Menü">
+            <span class="nav-toggle-open">☰</span><span class="nav-toggle-close">✕</span>
+        </label>
         <ul id="menu" class="menu">
             {{- range site.Menus.main }}
             {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
