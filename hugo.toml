@@ -12,7 +12,7 @@ paginate = 10
   home = ["HTML", "RSS", "JSON"]
 
 [params.footer]
-  text = "[Impressum](/impressum/) · [Datenschutz](/datenschutz/)"
+  text = "[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
 
 [params]
   author = "Ferdy"
