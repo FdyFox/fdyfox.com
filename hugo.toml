@@ -9,7 +9,19 @@ enableGitInfo = true
 paginate = 10
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "slashpages"]
+
+# /.well-known/slashpages (https://github.com/pfefferle/well-known-slashpages)
+# Hugo schreibt slashpages.opml, .htaccess liefert es ohne Endung aus.
+[mediaTypes."text/x-opml"]
+  suffixes = ["opml"]
+
+[outputFormats.slashpages]
+  mediaType = "text/x-opml"
+  baseName = "slashpages"
+  path = ".well-known"
+  isPlainText = true
+  notAlternative = true
 
 [params.footer]
   text = "[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
@@ -44,6 +56,36 @@ paginate = 10
            |___/</pre>
 
 Notizen, Gedanken und Kram.'''
+
+# Slash-Pages für /.well-known/slashpages; category nach slashpages.net
+[[params.slashpages]]
+  page = "/about"
+  category = "/about"
+
+[[params.slashpages]]
+  page = "/kontakt"
+  category = "/contact"
+
+[[params.slashpages]]
+  page = "/posts"
+  category = "/blog"
+  text = "Logbuch"
+
+[[params.slashpages]]
+  page = "/wiki"
+  category = "/wiki"
+
+[[params.slashpages]]
+  page = "/search"
+  category = "/search"
+
+[[params.slashpages]]
+  page = "/impressum"
+  category = "/imprint"
+
+[[params.slashpages]]
+  page = "/datenschutz"
+  category = "/privacy"
 
 [[params.socialIcons]]
   name = "email"

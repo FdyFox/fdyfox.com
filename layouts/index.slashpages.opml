@@ -1,0 +1,19 @@
+{{- /* /.well-known/slashpages — https://github.com/pfefferle/well-known-slashpages */ -}}
+<?xml version="1.0" encoding="utf-8"?>
+<opml version="2.0">
+  <head>
+    <title>{{ site.Title | htmlEscape }} – Slash Pages</title>
+    <dateModified>{{ site.Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</dateModified>
+  </head>
+  <body>
+{{- range site.Params.slashpages }}
+  {{- $category := .category }}
+  {{- $text := .text }}
+  {{- with site.GetPage .page }}
+    <outline type="link" text="{{ $text | default .Title | htmlEscape }}" category="{{ $category | htmlEscape }}" url="{{ .Permalink | htmlEscape }}" />
+  {{- else }}
+    {{- warnf "slashpages: page %q not found" .page }}
+  {{- end }}
+{{- end }}
+  </body>
+</opml>

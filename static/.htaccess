@@ -1,1 +1,15 @@
 ErrorDocument 404 /404.html
+
+# /.well-known/slashpages (OPML, https://github.com/pfefferle/well-known-slashpages)
+# Hugo erzeugt slashpages.opml, ausgeliefert wird es ohne Endung.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^\.well-known/slashpages$ /.well-known/slashpages.opml [L]
+</IfModule>
+
+<FilesMatch "^slashpages\.opml$">
+  ForceType text/x-opml
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
