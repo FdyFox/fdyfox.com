@@ -1,0 +1,14 @@
+{{- /* /blogroll.opml – Blogroll zum Import in Feedreader */ -}}
+<?xml version="1.0" encoding="utf-8"?>
+<opml version="2.0">
+  <head>
+    <title>{{ site.Title | htmlEscape }} – Blogroll</title>
+    <ownerName>{{ site.Params.author | htmlEscape }}</ownerName>
+    <ownerId>{{ site.BaseURL }}</ownerId>
+  </head>
+  <body>
+{{- range sort hugo.Data.blogroll "name" }}
+    <outline type="rss" text="{{ .name | htmlEscape }}" title="{{ .name | htmlEscape }}" htmlUrl="{{ .url | htmlEscape }}" xmlUrl="{{ .feed | htmlEscape }}"{{ with .note }} description="{{ . | htmlEscape }}"{{ end }} />
+{{- end }}
+  </body>
+</opml>

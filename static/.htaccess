@@ -7,7 +7,7 @@ ErrorDocument 404 /404.html
   RewriteRule ^\.well-known/slashpages$ /.well-known/slashpages.opml [L]
 </IfModule>
 
-<FilesMatch "^slashpages\.opml$">
+<FilesMatch "^(slashpages|blogroll)\.opml$">
   # charset nötig, sonst lesen Browser text/* als Latin-1 ("Ãœber" statt "Über")
   ForceType "text/x-opml; charset=utf-8"
   <IfModule mod_headers.c>

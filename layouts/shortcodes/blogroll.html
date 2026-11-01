@@ -1,0 +1,11 @@
+{{- /* Blogroll aus data/blogroll.yaml */ -}}
+<div class="wiki-recent">
+{{- range sort hugo.Data.blogroll "name" }}
+  <div class="wiki-box">
+    <div class="wiki-box-title">{{ .name }}{{ with .author }} · {{ . }}{{ end }}</div>
+    <a href="{{ .url }}" target="_blank" rel="noopener">{{ strings.TrimSuffix "/" (strings.TrimPrefix "https://" .url) }}</a>
+    {{- with .feed }} <span class="wiki-meta"><a href="{{ . }}" target="_blank" rel="noopener">Feed</a></span>{{ end }}
+    {{- with .note }}<p class="wiki-desc">{{ . | markdownify }}</p>{{ end }}
+  </div>
+{{- end }}
+</div>

@@ -1,0 +1,13 @@
+# Blogroll: /blogroll/ und /blogroll.opml
+# note: kurzer Kommentar, warum ich den Blog lese (optional)
+- name: notizBlog
+  author: Matthias Pfefferle
+  url: https://notiz.blog/
+  feed: https://notiz.blog/feed/
+  note: "Spannender Blog über Open Source und Webentwicklung."
+
+- name: knuspermagier.de
+  author: Philipp Waldhauer
+  url: https://knuspermagier.de/
+  feed: https://knuspermagier.de/feed
+  note: "Blog über Technik, Web und die Grundlage warum ich einen Blog schreibe."

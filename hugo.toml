@@ -9,7 +9,7 @@ enableGitInfo = true
 paginate = 10
 
 [outputs]
-  home = ["HTML", "RSS", "JSON", "slashpages"]
+  home = ["HTML", "RSS", "JSON", "slashpages", "blogroll"]
 
 # /.well-known/slashpages (https://github.com/pfefferle/well-known-slashpages)
 # Hugo schreibt slashpages.opml, .htaccess liefert es ohne Endung aus.
@@ -23,8 +23,15 @@ paginate = 10
   isPlainText = true
   notAlternative = true
 
+# /blogroll.opml – Blogroll aus data/blogroll.yaml für Feedreader
+[outputFormats.blogroll]
+  mediaType = "text/x-opml"
+  baseName = "blogroll"
+  isPlainText = true
+  notAlternative = true
+
 [params.footer]
-  text = "[/now](/now/) · [/uses](/uses/) · [Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
+  text = "[/now](/now/) · [/uses](/uses/) · [/blogroll](/blogroll/)\\\n[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
 
 [params]
   author = "Ferdy"
@@ -69,6 +76,10 @@ Notizen, Gedanken und Kram.'''
 [[params.slashpages]]
   page = "/uses"
   category = "/uses"
+
+[[params.slashpages]]
+  page = "/blogroll"
+  category = "/blogroll"
 
 [[params.slashpages]]
   page = "/kontakt"
