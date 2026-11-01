@@ -8,7 +8,8 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 <FilesMatch "^slashpages\.opml$">
-  ForceType text/x-opml
+  # charset nötig, sonst lesen Browser text/* als Latin-1 ("Ãœber" statt "Über")
+  ForceType "text/x-opml; charset=utf-8"
   <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "*"
   </IfModule>
