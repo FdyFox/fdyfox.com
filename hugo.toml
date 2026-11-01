@@ -24,7 +24,7 @@ paginate = 10
   notAlternative = true
 
 [params.footer]
-  text = "[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
+  text = "[/now](/now/) · [/uses](/uses/) · [Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
 
 [params]
   author = "Ferdy"
@@ -61,6 +61,14 @@ Notizen, Gedanken und Kram.'''
 [[params.slashpages]]
   page = "/about"
   category = "/about"
+
+[[params.slashpages]]
+  page = "/now"
+  category = "/now"
+
+[[params.slashpages]]
+  page = "/uses"
+  category = "/uses"
 
 [[params.slashpages]]
   page = "/kontakt"

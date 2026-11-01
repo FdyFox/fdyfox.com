@@ -1,0 +1,14 @@
+{{- /* Aktuell gehörte Hörbücher aus data/hoerbuecher.json (in_progress) */ -}}
+{{- with hugo.Data.hoerbuecher.in_progress }}
+<ul>
+  {{- range sort . "progress" "desc" }}
+  {{- $title := replaceRE `\s*\((Unabridged|Ungekürzt)\)\s*$` "" .title }}
+  {{- /* Lange Untertitel abschneiden, kurze (z.B. Reihe "Magic 2.0, 3") behalten */ -}}
+  {{- $parts := split $title ": " }}
+  {{- if and (gt (len $parts) 1) (gt (len (index $parts 1)) 25) }}{{ $title = index $parts 0 }}{{ end }}
+  <li><em>{{ $title }}</em> – {{ .author }} <span class="wiki-meta">{{ .progress }} %</span></li>
+  {{- end }}
+</ul>
+{{- else }}
+<p>Gerade nichts – Zeit für ein neues Hörbuch.</p>
+{{- end }}

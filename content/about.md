@@ -11,6 +11,8 @@ Ich bin Ferdy — der Fuchs hinter FdyFox.
 
 Hier landen meine Notizen, Gedanken und alles, was ich nicht vergessen will.
 
+Was ich gerade mache, steht unter [/now](/now/), womit ich arbeite unter [/uses](/uses/).
+
 ---
 
 
