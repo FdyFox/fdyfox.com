@@ -115,6 +115,12 @@ code {
 .footer-links a:hover { color: var(--accent); }
 .footer-links span { margin: 0 0.4rem; }
 
+/* UberBlogr-Webring: Link und Pfeile */
+.footer a[href*="uberblogr.de/"] {
+  font-weight: 700;
+  font-size: 1.15em;
+}
+
 /* Startseite ASCII-Art */
 .home-info h1:empty { display: none; }
 .home-ascii {
