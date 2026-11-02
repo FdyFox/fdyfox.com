@@ -1,0 +1,9 @@
+{{- /* Affiliate-Hinweis, sobald der Beitrag den amazon-Shortcode nutzt (Store wird beim Rendern von .Content gesetzt) */ -}}
+{{- if .Store.Get "hasAffiliate" }}
+<aside id="affiliate-hinweis" class="affiliate-hinweis">
+  <strong>*&nbsp;Werbung / Affiliate-Link:</strong>
+  Mit einem Sternchen markierte Links sind Affiliate-Links. Kaufst du darüber etwas, erhalte ich eine kleine Provision – für dich ändert sich am Preis nichts.
+  Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.
+  Mehr dazu in der <a href="{{ "datenschutz/" | relURL }}#amazon-partnerprogramm">Datenschutzerklärung</a>.
+</aside>
+{{- end }}

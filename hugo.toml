@@ -9,53 +9,57 @@ enableGitInfo = true
 paginate = 10
 
 [outputs]
-  home = ["HTML", "RSS", "JSON", "slashpages", "blogroll"]
+home = ["HTML", "RSS", "JSON", "slashpages", "blogroll"]
 
 # /.well-known/slashpages (https://github.com/pfefferle/well-known-slashpages)
 # Hugo schreibt slashpages.opml, .htaccess liefert es ohne Endung aus.
 [mediaTypes."text/x-opml"]
-  suffixes = ["opml"]
+suffixes = ["opml"]
 
 [outputFormats.slashpages]
-  mediaType = "text/x-opml"
-  baseName = "slashpages"
-  path = ".well-known"
-  isPlainText = true
-  notAlternative = true
+mediaType = "text/x-opml"
+baseName = "slashpages"
+path = ".well-known"
+isPlainText = true
+notAlternative = true
 
 # /blogroll.opml – Blogroll aus data/blogroll.yaml für Feedreader
 [outputFormats.blogroll]
-  mediaType = "text/x-opml"
-  baseName = "blogroll"
-  isPlainText = true
-  notAlternative = true
+mediaType = "text/x-opml"
+baseName = "blogroll"
+isPlainText = true
+notAlternative = true
 
 [params.footer]
-  text = "[/now](/now/) · [/uses](/uses/) · [/blogroll](/blogroll/)\\\n[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
+text = "[/now](/now/) · [/uses](/uses/) · [/blogroll](/blogroll/)\\\n[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
 
 [params]
-  author = "Ferdy"
-  description = "Notizen, Gedanken und Kram"
-  defaultTheme = "dark"
-  disableThemeToggle = true
-  ShowReadingTime = true
-  ShowShareButtons = false
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = false
-  ShowCodeCopyButtons = true
-  ShowRssButtonInSectionTermList = true
-  ShowToc = false
-  mainSections = ["posts"]
+author = "Ferdy"
+description = "Notizen, Gedanken und Kram"
+defaultTheme = "dark"
+disableThemeToggle = true
+ShowReadingTime = true
+ShowShareButtons = false
+ShowPostNavLinks = true
+ShowBreadCrumbs = false
+ShowCodeCopyButtons = true
+ShowRssButtonInSectionTermList = true
+ShowToc = false
+mainSections = ["posts"]
+
+# Amazon-Partnerprogramm: Partner-ID für den amazon-Shortcode (z. B. "fdyfox-21")
+[params.affiliate]
+amazonTag = "fdyfox-21"
 
 [params.cover]
-  hidden = false
-  hiddenInList = false
-  hiddenInSingle = false
-  linkFullImages = true
+hidden = false
+hiddenInList = false
+hiddenInSingle = false
+linkFullImages = true
 
 [params.homeInfoParams]
-  Title = ""
-  Content = '''<pre class="home-ascii">  __     _        __
+Title = ""
+Content = '''<pre class="home-ascii">  __     _        __
  / _| __| |_   _ / _| _____  __
 | |_ / _` | | | | |_ / _ \ \/ /
 |  _| (_| | |_| |  _| (_) >  <
@@ -66,93 +70,93 @@ Notizen, Gedanken und Kram.'''
 
 # Slash-Pages für /.well-known/slashpages; category nach slashpages.net
 [[params.slashpages]]
-  page = "/about"
-  category = "/about"
+page = "/about"
+category = "/about"
 
 [[params.slashpages]]
-  page = "/now"
-  category = "/now"
+page = "/now"
+category = "/now"
 
 [[params.slashpages]]
-  page = "/uses"
-  category = "/uses"
+page = "/uses"
+category = "/uses"
 
 [[params.slashpages]]
-  page = "/blogroll"
-  category = "/blogroll"
+page = "/blogroll"
+category = "/blogroll"
 
 [[params.slashpages]]
-  page = "/kontakt"
-  category = "/contact"
+page = "/kontakt"
+category = "/contact"
 
 [[params.slashpages]]
-  page = "/posts"
-  category = "/blog"
-  text = "Logbuch"
+page = "/posts"
+category = "/blog"
+text = "Logbuch"
 
 [[params.slashpages]]
-  page = "/wiki"
-  category = "/wiki"
+page = "/wiki"
+category = "/wiki"
 
 [[params.slashpages]]
-  page = "/search"
-  category = "/search"
+page = "/search"
+category = "/search"
 
 [[params.slashpages]]
-  page = "/impressum"
-  category = "/imprint"
+page = "/impressum"
+category = "/imprint"
 
 [[params.slashpages]]
-  page = "/datenschutz"
-  category = "/privacy"
+page = "/datenschutz"
+category = "/privacy"
 
 [[params.socialIcons]]
-  name = "email"
-  url = "mailto:ferdy@fdyfox.com"
+name = "email"
+url = "mailto:ferdy@fdyfox.com"
 
 [[params.socialIcons]]
-  name = "github"
-  url = "https://github.com/FdyFox"
+name = "github"
+url = "https://github.com/FdyFox"
 
 [[params.socialIcons]]
-  name = "telegram"
-  url = "https://t.me/brazier85"
+name = "telegram"
+url = "https://t.me/brazier85"
 
 [[params.socialIcons]]
-  name = "signal"
-  url = "https://signal.me/#eu/E5WqkEwvgEPOcT0rofLpNThsJ72WBqw7qnQ-G7aqz9slVXpsQFhJSpUWiv0q6pVK"
+name = "signal"
+url = "https://signal.me/#eu/E5WqkEwvgEPOcT0rofLpNThsJ72WBqw7qnQ-G7aqz9slVXpsQFhJSpUWiv0q6pVK"
 
 [menu]
-  [[menu.main]]
-    name = "~/Logbuch"
-    url = "/posts/"
-    weight = 1
-  [[menu.main]]
-    name = "~/Wiki"
-    url = "/wiki/"
-    weight = 2
-  [[menu.main]]
-    name = "~/Suche"
-    url = "/search/"
-    weight = 4
-  [[menu.main]]
-    name = "~/About"
-    url = "/about/"
-    weight = 5
-  [[menu.main]]
-    name = "~/Kontakt"
-    url = "/kontakt/"
-    weight = 6
+[[menu.main]]
+name = "~/Logbuch"
+url = "/posts/"
+weight = 1
+[[menu.main]]
+name = "~/Wiki"
+url = "/wiki/"
+weight = 2
+[[menu.main]]
+name = "~/Suche"
+url = "/search/"
+weight = 4
+[[menu.main]]
+name = "~/About"
+url = "/about/"
+weight = 5
+[[menu.main]]
+name = "~/Kontakt"
+url = "/kontakt/"
+weight = 6
 
 [taxonomies]
-  tag = "tags"
-  category = "categories"
+tag = "tags"
+category = "categories"
 
 [markup.goldmark.renderer]
-  unsafe = true
+unsafe = true
 
 [markup.goldmark.extensions.extras.alerts]
-  enable = true
+enable = true
 
 [markup.highlight]
-  noClasses = false
+noClasses = false

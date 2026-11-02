@@ -1,0 +1,23 @@
+{{- /*
+  Amazon-Affiliate-Link mit Kennzeichnung (nur Textlink, lädt nichts von Amazon).
+
+  {{< amazon B0ABCDEFGH >}}Linktext{{< /amazon >}}
+  {{< amazon asin="B0ABCDEFGH" >}}Linktext{{< /amazon >}}
+
+  Partner-ID kommt aus hugo.toml: [params.affiliate] amazonTag = "…-21"
+*/ -}}
+{{- $asin := .Get "asin" | default (.Get 0) -}}
+{{- $tag := site.Params.affiliate.amazonTag -}}
+{{- if not $asin -}}
+  {{- errorf "amazon-Shortcode ohne ASIN in %s" .Position -}}
+{{- end -}}
+{{- if not $tag -}}
+  {{- warnf "params.affiliate.amazonTag nicht gesetzt (%s) – Link ohne Partner-ID" .Position -}}
+{{- end -}}
+{{- $url := printf "https://www.amazon.de/dp/%s" $asin -}}
+{{- with $tag }}{{ $url = printf "%s?tag=%s" $url . }}{{ end -}}
+{{- .Page.Store.Set "hasAffiliate" true -}}
+<a href="{{ $url }}" class="affiliate" target="_blank" rel="sponsored nofollow noopener noreferrer">
+  {{- .Inner | default $asin | .Page.RenderString -}}
+</a><a href="#affiliate-hinweis" class="affiliate-mark" title="Affiliate-Link (Werbung)" aria-label="Affiliate-Link, siehe Hinweis">*</a>
+{{- /* kein Zeilenumbruch nach dem Link */ -}}

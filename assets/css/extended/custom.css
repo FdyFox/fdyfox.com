@@ -681,3 +681,22 @@ code {
   align-items: center;
   gap: 3px;
 }
+
+/* Affiliate-Links (Shortcode amazon) */
+.md-content a.affiliate-mark {
+  font-size: 0.8em;
+  vertical-align: super;
+  margin-left: 1px;
+  color: var(--secondary);
+  text-decoration: none;
+}
+.affiliate-hinweis {
+  margin-top: var(--gap);
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--accent2);
+  background: var(--entry);
+  border-radius: var(--radius);
+  font-size: 0.9em;
+  color: var(--secondary);
+}
+.affiliate-hinweis a { color: var(--accent); }
