@@ -3,6 +3,7 @@ date: '2026-04-24T00:01:25+02:00'
 draft: false
 title: 'Windows 11 und FIDO2: Standard-Gerät auf Hardware-Key setzen'
 tags: ["windows", "sicherheit", "powershell", "tipps"]
+aliases: ["/posts/win11-und-fido2/"]
 ---
 
 Für alle, denen es auf die Nerven geht, dass Windows 11 bei der Abfrage eines Hardware-Security-Keys standardmäßig immer "iPhone, iPad oder Android-Gerät" vorauswählt - habt ihr eine Lösung gefunden?

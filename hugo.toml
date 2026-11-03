@@ -31,7 +31,7 @@ isPlainText = true
 notAlternative = true
 
 [params.footer]
-text = "[/now](/now/) · [/uses](/uses/) · [/blogroll](/blogroll/)\\\n[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
+text = "[/now](/now/) · [/uses](/uses/) · [/blogroll](/blogroll/) · [/kontakt](/kontakt/)\\\n[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
 
 [params]
 author = "Ferdy"
@@ -45,7 +45,7 @@ ShowBreadCrumbs = false
 ShowCodeCopyButtons = true
 ShowRssButtonInSectionTermList = true
 ShowToc = false
-mainSections = ["posts"]
+mainSections = ["logbuch", "bastelstube"]
 
 # Amazon-Partnerprogramm: Partner-ID für den amazon-Shortcode (z. B. "fdyfox-21")
 [params.affiliate]
@@ -66,7 +66,10 @@ Content = '''<pre class="home-ascii">  __     _        __
 |_|  \__,_|\__, |_|  \___/_/\_\
            |___/</pre>
 
-Notizen, Gedanken und Kram.'''
+Notizen, Gedanken und Kram.
+
+In der **[Bastelstube](/bastelstube/)** gibt es Anleitungen, Lösungen und Basteleien rund um Technik.
+Persönliches, also Gedanken und was mich sonst so beschäftigt, steht im **[Logbuch](/logbuch/)**.'''
 
 # Slash-Pages für /.well-known/slashpages; category nach slashpages.net
 [[params.slashpages]]
@@ -90,9 +93,14 @@ page = "/kontakt"
 category = "/contact"
 
 [[params.slashpages]]
-page = "/posts"
+page = "/logbuch"
 category = "/blog"
 text = "Logbuch"
+
+[[params.slashpages]]
+page = "/bastelstube"
+category = "/blog"
+text = "Bastelstube"
 
 [[params.slashpages]]
 page = "/wiki"
@@ -129,24 +137,27 @@ url = "https://signal.me/#eu/E5WqkEwvgEPOcT0rofLpNThsJ72WBqw7qnQ-G7aqz9slVXpsQFh
 [menu]
 [[menu.main]]
 name = "~/Logbuch"
-url = "/posts/"
+url = "/logbuch/"
 weight = 1
+[[menu.main]]
+name = "~/Bastelstube"
+url = "/bastelstube/"
+weight = 2
 [[menu.main]]
 name = "~/Wiki"
 url = "/wiki/"
-weight = 2
-[[menu.main]]
-name = "~/Suche"
-url = "/search/"
-weight = 4
+weight = 3
 [[menu.main]]
 name = "~/About"
 url = "/about/"
-weight = 5
+weight = 4
+# Kurz gehalten, damit das Menü neben dem Prompt in eine Zeile passt
 [[menu.main]]
-name = "~/Kontakt"
-url = "/kontakt/"
-weight = 6
+identifier = "search"
+name = "~/?"
+title = "Suche"
+url = "/search/"
+weight = 5
 
 [taxonomies]
 tag = "tags"

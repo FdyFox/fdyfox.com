@@ -17,7 +17,7 @@ endif
 
 .DEFAULT_GOAL := help
 
-.PHONY: help dev drafts build clean deploy post page wiki hoerbuecher open
+.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki hoerbuecher open
 
 help:
 	@echo "Verfügbare Befehle:"
@@ -25,7 +25,8 @@ help:
 	@echo "  make build          Seite bauen (public/)"
 	@echo "  make clean          public/ löschen"
 	@echo "  make deploy         Bauen und per FTP deployen"
-	@echo "  make post <name>    Neuen Beitrag anlegen"
+	@echo "  make logbuch <name>     Neuen Logbuch-Eintrag anlegen"
+	@echo "  make bastelstube <name> Neuen Bastelstube-Beitrag anlegen"
 	@echo "  make page <name>    Neue Seite anlegen"
 	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
 	@echo "  make hoerbuecher    Hörbuch-Daten aus Audiobookshelf holen"
@@ -50,11 +51,11 @@ clean:
 deploy: build
 	@bash deploy.sh
 
-post:
+logbuch bastelstube:
 	$(eval NAME := $(filter-out $@,$(MAKECMDGOALS)))
-	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make post mein-beitrag" && exit 1)
-	$(HUGO) new content/posts/$(NAME).md
-	@echo "→ Beitrag erstellt: content/posts/$(NAME).md"
+	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make $@ mein-beitrag" && exit 1)
+	$(HUGO) new content/$@/$(NAME).md
+	@echo "→ Beitrag erstellt: content/$@/$(NAME).md"
 
 page:
 	$(eval NAME := $(filter-out $@,$(MAKECMDGOALS)))

@@ -3,6 +3,7 @@ title: "Windows ohne Adminrechte: Schriften und AD-Cmdlets durch die Hintertür"
 date: 2026-10-30T08:00:00+01:00
 tags: ["windows", "powershell", "tipps"]
 draft: false
+aliases: ["/posts/windows-ohne-adminrechte/"]
 ---
 
 Firmen-Laptop, keine Adminrechte, alles per GPO zugenagelt. Kennt man. Aber zugenagelt heißt bei Windows selten *dicht* - oft ist nur die bequeme Tür abgeschlossen, und das Fenster daneben steht sperrangelweit offen. Zwei solcher Fenster nutze ich regelmäßig: Schriften installieren, obwohl "Installieren" gesperrt ist, und AD-Cmdlets nutzen, obwohl RSAT fehlt.

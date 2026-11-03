@@ -3,6 +3,7 @@ title: "Ein Blog im Jahr 2026?"
 date: 2026-04-23T17:00:25+02:00
 tags: ["meta", "obsidian", "adhs"]
 draft: false
+aliases: ["/posts/erster-beitrag/"]
 ---
 
 Willkommen bei FdyFox.com - meinem kleinen "Fuchsbau".

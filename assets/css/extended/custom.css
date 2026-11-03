@@ -700,3 +700,9 @@ code {
   color: var(--secondary);
 }
 .affiliate-hinweis a { color: var(--accent); }
+
+/* Bereichs-Markierung in der Metazeile (~/logbuch, ~/bastelstube) */
+.entry-section {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  color: var(--accent2);
+}

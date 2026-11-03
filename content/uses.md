@@ -40,7 +40,7 @@ Eine [/uses-Seite](https://uses.tech/): Hardware, Software und Werkzeuge, mit de
 - **Sprachen:** Python und Bash
 - **Frameworks:** FastAPI, Django
 - **Python-Tooling:** [uv](https://docs.astral.sh/uv/) und [ruff](https://docs.astral.sh/ruff/)
-- **[Claude Code](https://claude.com/claude-code)** als Pair-Programmer – mit Hooks, die mich [selbst erziehen](/posts/selbsterziehung-durch-hooks/).
+- **[Claude Code](https://claude.com/claude-code)** als Pair-Programmer – mit Hooks, die mich [selbst erziehen](/bastelstube/selbsterziehung-durch-hooks/).
 - **[Forgejo](https://forgejo.org/)** als eigener Git-Server, dazu GitHub für Öffentliches.
 
 ## Homelab-Software

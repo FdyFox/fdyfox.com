@@ -28,7 +28,7 @@ Verwaltet die Docker-Hosts und deployt die Stacks. Container, Logs und Updates h
 
 ### [meshcore-mux](https://github.com/FdyFox/meshcore-mux)
 
-Verteilt die eine TCP-Verbindung zu meinem MeshCore-Node auf mehrere Clients. Mehr dazu im [Beitrag zum MeshCore TCP-Node](/posts/meshcore-tcp-node/).
+Verteilt die eine TCP-Verbindung zu meinem MeshCore-Node auf mehrere Clients. Mehr dazu im [Beitrag zum MeshCore TCP-Node](/bastelstube/meshcore-tcp-node/).
 
 {{< status "selbst" >}}
 

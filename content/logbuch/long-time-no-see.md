@@ -3,6 +3,7 @@ title: "long time - no see"
 date: 2026-09-05T12:00:00+02:00
 tags: ["meta"]
 draft: false
+aliases: ["/posts/long-time-no-see/"]
 ---
 
 Ja, ich weiß. Es ist ziemlich still geworden hier. Der letzte Post ist gefühlt eine Ewigkeit her - und wie das mit ADHS-Projekten halt so ist: volle Energie am Anfang, und dann verschwindet der Blog irgendwo zwischen zehn anderen offenen Baustellen.

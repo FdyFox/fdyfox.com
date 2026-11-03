@@ -3,9 +3,10 @@ title: "Analog vs. Digital"
 date: 2026-04-29T22:27:50+02:00
 tags: ["produktivität", "obsidian", "adhs"]
 draft: false
+aliases: ["/posts/analog-vs-digital/"]
 ---
 
-Wie ich [bereits geschrieben habe](/posts/erster-beitrag/), schreibe ich meine Notizen normalerweise in [Obsidian](https://obsidian.md). Für Dokumentation, How-Tos und Code-Schnipsel funktioniert das auch wirklich gut - schnell durchsuchen, ordentlich formatieren, irgendwann wieder rauskramen.
+Wie ich [bereits geschrieben habe](/logbuch/erster-beitrag/), schreibe ich meine Notizen normalerweise in [Obsidian](https://obsidian.md). Für Dokumentation, How-Tos und Code-Schnipsel funktioniert das auch wirklich gut - schnell durchsuchen, ordentlich formatieren, irgendwann wieder rauskramen.
 
 Beim Umzug fühlt sich das aber irgendwie unpraktisch an. Ich schreibe zum Beispiel eine Liste mit Sachen, die ich den Elektriker fragen will - was soll noch eingebaut werden, gibt es X oder Y? Mir fällt ständig was Neues dazu ein, und beim Termin selbst will ich dann kurz was draufschreiben oder einzelne Punkte abhaken können.
 

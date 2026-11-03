@@ -3,6 +3,7 @@ title: "Ein MeshCore TCP-Node für LAN und VPN"
 date: 2026-10-01T18:00:00+02:00
 tags: ["funk", "netzwerk", "homelab"]
 draft: false
+aliases: ["/posts/meshcore-tcp-node/"]
 ---
 
 [MeshCore](https://meshcore.co.uk/) ist ein schlankes Mesh-Routing-Protokoll für LoRa-Funkgeräte - ähnlich wie Meshtastic, nur mit eigenem Routing-Ansatz. Es läuft auf ESP32-Boards mit LoRa-Funkmodul, bei mir ein Heltec LoRa32.

@@ -3,6 +3,7 @@ title: "TP-Link Archer C7 - Stock-Firmware via TFTP wiederherstellen"
 date: 2026-04-24T14:08:33+02:00
 tags: ["netzwerk", "linux"]
 draft: false
+aliases: ["/posts/tplink-c7/"]
 ---
 
 Für den Umzug habe ich einen alten Router, auf dem ich mal OpenWrt ausprobiert hatte, wieder auf die originale Firmware zurückgeflasht. Dabei bin ich zum ersten Mal mit `tftp` in Berührung gekommen.

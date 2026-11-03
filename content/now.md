@@ -26,7 +26,7 @@ Was mich gerade beschäftigt – eine [/now-Seite](https://nownownow.com/about),
 
 ## Funk
 
-- [MeshCore](https://meshcore.co.uk/): Mein Node hängt per TCP im LAN und VPN, verteilt über [meshcore-mux](https://github.com/FdyFox/meshcore-mux). Mehr dazu im [Beitrag](/posts/meshcore-tcp-node/).
+- [MeshCore](https://meshcore.co.uk/): Mein Node hängt per TCP im LAN und VPN, verteilt über [meshcore-mux](https://github.com/FdyFox/meshcore-mux). Mehr dazu im [Beitrag](/bastelstube/meshcore-tcp-node/).
 
 ## Diese Seite
 

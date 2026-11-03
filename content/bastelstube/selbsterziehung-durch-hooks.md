@@ -3,6 +3,7 @@ title: "Selbsterziehung durch Hooks"
 date: 2026-10-22T09:30:00+02:00
 tags: ["git", "linux", "tipps"]
 draft: false
+aliases: ["/posts/selbsterziehung-durch-hooks/"]
 ---
 
 Ich habe ein paar Git-Hooks, die global für alle meine Repos gelten. Die Idee dahinter ist simple Selbsterziehung: Wenn ich mich nicht an die Regeln halte, lässt Git mich einfach nicht committen.
