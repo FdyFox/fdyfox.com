@@ -1,15 +1,15 @@
 {
-  "updated": "2026-10-30",
+  "updated": "2026-11-03",
   "totals": {
     "books": 124,
-    "finished": 64,
+    "finished": 65,
     "library_hours": 1278,
-    "listened_hours": 561
+    "listened_hours": 568
   },
   "finished_per_year": [
     [
       "2026",
-      23
+      24
     ],
     [
       "2025",
@@ -23,7 +23,7 @@
   "hours_per_year": [
     [
       "2026",
-      202
+      210
     ],
     [
       "2025",
@@ -37,7 +37,7 @@
   "top_authors": [
     [
       "Oleg Sapphire, Alexey Kovtunov",
-      10
+      11
     ],
     [
       "Jason Cheek",
@@ -79,7 +79,7 @@
   "top_series": [
     [
       "Der Weg des Heilers",
-      11
+      12
     ],
     [
       "Die WELT - The World [German Edition]",
@@ -130,20 +130,20 @@
   ],
   "in_progress": [
     {
-      "title": "Der Weg des Heilers Buch 12 (Unabridged)",
+      "title": "Der Weg des Heilers Buch 13 (Unabridged)",
       "author": "Oleg Sapphire, Alexey Kovtunov",
-      "series": "Der Weg des Heilers #12",
+      "series": "Der Weg des Heilers #13",
       "narrator": "Alex Kratzenstein",
       "year": "2026",
       "language": "German",
       "genres": [
-        "Action & Abenteuer, Historisch"
+        "Fantasy, Action & Abenteuer, Historisch"
       ],
-      "hours": 10.0,
-      "added": "2026-10-19",
+      "hours": 10.3,
+      "added": "2026-10-26",
       "finished": "",
-      "progress": 56,
-      "cover": "hoerbuecher/covers/79c87cf9-b8f7-4cf4-9d46-0342ea5cf135.jpg"
+      "progress": 35,
+      "cover": "hoerbuecher/covers/0511999a-4d9e-4bef-9642-b586e4ff1119.jpg"
     },
     {
       "title": "Abenteuer lass nach: Magic 2.0, 3",
@@ -180,39 +180,6 @@
   ],
   "heatmap": {
     "weeks": [
-      {
-        "month": "Nov",
-        "days": [
-          {
-            "t": "Mo 27.10.2025 · 1,0 h",
-            "l": 3
-          },
-          {
-            "t": "Di 28.10.2025 · nichts gehört",
-            "l": 0
-          },
-          {
-            "t": "Mi 29.10.2025 · nichts gehört",
-            "l": 0
-          },
-          {
-            "t": "Do 30.10.2025 · nichts gehört",
-            "l": 0
-          },
-          {
-            "t": "Fr 31.10.2025 · nichts gehört",
-            "l": 0
-          },
-          {
-            "t": "Sa 01.11.2025 · nichts gehört",
-            "l": 0
-          },
-          {
-            "t": "So 02.11.2025 · nichts gehört",
-            "l": 0
-          }
-        ]
-      },
       {
         "month": "",
         "days": [
@@ -816,7 +783,7 @@
           },
           {
             "t": "Di 10.03.2026 · 24 min",
-            "l": 2
+            "l": 1
           },
           {
             "t": "Mi 11.03.2026 · 1,1 h",
@@ -1897,7 +1864,7 @@
         ]
       },
       {
-        "month": "",
+        "month": "Nov",
         "days": [
           {
             "t": "Mo 26.10.2026 · 1,2 h",
@@ -1916,12 +1883,33 @@
             "l": 3
           },
           {
-            "t": "Fr 30.10.2026 · nichts gehört",
-            "l": 0
+            "t": "Fr 30.10.2026 · 52 min",
+            "l": 2
+          },
+          {
+            "t": "Sa 31.10.2026 · 51 min",
+            "l": 2
+          },
+          {
+            "t": "So 01.11.2026 · 1,1 h",
+            "l": 3
+          }
+        ]
+      },
+      {
+        "month": "",
+        "days": [
+          {
+            "t": "Mo 02.11.2026 · 3,2 h",
+            "l": 4
+          },
+          {
+            "t": "Di 03.11.2026 · 1,6 h",
+            "l": 3
           }
         ]
       }
     ],
-    "active_days": 211
+    "active_days": 215
   }
 }
