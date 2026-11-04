@@ -40,7 +40,7 @@ ifneq ($(DEV_OPEN),)
 	     sleep 0.5; \
 	   done ) >/dev/null 2>&1 &
 endif
-	$(HUGO) server -D -p $(PORT) $(DEV_FLAGS)
+	$(HUGO) server -D -F -p $(PORT) $(DEV_FLAGS)
 
 build:
 	$(HUGO) --minify
