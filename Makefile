@@ -25,7 +25,7 @@ help:
 	@echo "  make build          Seite bauen (public/)"
 	@echo "  make clean          public/ löschen"
 	@echo "  make deploy         Bauen und per FTP deployen"
-	@echo "  make logbuch <name>     Neuen Logbuch-Eintrag anlegen"
+	@echo "  make logbuch [name]     Logbuch-Eintrag anlegen (ohne Name: heute)"
 	@echo "  make bastelstube <name> Neuen Bastelstube-Beitrag anlegen"
 	@echo "  make page <name>    Neue Seite anlegen"
 	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
@@ -51,7 +51,16 @@ clean:
 deploy: build
 	@bash deploy.sh
 
-logbuch bastelstube:
+logbuch:
+	$(eval NAME := $(or $(filter-out $@,$(MAKECMDGOALS)),$(shell date +%F)))
+	@if [ -e content/$@/$(NAME).md ]; then \
+	   echo "→ Eintrag existiert bereits: content/$@/$(NAME).md"; \
+	 else \
+	   $(HUGO) new content/$@/$(NAME).md && \
+	   echo "→ Eintrag erstellt: content/$@/$(NAME).md"; \
+	 fi
+
+bastelstube:
 	$(eval NAME := $(filter-out $@,$(MAKECMDGOALS)))
 	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make $@ mein-beitrag" && exit 1)
 	$(HUGO) new content/$@/$(NAME).md
