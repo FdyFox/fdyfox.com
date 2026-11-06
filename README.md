@@ -11,20 +11,25 @@ Persönliche Website von Ferdinand Berger — gebaut mit [Hugo](https://gohugo.i
 ## Lokale Entwicklung
 
 ```bash
-hugo server
+git submodule update --init --recursive   # einmalig: Theme herunterladen
+make dev
 ```
 
-Die Seite ist dann unter [http://localhost:1313](http://localhost:1313) erreichbar.
+Die Seite ist dann unter [http://localhost:1313](http://localhost:1313) erreichbar, Entwürfe und Beiträge mit Datum in der Zukunft werden mit angezeigt. In code-server läuft sie automatisch über `/absproxy/1313/`. Alle Befehle zeigt `make help`.
 
-Herunterladen der Submodules: `git submodule update --init --recursive`
-
-## Neuen Beitrag erstellen
+## Neuen Inhalt erstellen
 
 ```bash
-hugo new content posts/mein-beitrag/index.md
+make logbuch                  # Logbuch-Eintrag für heute (content/logbuch/JJJJ-MM-TT.md)
+make logbuch mein-thema       # Logbuch-Eintrag mit eigenem Namen
+make bastelstube mein-thema   # Bastelstube-Beitrag
+make wiki homelab/proxmox     # Wiki-Seite (Kategorie/Name)
+make page ueber-mich          # Einzelne Seite
 ```
 
-Danach die Datei bearbeiten und `draft: false` setzen.
+Neue Inhalte starten als Entwurf. Zum Veröffentlichen `draft: false` setzen.
+
+Die Hörbuch-Daten für Wiki und `/now` holt `make hoerbuecher` aus Audiobookshelf (Zugangsdaten in `.env`).
 
 ## Deployment
 
@@ -32,7 +37,7 @@ Danach die Datei bearbeiten und `draft: false` setzen.
 
 ```bash
 cp .env.example .env   # einmalig, Werte ausfüllen
-./deploy.sh
+make deploy            # baut die Seite und lädt sie per FTP hoch (deploy.sh)
 ```
 
 ### Automatisch
@@ -104,17 +109,29 @@ Die Verwaltung ist dann unter `http://localhost:1314/kommentare/admin.php` errei
 
 ```
 content/
-├── posts/          # Logbuch-Beiträge
-├── about.md        # Über-mich-Seite
-├── search.md       # Suchseite
+├── logbuch/           # Logbuch-Einträge (Tagebuch, Gedanken)
+├── bastelstube/       # Anleitungen und Basteleien
+├── wiki/              # Wachsende Sammlungen (z. B. homelab/, bibliothek/)
+├── about.md, now.md, uses.md, blogroll.md, kontakt.md   # Slash-Pages
+├── search.md          # Suchseite
 ├── impressum.md
 └── datenschutz.md
-assets/css/extended/
-└── custom.css      # Catppuccin-Farben & Anpassungen
-layouts/partials/
-├── extend_head.html # Favicons
-└── comments.html    # Kommentarliste & Formular
-static/kommentare/   # Kommentar-Backend (PHP)
+archetypes/            # Vorlagen für make logbuch / wiki / page
+data/
+├── blogroll.yaml      # Blogroll (auch als /blogroll.opml)
+└── hoerbuecher.json   # von make hoerbuecher erzeugt
+assets/
+├── css/extended/custom.css   # Catppuccin-Farben & Anpassungen
+└── hoerbuecher/covers/       # Cover von make hoerbuecher
+layouts/
+├── _default/kontakt.html     # Kontaktseite
+├── partials/                 # Header, Footer, Kommentare, Favicons, …
+├── shortcodes/               # amazon, blogroll, status, now-hoerbuecher
+└── wiki/                     # Layouts für das Wiki
+static/
+├── contact.php               # Versand des Kontaktformulars
+└── kommentare/               # Kommentar-Backend (PHP)
 scripts/
-└── kommentare-seed.php # Dummy-Kommentare für die lokale Entwicklung
+├── abs-sync.py               # Audiobookshelf-Sync (make hoerbuecher)
+└── kommentare-seed.php       # Dummy-Kommentare für die lokale Entwicklung
 ```
