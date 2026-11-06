@@ -21,6 +21,20 @@ jobs:
       - name: Build
         run: hugo --minify
 
+      # Admin-Passwort für static/kommentare/admin.php (Kommentar-Verwaltung).
+      # Base64, damit Sonderzeichen im Passwort den PHP-String nicht kaputt machen.
+      - name: Write comment config
+        if: github.event_name == 'push'
+        env:
+          COMMENT_ADMIN_PASSWORD: ${{ secrets.COMMENT_ADMIN_PASSWORD }}
+        run: |
+          if [ -n "$COMMENT_ADMIN_PASSWORD" ]; then
+            printf "<?php\nreturn ['admin_password' => base64_decode('%s')];\n" \
+              "$(printf '%s' "$COMMENT_ADMIN_PASSWORD" | base64 -w0)" > public/kommentare/config.php
+          else
+            echo "::warning::COMMENT_ADMIN_PASSWORD fehlt, die Kommentar-Verwaltung ist deaktiviert"
+          fi
+
       # Bei Pull Requests (z.B. Renovate-Updates) nur testweise bauen
       - name: Deploy via FTP
         if: github.event_name == 'push'
@@ -29,5 +43,5 @@ jobs:
           lftp -c "
             set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate yes;
             open ftp://${{ secrets.FTP_USER }}:${{ secrets.FTP_PASS }}@${{ secrets.FTP_HOST }};
-            mirror --reverse --delete --parallel=8 public/ ${{ secrets.FTP_PATH }}
+            mirror --reverse --delete --exclude ^kommentare/daten/ --parallel=8 public/ ${{ secrets.FTP_PATH }}
           "

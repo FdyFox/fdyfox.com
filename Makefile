@@ -18,13 +18,27 @@ else
 DEV_URL   := http://localhost:$(PORT)/
 endif
 
+# Kommentare: PHP-Dev-Container für static/kommentare/ (Daten in .kommentare-dev/).
+# Über /proxy/ statt /absproxy/, damit PHP die Skripte ohne Pfad-Präfix sieht.
+KOMMENTARE_PORT := 1314
+ifdef VSCODE_PROXY_URI
+KOMMENTARE_URL := $(subst {{port}},$(KOMMENTARE_PORT),$(VSCODE_PROXY_URI))
+else
+KOMMENTARE_URL := http://localhost:$(KOMMENTARE_PORT)/
+endif
+KOMMENTARE_DOCKER := --user $$(id -u):$$(id -g) \
+	-v $(CURDIR)/static:/app:ro -v $(CURDIR)/scripts:/scripts:ro -v $(CURDIR)/.kommentare-dev:/data \
+	-e COMMENT_CONFIG=/data/config.php -w /app php:8.5-cli
+
 .DEFAULT_GOAL := help
 
-.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki hoerbuecher open
+.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki hoerbuecher open \
+        kommentare-start kommentare-stop kommentare-seed
 
 help:
 	@echo "Verfügbare Befehle:"
-	@echo "  make dev            Dev-Server starten"
+	@echo "  make dev            Dev-Server starten (inkl. PHP-Container für Kommentare)"
+	@echo "  make kommentare-seed Dummy-Kommentare in die Dev-Datenbank schreiben"
 	@echo "  make build          Seite bauen (public/)"
 	@echo "  make clean          public/ löschen"
 	@echo "  make deploy         Bauen und per FTP deployen"
@@ -43,7 +57,28 @@ ifneq ($(DEV_OPEN),)
 	     sleep 0.5; \
 	   done ) >/dev/null 2>&1 &
 endif
-	$(HUGO) server -D -F -p $(PORT) $(DEV_FLAGS)
+	@trap '$(MAKE) -s kommentare-stop' EXIT INT TERM; \
+	  $(MAKE) -s kommentare-start; \
+	  HUGO_PARAMS_COMMENTSENDPOINT=$(KOMMENTARE_URL)kommentare/api.php \
+	  $(HUGO) server -D -F -p $(PORT) $(DEV_FLAGS)
+
+# PHP-Container im Hintergrund (ohne Docker läuft make dev einfach ohne Kommentare).
+kommentare-start: kommentare-stop .kommentare-dev/config.php
+	@command -v docker >/dev/null || { echo "⚠ Docker fehlt, Kommentare lokal deaktiviert"; exit 0; }; \
+	 docker run -d --rm --name fdyfox-kommentare -p 127.0.0.1:$(KOMMENTARE_PORT):8000 \
+	   $(KOMMENTARE_DOCKER) php -S 0.0.0.0:8000 >/dev/null && \
+	 echo "→ Kommentar-Verwaltung: $(KOMMENTARE_URL)kommentare/admin.php (Passwort: admin)"
+
+kommentare-stop:
+	@docker stop fdyfox-kommentare >/dev/null 2>&1 || true
+	@while docker container inspect fdyfox-kommentare >/dev/null 2>&1; do sleep 0.2; done
+
+kommentare-seed: .kommentare-dev/config.php
+	docker run --rm $(KOMMENTARE_DOCKER) php /scripts/kommentare-seed.php
+
+.kommentare-dev/config.php:
+	@mkdir -p .kommentare-dev
+	@printf '%s\n' "<?php" "return ['admin_password' => 'admin', 'data_dir' => '/data', 'cors' => true];" > $@
 
 build:
 	$(HUGO) --minify

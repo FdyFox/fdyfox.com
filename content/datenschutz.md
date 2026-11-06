@@ -16,11 +16,17 @@ E-Mail: [ferdy@fdyfox.com](mailto:ferdy@fdyfox.com)
 
 ## Erhebung und Speicherung personenbezogener Daten
 
-Diese Website ist eine statische Seite ohne Tracking, Cookies oder Analysetools. Es werden keine personenbezogenen Daten durch mich aktiv erhoben oder gespeichert. Es werden keine Inhalte von Drittanbietern (z. B. Amazon) beim Seitenaufruf nachgeladen.
+Diese Website ist eine statische Seite ohne Tracking, Cookies oder Analysetools. Abgesehen von freiwillig abgeschickten [Kommentaren](#kommentare) werden keine personenbezogenen Daten durch mich erhoben oder gespeichert. Es werden keine Inhalte von Drittanbietern (z. B. Amazon) beim Seitenaufruf nachgeladen.
 
 ## Server-Logfiles
 
 Der Hosting-Anbieter dieser Seite erhebt beim Zugriff automatisch technische Informationen (z. B. IP-Adresse, Zeitpunkt des Zugriffs, aufgerufene Seite). Diese Daten werden ausschließlich zur Sicherstellung des Betriebs benötigt und nicht an Dritte weitergegeben.
+
+## Kommentare {#kommentare}
+
+Unter Beiträgen können Sie Kommentare hinterlassen. Dabei werden der Kommentartext, der Zeitpunkt sowie – falls angegeben – Name, E-Mail-Adresse und Website gespeichert. Die Daten liegen ausschließlich auf dem Server dieser Website und werden nicht an Dritte weitergegeben. Ich erhalte eine Benachrichtigung per E-Mail und prüfe jeden Kommentar vor der Veröffentlichung.
+
+Veröffentlicht werden nur Kommentartext, Zeitpunkt, Name und Website. Die E-Mail-Adresse ist nur für mich sichtbar und dient ausschließlich dazu, Ihnen bei Bedarf antworten zu können. Zum Schutz vor Missbrauch wird Ihre IP-Adresse in gehashter (nicht rückrechenbarer) Form für höchstens zehn Minuten gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Ihre Einwilligung durch das Absenden). Wenn Sie die Löschung eines Kommentars wünschen, genügt eine kurze Nachricht an die oben genannte E-Mail-Adresse.
 
 ## Amazon-Partnerprogramm {#amazon-partnerprogramm}
 

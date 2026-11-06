@@ -1,0 +1,138 @@
+{{- /*
+  Kommentare: liegen serverseitig in SQLite (static/kommentare/api.php) und werden per fetch geladen.
+  Moderation über die Mail-Links oder /kommentare/admin.php.
+  Aktiviert über "cascade.params.comments" im _index.md der Sektion.
+  Lokal setzt "make dev" params.commentsEndpoint auf den PHP-Dev-Container.
+*/ -}}
+{{- $endpoint := site.Params.commentsEndpoint | default ("kommentare/api.php" | relURL) }}
+
+<section id="kommentare" class="comments"
+         data-endpoint="{{ $endpoint }}" data-section="{{ .Section }}" data-page="{{ .File.ContentBaseName }}">
+  <h2 class="comments-title">Kommentare</h2>
+
+  <ol class="comment-list" hidden></ol>
+  <p class="comments-empty" hidden>Noch keine Kommentare. Fang gerne an.</p>
+  <noscript><p class="comments-empty">Zum Anzeigen der Kommentare wird JavaScript benötigt. Kommentieren geht auch ohne.</p></noscript>
+
+  <div id="kommentar-danke" class="callout callout-tip comment-status-static">
+    <div class="callout-title"><span class="callout-icon">💡</span> Danke!</div>
+    <div class="callout-content"><p>Dein Kommentar ist angekommen und erscheint, sobald ich ihn freigeschaltet habe.</p></div>
+  </div>
+  <div id="kommentar-fehler" class="callout callout-caution comment-status-static">
+    <div class="callout-title"><span class="callout-icon">🔥</span> Hat nicht geklappt</div>
+    <div class="callout-content"><p>Beim Speichern ist etwas schiefgelaufen. Versuch es später nochmal.</p></div>
+  </div>
+
+  <form class="contact-form comment-form" action="{{ $endpoint }}" method="POST">
+    <div class="comment-form-row">
+      <div class="form-group">
+        <label for="comment-name">Name <span class="comment-optional">(optional)</span></label>
+        <input type="text" id="comment-name" name="name" maxlength="80" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="comment-email">E-Mail <span class="comment-optional">(optional, wird nicht veröffentlicht)</span></label>
+        <input type="email" id="comment-email" name="email" maxlength="200" autocomplete="email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="comment-website">Website <span class="comment-optional">(optional)</span></label>
+      <input type="text" id="comment-website" name="website" maxlength="200" autocomplete="url" inputmode="url" placeholder="https://">
+    </div>
+    <div class="form-group">
+      <label for="comment-text">Kommentar</label>
+      <textarea id="comment-text" name="comment" rows="5" maxlength="5000" required></textarea>
+    </div>
+    <div style="display:none" aria-hidden="true">
+      <input type="text" name="fax" tabindex="-1" autocomplete="off">
+    </div>
+    <input type="hidden" name="section" value="{{ .Section }}">
+    <input type="hidden" name="page" value="{{ .File.ContentBaseName }}">
+    <input type="hidden" name="path" value="{{ .RelPermalink }}">
+    <div class="comment-form-footer">
+      <button type="submit" class="contact-submit">Absenden</button>
+      <span class="comment-hint">Kommentare werden vor dem Erscheinen geprüft. <a href="{{ "datenschutz/" | relURL }}#kommentare">Datenschutz</a></span>
+    </div>
+    <div class="comment-status" role="status" aria-live="polite"></div>
+  </form>
+</section>
+
+<script>
+(() => {
+  const root = document.getElementById('kommentare');
+  if (!root) return;
+  const { endpoint, section, page } = root.dataset;
+  const list   = root.querySelector('.comment-list');
+  const empty  = root.querySelector('p.comments-empty');
+  const title  = root.querySelector('.comments-title');
+  const form   = root.querySelector('.comment-form');
+  const status = form.querySelector('.comment-status');
+  const button = form.querySelector('button[type=submit]');
+
+  const el = (tag, props = {}, ...children) => {
+    const e = Object.assign(document.createElement(tag), props);
+    e.append(...children);
+    return e;
+  };
+  const fmt = new Intl.DateTimeFormat('de-DE', {
+    day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
+  });
+
+  // Freigegebene Kommentare laden
+  fetch(`${endpoint}?section=${encodeURIComponent(section)}&page=${encodeURIComponent(page)}`)
+    .then(res => res.json())
+    .then(({ comments }) => {
+      if (!comments.length) { empty.hidden = false; return; }
+      title.textContent = `${comments.length} ${comments.length === 1 ? 'Kommentar' : 'Kommentare'}`;
+      for (const c of comments) {
+        const date   = new Date(c.date);
+        const author = c.website
+          ? el('a', { className: 'comment-author', href: c.website, rel: 'nofollow ugc noopener', textContent: c.name })
+          : el('span', { className: 'comment-author', textContent: c.name });
+        const body = el('div', { className: 'comment-body' });
+        for (const para of c.comment.split(/\n{2,}/)) {
+          const p = el('p');
+          para.split('\n').forEach((line, i) => { if (i) p.append(el('br')); p.append(line); });
+          body.append(p);
+        }
+        list.append(el('li', { className: 'comment' },
+          el('div', { className: 'comment-meta' }, author,
+            el('time', { dateTime: c.date, textContent: fmt.format(date) })),
+          body));
+      }
+      list.hidden = false;
+    })
+    .catch(() => {
+      empty.textContent = 'Kommentare konnten gerade nicht geladen werden.';
+      empty.hidden = false;
+    });
+
+  // Absenden ohne Seitenwechsel
+  const show = (ok, text) => {
+    status.className = 'comment-status callout ' + (ok ? 'callout-tip' : 'callout-caution');
+    status.textContent = text;
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    button.disabled = true;
+    button.textContent = 'Wird gesendet …';
+    try {
+      const res  = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+      const data = await res.json();
+      show(data.success, data.message);
+      if (data.success) {
+        form.querySelectorAll('.comment-form-row, .form-group, .comment-form-footer').forEach(n => n.remove());
+        return;
+      }
+    } catch {
+      show(false, 'Keine Verbindung zum Server. Versuch es später nochmal.');
+    }
+    button.disabled = false;
+    button.textContent = 'Absenden';
+  });
+})();
+</script>
