@@ -4,9 +4,6 @@ on:
   push:
     branches: [main]
   pull_request:
-  # Stündlich bauen, damit terminierte Beiträge auch ohne Push online gehen
-  schedule:
-    - cron: '5 * * * *'
 
 jobs:
   deploy:
@@ -26,7 +23,7 @@ jobs:
 
       # Bei Pull Requests (z.B. Renovate-Updates) nur testweise bauen
       - name: Deploy via FTP
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'push'
         run: |
           sudo apt-get install -y lftp
           lftp -c "
