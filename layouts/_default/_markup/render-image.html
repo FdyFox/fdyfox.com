@@ -1,7 +1,7 @@
 {{ $alt := .Text }}
 {{ $src := .Destination | safeURL }}
 {{ $title := .Title }}
-<figure>
+<figure{{ if strings.HasSuffix .Destination "#center" }} class="align-center"{{ end }}>
   <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
   {{ with $alt }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
