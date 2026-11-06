@@ -5,6 +5,9 @@ ENV_BROWSER := $(BROWSER)
 BROWSER := $(shell which powershell.exe 2>/dev/null || which xdg-open 2>/dev/null || echo echo)
 PORT    := 1313
 
+# Neue Beiträge mit deutscher Zeit (+01:00/+02:00) statt UTC anlegen.
+export TZ := Europe/Berlin
+
 # In code-server-Terminals ist VSCODE_PROXY_URI gesetzt (…/proxy/{{port}}/).
 # Dann über /absproxy/ ausliefern, damit Hugo den Pfad-Präfix kennt.
 ifdef VSCODE_PROXY_URI

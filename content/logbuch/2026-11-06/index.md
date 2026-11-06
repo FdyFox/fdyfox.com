@@ -1,6 +1,6 @@
 ---
 title: "06.11.2026"
-date: 2026-11-06T21:00:20Z
+date: 2026-11-06T21:00:20+01:00
 tags: ["garten", "meta"]
 draft: false
 ---
