@@ -63,7 +63,7 @@ Das Admin-Passwort steht natürlich nicht im Repo. Der Deploy-Workflow schreibt 
 
 ## Aber der Code liegt doch öffentlich?
 
-Die Frage habe ich mir auch gestellt. Das Repo dieser Seite ist öffentlich, die [Kommentar-Skripte](https://github.com/FdyFox/fdyfox.com/tree/main/static/kommentare) kann also jeder lesen.
+Die Frage habe ich mir auch gestellt. Das Repo dieser Seite ist öffentlich, die [Kommentar-Skripte](https://github.com/FdyFox/hugo-php-comments) kann also jeder lesen.
 
 Das ist aber kein Problem, solange die Sicherheit nicht davon abhängt, dass niemand weiß, wie es funktioniert. Wer den Code kennt, weiß, *wie* das Admin-Login funktioniert - aber nicht das Passwort. Er weiß, *wo* die Datenbank liegt - aber der Server liefert sie nicht aus. Alles Geheime (Passwort, Datenbank, Freigabe-Tokens) existiert nur auf dem Server.
 
@@ -84,3 +84,21 @@ Hugos Dev-Server kann kein PHP. Damit ich trotzdem lokal alles sehe, startet `ma
 Ein Backup. Die Kommentare liegen nur auf dem Webspace und nicht im Repo. Das kommt als Nächstes.
 
 Und natürlich: Kommentare. Das Formular ist direkt hier unten - probier es gerne aus.
+
+## Update vom 08.11.2026
+
+Einen Tag später hat sich schon einiges getan. Angefangen hat es mit einem Kommentar unter diesem Beitrag: [Robert](https://mit.der.bolt.durch.bayern/) hat mir [Pure Comments](https://github.com/kevquirk/purecomments) empfohlen. Danke für den Tipp!
+
+Das habe ich gemacht, und es passt eigentlich ziemlich gut: PHP, SQLite, eigener Webspace, jeder Kommentar wird vorher geprüft. Nur der Mailversand schreckt mich ab. Laut Doku läuft er über Amazon SES, und AWS will ich mir für ein paar Benachrichtigungen nicht antun. SMTP ginge auch, aber dann hätte ich wieder mehr Zugangsdaten an der Backe und müsste extra ein Postfach anlegen. Bei mir verschickt einfach der Webspace die Mail per PHP. Ich bleibe also bei meiner Bastellösung, ein paar Ideen und Anstöße habe ich aber mitgenommen.
+
+**Antworten:** Ich kann jetzt direkt in der Verwaltung auf einen Kommentar antworten. Die Antwort erscheint eingerückt darunter und ist als „Autor“ markiert. Antworte ich auf einen noch offenen Kommentar, wird er dabei gleich freigegeben.
+
+**Passwort:** Oben steht, dass der Deploy das Admin-Passwort in eine Konfigurationsdatei schreibt. Das war im Klartext, jetzt landet dort nur noch ein Hash.
+
+**IP-Hashes:** Auch „nach zehn Minuten wieder gelöscht“ war zu schön formuliert. Tatsächlich wurden die Hashes erst beim nächsten neuen Kommentar entfernt, und der kann hier lange auf sich warten lassen. Jetzt passiert das bei jedem Abruf der Kommentare, also spätestens beim nächsten Besuch eines Beitrags nach Ablauf der zehn Minuten. Die Datenschutzerklärung habe ich entsprechend angepasst.
+
+**Mail-Links:** Die Links zum Freigeben und Löschen laufen jetzt nach 30 Tagen ab.
+
+Außerdem ist aus den Skripten ein eigenes Projekt geworden: [hugo-php-comments](https://github.com/FdyFox/hugo-php-comments), MIT-lizenziert, mit deutschen und englischen Texten. Eingebunden ist es hier als Submodul. Falls du auch einen Hugo-Blog auf normalem PHP-Webspace hast, kannst du es gerne ausprobieren. Liegt die Datenbank im Webroot und der Server beachtet keine `.htaccess` (zum Beispiel nginx), startet es gar nicht erst - sonst könnte man die Datenbank einfach herunterladen.
+
+Das automatische Backup fehlt allerdings immer noch. Vor den Umbauten habe ich die Datenbank von Hand gesichert. Es bleibt also auf der Liste :)

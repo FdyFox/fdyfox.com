@@ -3,7 +3,6 @@ locale = "de-de"
 language = "de-de"
 defaultContentLanguage = "de-de"
 title = "FdyFox"
-theme = "PaperMod"
 enableRobotsTXT = true
 enableGitInfo = true
 paginate = 10
@@ -35,6 +34,9 @@ notAlternative = true
 text = "[/now](/now/) · [/uses](/uses/) · [/blogroll](/blogroll/) · [/kontakt](/kontakt/)\\\n[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
 
 [params]
+commentsEndpoint = "/kommentare/api.php"
+commentsLanguage = "de"
+commentsPrivacyUrl = "/datenschutz/#kommentare"
 author = "Ferdy"
 description = "Notizen, Gedanken und Kram"
 defaultTheme = "dark"
@@ -172,3 +174,22 @@ enable = true
 
 [markup.highlight]
 noClasses = false
+
+# Kommentare (Submodul): bleiben unter /kommentare/, damit Datenbank, Admin-URL und Mail-Links gleich bleiben
+[module]
+  [[module.imports]]
+    path = "hugo-php-comments"
+    [[module.imports.mounts]]
+      source = "layouts"
+      target = "layouts"
+    [[module.imports.mounts]]
+      source = "assets"
+      target = "assets"
+    [[module.imports.mounts]]
+      source = "data"
+      target = "data"
+    [[module.imports.mounts]]
+      source = "static/comments"
+      target = "static/kommentare"
+  [[module.imports]]
+    path = "PaperMod"

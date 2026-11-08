@@ -10,6 +10,16 @@
       "description": "Hugo, Theme und Actions automatisch mergen, wenn der Testbuild grün ist",
       "matchManagers": ["mise", "git-submodules", "github-actions"],
       "automerge": true
+    },
+    {
+      "description": "Kommentar-Komponente hängt an der Live-Datenbank: nur manuell mergen",
+      "matchDepNames": ["/hugo-php-comments/"],
+      "automerge": false
+    },
+    {
+      "description": "Kommentar-Komponente, falls Renovate sie über die URL führt",
+      "matchPackageNames": ["/hugo-php-comments/"],
+      "automerge": false
     }
   ]
 }

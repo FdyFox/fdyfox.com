@@ -60,7 +60,7 @@ Hugo-Version (`mise.toml`), Theme (Submodul) und GitHub Actions werden von [Reno
 
 ## Kommentare
 
-Unter Beiträgen im Logbuch und in der Bastelstube gibt es ein Kommentarformular. Das System ist selbst gebaut und läuft komplett auf dem eigenen Webspace: PHP, SQLite, keine Drittanbieter.
+Unter Beiträgen im Logbuch und in der Bastelstube gibt es ein Kommentarformular. Das System ist selbst gebaut und läuft komplett auf dem eigenen Webspace: PHP, SQLite, keine Drittanbieter. Der Code liegt im eigenen Repo [hugo-php-comments](https://github.com/FdyFox/hugo-php-comments) und ist unter `themes/hugo-php-comments` als Submodul eingebunden.
 
 ### Ablauf
 
@@ -75,13 +75,13 @@ Verwaltung (freigeben, verbergen, beantworten, bearbeiten, löschen): **<https:/
 
 | Datei | Zweck |
 |---|---|
-| `layouts/partials/comments.html` | Kommentarliste und Formular (wird von PaperMod eingebunden) |
-| `static/kommentare/api.php` | Öffentlicher Endpunkt: Kommentare auflisten und einreichen, Mail-Links |
-| `static/kommentare/admin.php` | Verwaltung mit Passwort-Login |
-| `static/kommentare/lib.php` | Gemeinsamer Code (Datenbank, Prüfung der Eingaben, Mailversand) |
-| `static/kommentare/.htaccess` | Sperrt `lib.php`, `config.php` und `daten/` |
+| `themes/hugo-php-comments/` | Das Kommentarsystem (Submodul, Updates bewusst ohne Automerge) |
+| `layouts/partials/comments.html` | Bindet die Komponente an PaperMods Kommentar-Hook an |
+| `hugo.toml` | `[module]` legt die Komponente unter `/kommentare/`, `[params]` setzt Endpunkt und Sprache |
+| `assets/css/extended/custom.css` | Farben aus dem Theme für die Komponente |
+| `scripts/kommentare-config.sh` | Erzeugt `kommentare/config.php` beim Deploy, inklusive der Einstellungen dieser Seite |
 
-Aktiviert werden die Kommentare pro Sektion im `_index.md` mit `cascade.params.comments: true`. Erlaubte Sektionen stehen zusätzlich in `ALLOWED_SECTIONS` in `lib.php`.
+Aktiviert werden die Kommentare pro Sektion im `_index.md` mit `cascade.params.comments: true`. Erlaubte Sektionen stehen zusätzlich in `allowed_sections` in `scripts/kommentare-config.sh`.
 
 ### Auf dem Server
 

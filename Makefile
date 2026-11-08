@@ -18,7 +18,7 @@ else
 DEV_URL   := http://localhost:$(PORT)/
 endif
 
-# Kommentare: PHP-Dev-Container für static/kommentare/ (Daten in .kommentare-dev/).
+# Kommentare: PHP-Dev-Container für das Submodul hugo-php-comments (Daten in .kommentare-dev/).
 # Über /proxy/ statt /absproxy/, damit PHP die Skripte ohne Pfad-Präfix sieht.
 KOMMENTARE_PORT := 1314
 ifdef VSCODE_PROXY_URI
@@ -27,8 +27,8 @@ else
 KOMMENTARE_URL := http://localhost:$(KOMMENTARE_PORT)/
 endif
 KOMMENTARE_DOCKER := --user $$(id -u):$$(id -g) \
-	-v $(CURDIR)/static:/app:ro -v $(CURDIR)/scripts:/scripts:ro -v $(CURDIR)/.kommentare-dev:/data \
-	-e COMMENT_CONFIG=/data/config.php -w /app php:8.5-cli
+	-v $(CURDIR)/themes/hugo-php-comments/static/comments:/app/kommentare:ro -v $(CURDIR)/scripts:/scripts:ro -v $(CURDIR)/.kommentare-dev:/data \
+	-e COMMENTS_CONFIG=/data/config.php -w /app php:8.5-cli
 
 .DEFAULT_GOAL := help
 
@@ -78,7 +78,7 @@ kommentare-seed: .kommentare-dev/config.php
 
 .kommentare-dev/config.php:
 	@mkdir -p .kommentare-dev
-	@printf '%s\n' "<?php" "return ['admin_password_hash' => password_hash('admin', PASSWORD_DEFAULT), 'data_dir' => '/data', 'cors' => true];" > $@
+	@printf '%s\n' "<?php" "return ['admin_password_hash' => password_hash('admin', PASSWORD_DEFAULT), 'data_dir' => '/data', 'db_file' => 'kommentare.sqlite', 'cors' => true, 'language' => 'de', 'author_name' => 'Ferdy', 'allowed_sections' => ['logbuch', 'bastelstube']];" > $@
 
 build:
 	$(HUGO) --minify

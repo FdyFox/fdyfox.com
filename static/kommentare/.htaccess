@@ -1,7 +1,0 @@
-# Konfiguration (beim Deploy erzeugt) und gemeinsamer Code sind nicht direkt aufrufbar
-<FilesMatch "^(config|lib)\.php$">
-  Require all denied
-</FilesMatch>
-
-# SQLite-Datenbank (daten/ bringt zusätzlich eine eigene .htaccess mit)
-RedirectMatch 404 /kommentare/daten(/|$)

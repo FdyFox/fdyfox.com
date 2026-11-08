@@ -1,3 +1,6 @@
 [submodule "themes/PaperMod"]
 	path = themes/PaperMod
 	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "themes/hugo-php-comments"]
+	path = themes/hugo-php-comments
+	url = https://github.com/FdyFox/hugo-php-comments

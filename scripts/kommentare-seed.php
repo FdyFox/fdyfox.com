@@ -5,12 +5,12 @@
  */
 declare(strict_types=1);
 
-if (!getenv('COMMENT_CONFIG')) {
-    fwrite(STDERR, "COMMENT_CONFIG nicht gesetzt - bitte über 'make kommentare-seed' starten.\n");
+if (!getenv('COMMENTS_CONFIG')) {
+    fwrite(STDERR, "COMMENTS_CONFIG nicht gesetzt - bitte über 'make kommentare-seed' starten.\n");
     exit(1);
 }
 // Im Dev-Container liegt static/ unter /app (Arbeitsverzeichnis)
-require is_file('kommentare/lib.php') ? getcwd() . '/kommentare/lib.php' : __DIR__ . '/../static/kommentare/lib.php';
+require getcwd() . '/kommentare/lib.php';
 
 $dummies = [
     // section, page, name, email, website, comment, status, created_at

@@ -707,50 +707,33 @@ code {
   color: var(--accent2);
 }
 
-/* Kommentare (layouts/partials/comments.html) */
-.comments {
-  margin-top: calc(var(--gap) * 2);
-  padding-top: var(--gap);
-  border-top: 1px solid var(--border);
-}
-.comments-title { font-size: 1.3rem; margin-bottom: var(--gap); }
-.comments-empty { color: var(--secondary); font-size: 0.95rem; margin-bottom: var(--gap); }
-.comment-list { list-style: none; padding: 0; margin: 0 0 calc(var(--gap) * 1.5); }
-.comment {
-  background: var(--entry);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 0.8rem 1rem;
-  margin-bottom: 0.9rem;
-}
-.comment-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.2rem 0.8rem;
-  align-items: baseline;
-  margin-bottom: 0.4rem;
-}
-.comment-author { font-weight: bold; color: var(--primary); }
-a.comment-author { color: var(--accent); }
-.comment-meta time { font-size: 0.8rem; color: var(--secondary); }
-.comment-body { color: var(--content); font-size: 0.95rem; line-height: 1.6; overflow-wrap: anywhere; }
-.comment-body p { margin: 0 0 0.6rem; }
-.comment-body p:last-child { margin-bottom: 0; }
-.comment-replies { list-style: none; padding: 0; margin: 0.8rem 0 0 1rem; }
-.comment-replies .comment { background: var(--theme); border-left-color: var(--secondary); margin-bottom: 0; }
-.comment-badge { font-size: 0.75rem; color: var(--secondary); border: 1px solid var(--border); border-radius: 4px; padding: 0 0.35rem; }
-
-.comment-form { max-width: none; gap: 1rem; }
-.comment-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media (max-width: 640px) { .comment-form-row { grid-template-columns: 1fr; } }
-.comment-optional { font-size: 0.8rem; opacity: 0.75; }
-.comment-form-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
-.comment-hint { font-size: 0.8rem; color: var(--secondary); }
 .contact-submit:disabled { opacity: 0.6; cursor: wait; }
-.comment-status:empty { display: none; }
-.comment-status.callout { margin-bottom: 0; font-size: 0.95rem; }
-.comment-status.callout-tip { color: var(--primary); }
 
-/* Fallback ohne JavaScript: Redirect auf #kommentar-danke bzw. #kommentar-fehler */
-.comment-status-static { display: none; }
-.comment-status-static:target { display: block; }
+/* Kommentare (Submodul hugo-php-comments): Farben aus dem Theme */
+.hpc {
+  --hpc-surface: var(--entry);
+  --hpc-background: var(--theme);
+  --hpc-text: var(--primary);
+  --hpc-muted: var(--secondary);
+  --hpc-border: var(--border);
+  --hpc-accent: var(--accent);
+  --hpc-on-accent: var(--theme);
+  --hpc-radius: var(--radius);
+  --hpc-gap: var(--gap);
+}
+/* Formular wie das Kontaktformular (.hpc davor, weil das CSS der Komponente später geladen wird) */
+.hpc .hpc-field { gap: 0.35rem; }
+.hpc .hpc-field label { font-size: 0.85rem; color: var(--secondary); }
+.hpc .hpc-optional { font-size: 0.8rem; opacity: 0.75; color: inherit; }
+.hpc .hpc-field input,
+.hpc .hpc-field textarea {
+  background: var(--entry);
+  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
+  transition: border-color 0.15s;
+}
+.hpc .hpc-field input:focus,
+.hpc .hpc-field textarea:focus { border-color: var(--accent); outline: none; }
+.hpc .hpc-field textarea { resize: vertical; }
+.hpc .hpc-footer button { font-size: 0.9rem; transition: background 0.15s; }
+.hpc .hpc-footer button:hover { background: var(--accent2); }
