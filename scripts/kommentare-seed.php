@@ -20,9 +20,6 @@ $dummies = [
     ['logbuch', '2026-11-05', '', '', '',
      'Bei uns war zum Glück nichts betroffen. Gut, dass du so schnell reagiert hast.',
      'approved', '2026-11-06T07:15:00+01:00'],
-    ['logbuch', '2026-11-05', 'Ferdy', '', 'https://fdyfox.com',
-     "@Sabine: Kommt! Ich räume das Skript noch etwas auf.\nTest mit <b>HTML</b>, das nicht interpretiert werden darf.",
-     'approved', '2026-11-06T09:30:00+01:00'],
     ['logbuch', '2026-11-05', 'Spambot 3000', 'win@example.com', 'https://example.com/casino',
      'Super Beitrag!!! Besuchen Sie meine Seite für tolle Angebote.',
      'pending', '2026-11-06T10:02:00+01:00'],
@@ -47,4 +44,10 @@ foreach ($dummies as [$section, $page, $name, $email, $website, $comment, $statu
     $stmt->execute([$section, $page, "/$section/$page/", $name, $email, $website, $comment, $status,
                     bin2hex(random_bytes(16)), $date]);
 }
-echo count($dummies) . " Dummy-Kommentare angelegt.\n";
+$parent = (int) $db->query("SELECT id FROM comments WHERE name = 'Sabine'")->fetchColumn();
+$db->prepare(
+    "INSERT INTO comments (section, page, path, name, comment, status, token, created_at, parent_id)
+     VALUES ('logbuch', '2026-11-05', '/logbuch/2026-11-05/', 'Ferdy', ?, 'approved', ?, '2026-11-06T09:30:00+01:00', ?)"
+)->execute(["Kommt! Ich räume das Skript noch etwas auf.\nTest mit <b>HTML</b>, das nicht interpretiert werden darf.",
+            bin2hex(random_bytes(16)), $parent]);
+echo count($dummies) . " Dummy-Kommentare und eine Antwort angelegt.\n";

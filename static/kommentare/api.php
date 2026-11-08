@@ -13,8 +13,7 @@
 declare(strict_types=1);
 require __DIR__ . '/lib.php';
 
-const RATE_LIMIT  = 3;    // Kommentare ...
-const RATE_WINDOW = 600;  // ... pro 10 Minuten und IP
+const RATE_LIMIT = 3;  // Kommentare pro RATE_WINDOW und IP
 
 if (config()['cors']) {
     header('Access-Control-Allow-Origin: *');
@@ -38,12 +37,33 @@ function list_comments(string $section, string $page): never
 {
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-Control: no-store');
+    try {
+        purge_ip_hashes();
+    } catch (PDOException $e) {
+        error_log('comment: ' . $e->getMessage());  // Anzeigen soll trotzdem klappen
+    }
     $stmt = db()->prepare(
-        "SELECT name, website, comment, created_at AS date FROM comments
+        "SELECT id, parent_id, name, website, comment, created_at AS date FROM comments
          WHERE section = ? AND page = ? AND status = 'approved' ORDER BY created_at, id"
     );
     $stmt->execute([$section, $page]);
-    $comments = array_map(fn($c) => ['name' => display_name($c['name'])] + $c, $stmt->fetchAll());
+    $rows = $stmt->fetchAll();
+
+    $public  = fn(array $c) => ['name' => display_name($c['name']), 'website' => $c['website'],
+                                'comment' => $c['comment'], 'date' => $c['date']];
+    $replies = [];
+    foreach ($rows as $c) {
+        if ($c['parent_id'] !== null) {
+            $replies[$c['parent_id']][] = $public($c);
+        }
+    }
+    // Antworten hängen am Kommentar: Ist er verborgen, erscheinen auch sie nicht
+    $comments = [];
+    foreach ($rows as $c) {
+        if ($c['parent_id'] === null) {
+            $comments[] = $public($c) + ['replies' => $replies[$c['id']] ?? []];
+        }
+    }
     echo json_encode(['comments' => $comments], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
@@ -84,8 +104,7 @@ function submit_comment(): never
         $db     = db();
         $ipHash = ip_hash();
         $since  = date('c', time() - RATE_WINDOW);
-        // IP-Hashes nur so lange behalten, wie das Rate-Limit sie braucht
-        $db->prepare("UPDATE comments SET ip_hash = '' WHERE ip_hash != '' AND created_at <= ?")->execute([$since]);
+        purge_ip_hashes();
         $stmt = $db->prepare('SELECT COUNT(*) FROM comments WHERE ip_hash = ? AND created_at > ?');
         $stmt->execute([$ipHash, $since]);
         if ((int) $stmt->fetchColumn() >= RATE_LIMIT) {
@@ -143,7 +162,7 @@ function moderate_via_mail_link(string $method, string $action): never
             db()->prepare("UPDATE comments SET status = 'approved' WHERE id = ?")->execute([$id]);
             page('Freigegeben', "<p>Der Kommentar ist jetzt online.</p><p><a href=\"$post\">Zum Beitrag</a> · <a href=\"admin.php\">Alle Kommentare</a></p>");
         }
-        db()->prepare('DELETE FROM comments WHERE id = ?')->execute([$id]);
+        delete_comment($id);
         page('Gelöscht', '<p>Der Kommentar wurde gelöscht.</p><p><a href="admin.php">Alle Kommentare</a></p>');
     }
 

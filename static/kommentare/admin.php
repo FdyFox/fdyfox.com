@@ -1,7 +1,7 @@
 <?php
 /*
- * Kommentar-Verwaltung: Login mit dem Passwort aus config.php,
- * dann freigeben, verbergen, bearbeiten und löschen.
+ * Kommentar-Verwaltung: Login gegen den Passwort-Hash aus config.php,
+ * dann freigeben, verbergen, beantworten, bearbeiten und löschen.
  */
 declare(strict_types=1);
 require __DIR__ . '/lib.php';
@@ -23,8 +23,8 @@ if (!empty($_SESSION['admin']) && time() - ($_SESSION['seen'] ?? 0) > SESSION_ID
 }
 $_SESSION['seen'] = time();
 
-$password = (string) config()['admin_password'];
-$self     = 'admin.php';
+$passwordHash = (string) config()['admin_password_hash'];
+$self    = 'admin.php';
 $flash    = $_SESSION['flash'] ?? '';
 unset($_SESSION['flash']);
 
@@ -39,7 +39,7 @@ function redirect(string $to, string $flash = ''): never
 
 // --- Login / Logout -------------------------------------------------------
 
-if ($password === '') {
+if ($passwordHash === '') {
     render('Kommentare', '<p class="muted">Kein Admin-Passwort konfiguriert (<code>COMMENT_ADMIN_PASSWORD</code>).</p>');
 }
 
@@ -54,7 +54,7 @@ if (($_POST['do'] ?? '') === 'login') {
 
     if ((int) $stmt->fetchColumn() >= LOGIN_MAX_FAILURES) {
         $flash = 'Zu viele Fehlversuche. Bitte in ' . (LOGIN_WINDOW / 60) . ' Minuten nochmal.';
-    } elseif (hash_equals($password, (string) ($_POST['password'] ?? ''))) {
+    } elseif (password_verify((string) ($_POST['password'] ?? ''), $passwordHash)) {
         session_regenerate_id(true);
         $_SESSION['admin'] = true;
         $_SESSION['csrf']  = bin2hex(random_bytes(16));
@@ -98,8 +98,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $db->prepare("UPDATE comments SET status = 'pending' WHERE id = ?")->execute([$id]);
             redirect($back, 'Kommentar verborgen.');
         case 'delete':
-            $db->prepare('DELETE FROM comments WHERE id = ?')->execute([$id]);
+            delete_comment($id);
             redirect($back, 'Kommentar gelöscht.');
+        case 'reply':
+            $stmt = $db->prepare('SELECT * FROM comments WHERE id = ? AND parent_id IS NULL');
+            $stmt->execute([$id]);
+            $parent = $stmt->fetch();
+            if (!$parent) {
+                redirect($back, 'Diesen Kommentar gibt es nicht (mehr).');
+            }
+            $fields = clean_fields(['name' => config()['author_name'], 'comment' => $_POST['comment'] ?? '']);
+            if (is_string($fields)) {
+                redirect($back . "#c$id", $fields);
+            }
+            // Eine Antwort auf einen offenen Kommentar gibt ihn zugleich frei
+            $db->beginTransaction();
+            $db->prepare("UPDATE comments SET status = 'approved' WHERE id = ?")->execute([$id]);
+            $db->prepare(
+                "INSERT INTO comments (section, page, path, name, comment, status, token, created_at, parent_id)
+                 VALUES (?, ?, ?, ?, ?, 'approved', ?, ?, ?)"
+            )->execute([$parent['section'], $parent['page'], $parent['path'], $fields['name'], $fields['comment'],
+                        bin2hex(random_bytes(16)), date('c'), $id]);
+            $db->commit();
+            redirect($back . "#c$id", 'Antwort veröffentlicht.');
         case 'save':
             $fields = clean_fields($_POST);
             if (is_string($fields)) {
@@ -115,14 +136,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // --- Liste ------------------------------------------------------------------
 
 $db     = db();
-$counts = $db->query("SELECT status, COUNT(*) AS n FROM comments GROUP BY status")->fetchAll(PDO::FETCH_KEY_PAIR);
+$counts = $db->query("SELECT status, COUNT(*) AS n FROM comments WHERE parent_id IS NULL GROUP BY status")->fetchAll(PDO::FETCH_KEY_PAIR);
 $counts += ['pending' => 0, 'approved' => 0];
 $counts['all'] = $counts['pending'] + $counts['approved'];
 
-$sql = 'SELECT * FROM comments' . ($view === 'all' ? '' : ' WHERE status = :status') . ' ORDER BY created_at DESC, id DESC';
+$sql = 'SELECT * FROM comments WHERE parent_id IS NULL' . ($view === 'all' ? '' : ' AND status = :status') . ' ORDER BY created_at DESC, id DESC';
 $stmt = $db->prepare($sql);
 $stmt->execute($view === 'all' ? [] : ['status' => $view]);
 $comments = $stmt->fetchAll();
+
+$replies = [];
+foreach ($db->query('SELECT * FROM comments WHERE parent_id IS NOT NULL ORDER BY created_at, id') as $reply) {
+    $replies[$reply['parent_id']][] = $reply;
+}
 
 $csrf = h($_SESSION['csrf']);
 $tabs = '';
@@ -130,38 +156,52 @@ foreach (['pending' => 'Offen', 'approved' => 'Freigegeben', 'all' => 'Alle'] as
     $tabs .= '<a href="' . "$self?status=$key" . '"' . ($key === $view ? ' class="active"' : '') . ">$label <span>{$counts[$key]}</span></a>";
 }
 
+$hidden = fn(string $do, int $id) =>
+    "<input type=\"hidden\" name=\"csrf\" value=\"$csrf\"><input type=\"hidden\" name=\"do\" value=\"$do\">"
+    . "<input type=\"hidden\" name=\"id\" value=\"$id\">";
+
 $button = fn(string $do, int $id, string $label, string $class = '', string $confirm = '') =>
     '<form method="post"' . ($confirm ? ' onsubmit="return confirm(\'' . $confirm . '\')"' : '') . '>'
-    . "<input type=\"hidden\" name=\"csrf\" value=\"$csrf\"><input type=\"hidden\" name=\"do\" value=\"$do\">"
-    . "<input type=\"hidden\" name=\"id\" value=\"$id\"><button class=\"$class\">$label</button></form>";
+    . $hidden($do, $id) . "<button class=\"$class\">$label</button></form>";
 
-$list = '';
-foreach ($comments as $c) {
+// Rendert einen Kommentar; $repliesHtml ist null, wenn $c selbst eine Antwort ist
+$card = function (array $c, ?string $repliesHtml = null) use ($hidden, $button): string {
     $id      = (int) $c['id'];
+    $isReply = $repliesHtml === null;
     $pending = $c['status'] === 'pending';
     $post    = h(config()['site_url'] . $c['path']) . '#kommentare';
     $who     = '<strong>' . h(display_name($c['name'])) . '</strong>'
              . ($c['email'] !== '' ? ' · <a href="mailto:' . h($c['email']) . '">' . h($c['email']) . '</a>' : '')
              . ($c['website'] !== '' ? ' · <a href="' . h($c['website']) . '" rel="noopener noreferrer" target="_blank">' . h(preg_replace('#^https?://#', '', $c['website'])) . '</a>' : '');
 
-    $list .= "<article id=\"c$id\" class=\"comment" . ($pending ? ' pending' : '') . '">'
-        . '<div class="meta">' . $who . '</div>'
+    return "<article id=\"c$id\" class=\"comment" . ($pending ? ' pending' : '') . ($isReply ? ' reply' : '') . '">'
+        . '<div class="meta">' . $who . ($isReply ? ' · <span class="badge author">Antwort</span>' : '') . '</div>'
         . '<div class="meta muted">' . h(date('d.m.Y, H:i', strtotime($c['created_at'])))
-        . " · <a href=\"$post\" target=\"_blank\">" . h($c['section'] . '/' . $c['page']) . '</a>'
+        . ($isReply ? '' : " · <a href=\"$post\" target=\"_blank\">" . h($c['section'] . '/' . $c['page']) . '</a>')
         . ($pending ? ' · <span class="badge">offen</span>' : '') . '</div>'
         . '<div class="text">' . nl2br(h($c['comment'])) . '</div>'
         . '<div class="actions">'
-        . ($pending ? $button('approve', $id, 'Freigeben') : $button('unapprove', $id, 'Verbergen', 'secondary'))
-        . $button('delete', $id, 'Löschen', 'danger', 'Kommentar wirklich löschen?')
+        . ($isReply ? '' : ($pending ? $button('approve', $id, 'Freigeben') : $button('unapprove', $id, 'Verbergen', 'secondary')))
+        . $button('delete', $id, 'Löschen', 'danger', $isReply ? 'Antwort wirklich löschen?' : 'Kommentar samt Antworten wirklich löschen?')
         . '</div>'
+        . ($isReply ? '' : '<details><summary>' . ($pending ? 'Freigeben und antworten' : 'Antworten') . '</summary><form method="post" class="edit">'
+            . $hidden('reply', $id)
+            . '<textarea name="comment" rows="4" required></textarea>'
+            . '<button>Antwort veröffentlichen</button></form></details>')
         . '<details><summary>Bearbeiten</summary><form method="post" class="edit">'
-        . "<input type=\"hidden\" name=\"csrf\" value=\"$csrf\"><input type=\"hidden\" name=\"do\" value=\"save\"><input type=\"hidden\" name=\"id\" value=\"$id\">"
+        . $hidden('save', $id)
         . '<div class="row"><input name="name" placeholder="Name" value="' . h($c['name']) . '">'
         . '<input name="email" placeholder="E-Mail" value="' . h($c['email']) . '">'
         . '<input name="website" placeholder="Website" value="' . h($c['website']) . '"></div>'
         . '<textarea name="comment" rows="5" required>' . h($c['comment']) . '</textarea>'
         . '<button>Speichern</button></form></details>'
+        . ($repliesHtml ?? '')
         . '</article>';
+};
+
+$list = '';
+foreach ($comments as $c) {
+    $list .= $card($c, implode('', array_map(fn($r) => $card($r), $replies[$c['id']] ?? [])));
 }
 if ($list === '') {
     $list = '<p class="muted">' . ($view === 'pending' ? 'Nichts zu moderieren. 🎉' : 'Keine Kommentare.') . '</p>';
@@ -199,6 +239,8 @@ function render(string $title, string $body, string $flash = '', string $header 
           .flash { background:color-mix(in srgb, var(--green) 15%, var(--entry)); border-left:4px solid var(--green); border-radius:8px; padding:.6rem 1rem; margin-bottom:1rem; }
           .comment { background:var(--entry); border-left:3px solid var(--accent); border-radius:8px; padding:.8rem 1rem; margin-bottom:1rem; }
           .comment.pending { border-color:var(--yellow); }
+          .comment.reply { background:var(--bg); border-color:var(--accent2); margin:.8rem 0 0 1rem; }
+          .badge.author { background:var(--accent2); }
           .meta { font-size:.9rem; } .meta.muted { font-size:.8rem; margin-bottom:.5rem; }
           .badge { color:var(--bg); background:var(--yellow); border-radius:4px; padding:0 .4rem; font-size:.75rem; font-weight:bold; }
           .text { overflow-wrap:anywhere; }

@@ -26,7 +26,7 @@ Der Hosting-Anbieter dieser Seite erhebt beim Zugriff automatisch technische Inf
 
 Unter Beiträgen können Sie Kommentare hinterlassen. Dabei werden der Kommentartext, der Zeitpunkt sowie – falls angegeben – Name, E-Mail-Adresse und Website gespeichert. Die Daten liegen ausschließlich auf dem Server dieser Website und werden nicht an Dritte weitergegeben. Ich erhalte eine Benachrichtigung per E-Mail und prüfe jeden Kommentar vor der Veröffentlichung.
 
-Veröffentlicht werden nur Kommentartext, Zeitpunkt, Name und Website. Die E-Mail-Adresse ist nur für mich sichtbar und dient ausschließlich dazu, Ihnen bei Bedarf antworten zu können. Zum Schutz vor Missbrauch wird Ihre IP-Adresse in gehashter (nicht rückrechenbarer) Form für höchstens zehn Minuten gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Ihre Einwilligung durch das Absenden). Wenn Sie die Löschung eines Kommentars wünschen, genügt eine kurze Nachricht an die oben genannte E-Mail-Adresse.
+Veröffentlicht werden nur Kommentartext, Zeitpunkt, Name und Website. Die E-Mail-Adresse ist nur für mich sichtbar und dient ausschließlich dazu, Ihnen bei Bedarf antworten zu können. Zum Schutz vor Missbrauch wird Ihre IP-Adresse in gehashter (nicht rückrechenbarer) Form zehn Minuten lang verwendet und danach beim nächsten Abruf der Kommentare gelöscht. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Ihre Einwilligung durch das Absenden). Wenn Sie die Löschung eines Kommentars wünschen, genügt eine kurze Nachricht an die oben genannte E-Mail-Adresse.
 
 ## Amazon-Partnerprogramm {#amazon-partnerprogramm}
 

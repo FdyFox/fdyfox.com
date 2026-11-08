@@ -12,8 +12,7 @@ echo "→ Seite wird gebaut..."
 hugo --minify
 
 if [ -n "$COMMENT_ADMIN_PASSWORD" ]; then
-  printf "<?php\nreturn ['admin_password' => base64_decode('%s')];\n" \
-    "$(printf '%s' "$COMMENT_ADMIN_PASSWORD" | base64 -w0)" > public/kommentare/config.php
+  COMMENT_ADMIN_PASSWORD="$COMMENT_ADMIN_PASSWORD" scripts/kommentare-config.sh public/kommentare/config.php
 else
   echo "⚠ COMMENT_ADMIN_PASSWORD fehlt in .env, die Kommentar-Verwaltung wird deaktiviert"
 fi

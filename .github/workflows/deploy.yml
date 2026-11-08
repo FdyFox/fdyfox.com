@@ -21,16 +21,14 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      # Admin-Passwort für static/kommentare/admin.php (Kommentar-Verwaltung).
-      # Base64, damit Sonderzeichen im Passwort den PHP-String nicht kaputt machen.
+      # Hash des Admin-Passworts für static/kommentare/admin.php (Kommentar-Verwaltung).
       - name: Write comment config
         if: github.event_name == 'push'
         env:
           COMMENT_ADMIN_PASSWORD: ${{ secrets.COMMENT_ADMIN_PASSWORD }}
         run: |
           if [ -n "$COMMENT_ADMIN_PASSWORD" ]; then
-            printf "<?php\nreturn ['admin_password' => base64_decode('%s')];\n" \
-              "$(printf '%s' "$COMMENT_ADMIN_PASSWORD" | base64 -w0)" > public/kommentare/config.php
+            scripts/kommentare-config.sh public/kommentare/config.php
           else
             echo "::warning::COMMENT_ADMIN_PASSWORD fehlt, die Kommentar-Verwaltung ist deaktiviert"
           fi

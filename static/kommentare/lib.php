@@ -6,8 +6,8 @@
  * Der Ordner wird beim Deploy per lftp --exclude in Ruhe gelassen und ist per
  * .htaccess gesperrt.
  *
- * Konfiguration: config.php (beim Deploy erzeugt, enthält das
- * Admin-Passwort). Lokal zeigt COMMENT_CONFIG auf eine Dev-Konfiguration.
+ * Konfiguration: config.php (beim Deploy erzeugt, enthält den Hash des
+ * Admin-Passworts). Lokal zeigt COMMENT_CONFIG auf eine Dev-Konfiguration.
  */
 declare(strict_types=1);
 
@@ -24,6 +24,7 @@ const MAX_NAME    = 80;
 const MAX_EMAIL   = 200;
 const MAX_WEBSITE = 200;
 const MAX_COMMENT = 5000;
+const RATE_WINDOW = 600;  // Rate-Limit-Fenster in Sekunden, so lange bleibt auch der IP-Hash
 
 function config(): array
 {
@@ -31,12 +32,13 @@ function config(): array
     if ($config === null) {
         $file   = getenv('COMMENT_CONFIG') ?: __DIR__ . '/config.php';
         $config = (is_file($file) ? require $file : []) + [
-            'admin_password' => '',
-            'data_dir'       => __DIR__ . '/daten',
-            'mail_to'        => 'ferdy@fdyfox.com',
-            'mail_from'      => 'noreply@fdyfox.com',
-            'site_url'       => 'https://fdyfox.com',
-            'cors'           => false,   // nur lokal: Hugo-Dev-Server läuft auf anderem Port
+            'admin_password_hash' => '',
+            'author_name'         => 'Ferdy',
+            'data_dir'            => __DIR__ . '/daten',
+            'mail_to'             => 'ferdy@fdyfox.com',
+            'mail_from'           => 'noreply@fdyfox.com',
+            'site_url'            => 'https://fdyfox.com',
+            'cors'                => false,   // nur lokal: Hugo-Dev-Server läuft auf anderem Port
         ];
     }
     return $config;
@@ -75,7 +77,8 @@ function db(): PDO
             status     TEXT NOT NULL DEFAULT 'pending',  -- pending | approved
             token      TEXT NOT NULL,                     -- für Freigabe-Links in der Mail
             ip_hash    TEXT NOT NULL DEFAULT '',          -- nur fürs Rate-Limit
-            created_at TEXT NOT NULL
+            created_at TEXT NOT NULL,
+            parent_id  INTEGER DEFAULT NULL               -- gesetzt bei Antworten des Autors
         );
         CREATE INDEX IF NOT EXISTS comments_page ON comments (section, page, status);
         CREATE TABLE IF NOT EXISTS login_failures (
@@ -83,7 +86,39 @@ function db(): PDO
             created_at TEXT NOT NULL
         );
         SQL);
+    add_column_if_missing($db, 'parent_id', 'INTEGER DEFAULT NULL');
     return $db;
+}
+
+/**
+ * Ergänzt bestehende Datenbanken um neue Spalten (nur additiv, Daten bleiben unberührt).
+ * Laufen zwei Anfragen gleichzeitig, gewinnt eine; die andere ignoriert den Fehler.
+ */
+function add_column_if_missing(PDO $db, string $column, string $definition): void
+{
+    if (in_array($column, array_column($db->query('PRAGMA table_info(comments)')->fetchAll(), 'name'), true)) {
+        return;
+    }
+    try {
+        $db->exec("ALTER TABLE comments ADD COLUMN $column $definition");
+    } catch (PDOException $e) {
+        if (!str_contains($e->getMessage(), 'duplicate column')) {
+            throw $e;
+        }
+    }
+}
+
+/** Entfernt abgelaufene IP-Hashes. Läuft bei jedem Abruf der Kommentare und beim Einreichen. */
+function purge_ip_hashes(): void
+{
+    db()->prepare("UPDATE comments SET ip_hash = '' WHERE ip_hash != '' AND created_at <= ?")
+        ->execute([date('c', time() - RATE_WINDOW)]);
+}
+
+/** Löscht einen Kommentar samt der Antworten darauf. */
+function delete_comment(int $id): void
+{
+    db()->prepare('DELETE FROM comments WHERE id = ? OR parent_id = ?')->execute([$id, $id]);
 }
 
 /**

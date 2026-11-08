@@ -736,6 +736,9 @@ a.comment-author { color: var(--accent); }
 .comment-body { color: var(--content); font-size: 0.95rem; line-height: 1.6; overflow-wrap: anywhere; }
 .comment-body p { margin: 0 0 0.6rem; }
 .comment-body p:last-child { margin-bottom: 0; }
+.comment-replies { list-style: none; padding: 0; margin: 0.8rem 0 0 1rem; }
+.comment-replies .comment { background: var(--theme); border-left-color: var(--secondary); margin-bottom: 0; }
+.comment-badge { font-size: 0.75rem; color: var(--secondary); border: 1px solid var(--border); border-radius: 4px; padding: 0 0.35rem; }
 
 .comment-form { max-width: none; gap: 1rem; }
 .comment-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }

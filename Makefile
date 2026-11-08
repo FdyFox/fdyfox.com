@@ -78,7 +78,7 @@ kommentare-seed: .kommentare-dev/config.php
 
 .kommentare-dev/config.php:
 	@mkdir -p .kommentare-dev
-	@printf '%s\n' "<?php" "return ['admin_password' => 'admin', 'data_dir' => '/data', 'cors' => true];" > $@
+	@printf '%s\n' "<?php" "return ['admin_password_hash' => password_hash('admin', PASSWORD_DEFAULT), 'data_dir' => '/data', 'cors' => true];" > $@
 
 build:
 	$(HUGO) --minify
