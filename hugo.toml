@@ -166,6 +166,11 @@ weight = 5
 tag = "tags"
 category = "categories"
 
+# Originale aus Page Bundles nicht veröffentlichen, nur die von render-image.html erzeugten Bilder (ohne Exif-Daten)
+[[cascade]]
+  [cascade.build]
+    publishResources = false
+
 [markup.goldmark.renderer]
 unsafe = true
 

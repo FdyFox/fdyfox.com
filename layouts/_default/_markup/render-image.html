@@ -1,7 +1,74 @@
-{{ $alt := .Text }}
-{{ $src := .Destination | safeURL }}
-{{ $title := .Title }}
-<figure{{ if strings.HasSuffix .Destination "#center" }} class="align-center"{{ end }}>
-  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
-  {{ with $alt }}<figcaption>{{ . }}</figcaption>{{ end }}
+{{- /*
+  Options follow the # of the image path and are joined with &:
+
+    ![Alt](bild.jpg#center&width=400&height=300)
+
+    center  centers the image
+    width   width in pixels
+    height  height in pixels
+
+  With only one dimension the image keeps its proportions. With both it is
+  scaled to fit into that box, also keeping its proportions.
+
+  Images in the page bundle are always converted to WebP, which removes their
+  Exif data. The originals are not published (build.publishResources in
+  hugo.toml). With a size, the image is generated at the display size and at
+  twice that size for high-resolution screens, but never beyond the original.
+
+  Anything else, such as external images, SVGs and animated GIFs, stays as it is
+  and only gets its display size set through HTML.
+*/ -}}
+{{- $parts := split .Destination "#" -}}
+{{- $path := index $parts 0 -}}
+{{- $options := dict -}}
+{{- range split (delimit (after 1 $parts) "#") "&" -}}
+  {{- with . -}}
+    {{- $option := split . "=" -}}
+    {{- $options = merge $options (dict (index $option 0) (delimit (after 1 $option) "=")) -}}
+  {{- end -}}
+{{- end -}}
+{{- range $key, $value := $options -}}
+  {{- if not (in (slice "center" "width" "height") $key) -}}
+    {{- errorf "render-image: unknown option %q for %q at %s" $key $path $.Position -}}
+  {{- else if and (ne $key "center") (not (findRE `^[1-9][0-9]*$` $value)) -}}
+    {{- errorf "render-image: %s must be a number of pixels, got %q for %q at %s" $key $value $path $.Position -}}
+  {{- end -}}
+{{- end -}}
+{{- $center := isset $options "center" -}}
+{{- $width := $options.width | default "" -}}
+{{- $height := $options.height | default "" -}}
+{{- $src := $path -}}
+{{- $srcset := "" -}}
+{{- $resized := false -}}
+{{- with .PageInner.Resources.Get $path -}}
+  {{- /* Processing below would turn animated images into still ones. */ -}}
+  {{- if and (reflect.IsImageResourceProcessable .) (le .FrameCount 1) -}}
+    {{- $image := .Filter images.AutoOrient -}}
+    {{- $scales := slice -}}
+    {{- with $width -}}{{- $scales = $scales | append (div (float .) $image.Width) -}}{{- end -}}
+    {{- with $height -}}{{- $scales = $scales | append (div (float .) $image.Height) -}}{{- end -}}
+    {{- $scale := 1.0 -}}
+    {{- with $scales -}}{{- $scale = math.Min . -}}{{- end -}}
+    {{- $width = int (math.Round (mul $image.Width $scale)) -}}
+    {{- $height = int (math.Round (mul $image.Height $scale)) -}}
+    {{- $normalWidth := int (math.Min $width $image.Width) -}}
+    {{- $highWidth := int (math.Min (mul 2 $width) $image.Width) -}}
+    {{- $normal := $image.Process (printf "resize %dx webp" $normalWidth) -}}
+    {{- $src = $normal.RelPermalink -}}
+    {{- if gt $highWidth $normalWidth -}}
+      {{- $high := $image.Process (printf "resize %dx webp" $highWidth) -}}
+      {{- $srcset = printf "%s 1x, %s 2x" $normal.RelPermalink $high.RelPermalink -}}
+    {{- end -}}
+    {{- $resized = true -}}
+  {{- else -}}
+    {{- /* Calling RelPermalink is what publishes the file. */ -}}
+    {{- $src = .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+{{- /* The theme centers images through #center in the src, so it has to stay there. */ -}}
+{{- if $center -}}{{- $src = printf "%s#center" $src -}}{{- end -}}
+<figure{{ if $center }} class="align-center"{{ end }}>
+  <img src="{{ $src | safeURL }}"{{ with $srcset }} srcset="{{ . }}"{{ end }} alt="{{ .PlainText }}"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }}{{ if $resized }} style="height: auto"{{ else if $height }} style="object-fit: contain"{{ end }} loading="lazy">
+  {{ with .Text }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
+{{- /**/ -}}
