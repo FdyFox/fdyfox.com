@@ -17,3 +17,9 @@
   url: https://eay.cc/
   feed: https://eay.cc/feed/
   note: "Habe ich neu entdeckt und sieht interessant aus."
+
+- name: Linux und Ich
+  author: Christoph Langner
+  url: https://linuxundich.de/
+  feed: https://linuxundich.de/feed/
+  note: "Ein Tech-Blog über Linux, Homelab und vieles mehr."
