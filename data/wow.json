@@ -1,0 +1,245 @@
+{
+  "updated": "2026-11-12T23:18:45+01:00",
+  "character": {
+    "name": "Fdy",
+    "surname": "Fox",
+    "level": 22,
+    "race": "Himmelsgeborener der Windformer",
+    "class": "Schamane",
+    "spec": "Verstärkung",
+    "gender": "Weiblich",
+    "faction": "Horde",
+    "guild": "NUMBED",
+    "ruleset": "Normal",
+    "item_level": 16,
+    "achievement_points": 0
+  },
+  "images": {
+    "main": "wow/main.png",
+    "avatar": "wow/avatar.jpg"
+  },
+  "stats": {
+    "health": 216,
+    "power": 441,
+    "strength": 39,
+    "agility": 12,
+    "intellect": 20,
+    "stamina": 11,
+    "spirit": 14,
+    "armor": 112
+  },
+  "power_type": "Mana",
+  "quests_completed": 229,
+  "professions": {
+    "primary": [
+      {
+        "name": "Alchemie",
+        "skill": 74,
+        "max": 150
+      },
+      {
+        "name": "Kräuterkunde",
+        "skill": 153,
+        "max": 225
+      }
+    ],
+    "secondary": [
+      {
+        "name": "Kochkunst",
+        "skill": 16,
+        "max": 75
+      },
+      {
+        "name": "Erste Hilfe",
+        "skill": 35,
+        "max": 75
+      }
+    ]
+  },
+  "equipment": [
+    {
+      "slot": "Schultern",
+      "name": "Starre Schultern der Magie",
+      "level": 26,
+      "quality": "uncommon",
+      "id": 15116
+    },
+    {
+      "slot": "Hemd",
+      "name": "Hemd des Novizen von Thendal",
+      "level": 1,
+      "quality": "common",
+      "id": 271663
+    },
+    {
+      "slot": "Brust",
+      "name": "Sporenbedeckte Tunika",
+      "level": 15,
+      "quality": "uncommon",
+      "id": 5341
+    },
+    {
+      "slot": "Taille",
+      "name": "Robuster Gurt der Stärke",
+      "level": 26,
+      "quality": "uncommon",
+      "id": 15120
+    },
+    {
+      "slot": "Beine",
+      "name": "Späherhose der Magie",
+      "level": 24,
+      "quality": "uncommon",
+      "id": 6587
+    },
+    {
+      "slot": "Füße",
+      "name": "Zänkerstiefel der Stärke",
+      "level": 25,
+      "quality": "uncommon",
+      "id": 15330
+    },
+    {
+      "slot": "Handgelenke",
+      "name": "Pfadfinderarmschienen der Stärke",
+      "level": 26,
+      "quality": "uncommon",
+      "id": 15348
+    },
+    {
+      "slot": "Hände",
+      "name": "Borstenlederhandschuhe",
+      "level": 24,
+      "quality": "uncommon",
+      "id": 14572
+    },
+    {
+      "slot": "Ring 1",
+      "name": "Uraltes Erbstück",
+      "level": 1,
+      "quality": "common",
+      "id": 264908
+    },
+    {
+      "slot": "Ring 2",
+      "name": "Chromring der Macht",
+      "level": 26,
+      "quality": "uncommon",
+      "id": 11983
+    },
+    {
+      "slot": "Rücken",
+      "name": "Efeustoffumhang des Gorillas",
+      "level": 25,
+      "quality": "uncommon",
+      "id": 9794
+    },
+    {
+      "slot": "Waffenhand",
+      "name": "Kräftiger Kampfhammer des Gorillas",
+      "level": 25,
+      "quality": "uncommon",
+      "id": 15259
+    },
+    {
+      "slot": "Distanzwaffe",
+      "name": "Totem der Geladenen Flammen",
+      "level": 10,
+      "quality": "uncommon",
+      "id": 263412
+    }
+  ],
+  "reputations": [
+    {
+      "name": "Windformer",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 3260,
+      "max": 6000
+    },
+    {
+      "name": "Thunder Bluff",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 2101,
+      "max": 6000
+    },
+    {
+      "name": "Druiden der Nachtklaue",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 2100,
+      "max": 6000
+    },
+    {
+      "name": "Orgrimmar",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 2025,
+      "max": 6000
+    },
+    {
+      "name": "Darkspear",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 367,
+      "max": 6000
+    },
+    {
+      "name": "Ratchet",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 2870,
+      "max": 3000
+    },
+    {
+      "name": "Versorgung und Logistik Durotar",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 2000,
+      "max": 3000
+    },
+    {
+      "name": "Undercity",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1848,
+      "max": 3000
+    },
+    {
+      "name": "Everlook",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1685,
+      "max": 3000
+    },
+    {
+      "name": "Booty Bay",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1685,
+      "max": 3000
+    },
+    {
+      "name": "Gadgetzan",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1685,
+      "max": 3000
+    },
+    {
+      "name": "Powderfuse",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1685,
+      "max": 3000
+    },
+    {
+      "name": "Der Irdene Ring",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 700,
+      "max": 3000
+    }
+  ]
+}

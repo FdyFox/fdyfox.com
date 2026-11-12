@@ -737,3 +737,101 @@ code {
 .hpc .hpc-field textarea { resize: vertical; }
 .hpc .hpc-footer button { font-size: 0.9rem; transition: background 0.15s; }
 .hpc .hpc-footer button:hover { background: var(--accent2); }
+
+/* WoW: Forever (Wiki + /now) */
+:root {
+  --wow-poor:      #7f7f7f;
+  --wow-common:    var(--primary);
+  --wow-uncommon:  #2a8f1a;
+  --wow-rare:      #0062c4;
+  --wow-epic:      #8a2fd1;
+  --wow-legendary: #d16a00;
+}
+.dark {
+  --wow-poor:      #9d9d9d;
+  --wow-uncommon:  #1eff00;
+  --wow-rare:      #3a9bff;
+  --wow-epic:      #b863ff;
+  --wow-legendary: #ff8000;
+}
+.wow-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.post-content img.wow-render {
+  max-height: 400px;
+  width: auto;
+  margin: 0;
+}
+.post-content .wow-facts {
+  flex: 1 1 16rem;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-content: center;
+  gap: 0.4rem 1.2rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+/* PaperMod setzt dt/dd auf 25 %/75 % Breite und Abstände – hier zurücksetzen */
+.post-content .wow-facts dt,
+.post-content .wow-facts dd,
+.post-content .wow-stats dt,
+.post-content .wow-stats dd {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+}
+.post-content .wow-facts dt {
+  color: var(--secondary);
+  font-weight: normal;
+  white-space: nowrap;
+}
+.post-content .wow-facts dd { color: var(--primary); }
+.post-content .wow-progress li { grid-template-columns: minmax(0, 9rem) 1fr 5.5rem; }
+.wow-track {
+  background: var(--entry);
+  border-radius: 4px;
+}
+.wow-track .abs-bar { border-radius: 4px; }
+.wow-table-scroll { overflow-x: auto; }
+.post-content .wow-equipment { font-size: 0.9rem; }
+.post-content .wow-equipment td:last-child,
+.post-content .wow-equipment th:last-child { text-align: right; }
+.wow-q-poor      { color: var(--wow-poor); }
+.wow-q-common    { color: var(--wow-common); }
+.wow-q-uncommon  { color: var(--wow-uncommon); }
+.wow-q-rare      { color: var(--wow-rare); }
+.wow-q-epic      { color: var(--wow-epic); }
+.wow-q-legendary { color: var(--wow-legendary); }
+.post-content .wow-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem 1.5rem;
+}
+.post-content .wow-stats div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--tertiary);
+  padding: 0.2rem 0;
+}
+.post-content .wow-stats dt { color: var(--secondary); font-weight: normal; }
+.post-content .wow-stats dd {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  color: var(--primary);
+}
+.post-content .wow-now {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.post-content .wow-now img {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  margin: 0;
+}
+.wow-now > span { display: flex; flex-direction: column; }

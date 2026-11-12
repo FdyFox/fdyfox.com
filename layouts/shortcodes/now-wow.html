@@ -1,0 +1,15 @@
+{{- /* Kurzstatus des WoW-Forever-Charakters aus data/wow.json */ -}}
+{{- with hugo.Data.wow }}
+{{- $c := .character }}
+<p class="wow-now">
+  {{- with resources.Get "wow/avatar.jpg" }}
+  <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">
+  {{- end }}
+  <span>
+    <strong>{{ $c.name }} {{ $c.surname }}</strong>, Level {{ $c.level }} {{ $c.class }}{{ with $c.spec }} ({{ . }}){{ end }}{{ with $c.guild }} in &lt;{{ . }}&gt;{{ end }}
+    <span class="wiki-meta">{{ .quests_completed }} Quests</span>
+  </span>
+</p>
+{{- else }}
+<p>Gerade keine Daten.</p>
+{{- end }}

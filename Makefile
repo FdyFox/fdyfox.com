@@ -32,7 +32,7 @@ KOMMENTARE_DOCKER := --user $$(id -u):$$(id -g) \
 
 .DEFAULT_GOAL := help
 
-.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki hoerbuecher open \
+.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki hoerbuecher wow sync open \
         kommentare-start kommentare-stop kommentare-seed
 
 help:
@@ -47,6 +47,8 @@ help:
 	@echo "  make page <name>    Neue Seite anlegen"
 	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
 	@echo "  make hoerbuecher    Hörbuch-Daten aus Audiobookshelf holen"
+	@echo "  make wow            WoW-Forever-Charakter aus der Blizzard API holen"
+	@echo "  make sync           Alle Datenquellen aktualisieren (scripts/*-sync.py)"
 	@echo "  make open           Lokale Seite im Browser öffnen"
 
 dev:
@@ -118,6 +120,21 @@ wiki:
 
 hoerbuecher:
 	python3 scripts/abs-sync.py
+
+wow:
+	python3 scripts/wow-sync.py
+
+# Führt jedes scripts/*-sync.py aus, neue Datenquellen sind damit automatisch dabei.
+# Ein Fehler bricht nicht ab, am Ende gibt es eine Zusammenfassung.
+sync:
+	@failed=""; \
+	 for script in scripts/*-sync.py; do \
+	   name=$$(basename $$script .py); \
+	   echo "── $$name"; \
+	   python3 $$script || failed="$$failed $$name"; \
+	 done; \
+	 if [ -n "$$failed" ]; then echo "✗ Fehlgeschlagen:$$failed"; exit 1; fi; \
+	 echo "✓ Alle Datenquellen aktualisiert"
 
 %:
 	@:

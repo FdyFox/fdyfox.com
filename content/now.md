@@ -34,6 +34,12 @@ Was mich gerade beschäftigt – eine [/now-Seite](https://nownownow.com/about),
 - Neu dazugekommen: diese Seite, eine [/uses-Seite](/uses/) und [/.well-known/slashpages](/.well-known/slashpages).
 - Vorsatz: öfter schreiben. Mal sehen.
 
+## Am Zocken
+
+{{< now-wow >}}
+
+Mehr dazu im [Wiki](/wiki/spiele/wow-forever/).
+
 ## Auf den Ohren
 
 {{< now-hoerbuecher >}}
