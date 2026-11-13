@@ -1,10 +1,10 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "totals": {
     "books": 124,
     "finished": 66,
     "library_hours": 1278,
-    "listened_hours": 575
+    "listened_hours": 578
   },
   "finished_per_year": [
     [
@@ -23,7 +23,7 @@
   "hours_per_year": [
     [
       "2026",
-      217
+      220
     ],
     [
       "2025",
@@ -142,8 +142,22 @@
       "hours": 12.9,
       "added": "2025-06-24",
       "finished": "",
-      "progress": 42,
+      "progress": 61,
       "cover": "hoerbuecher/covers/12efe539-2035-4f51-92d8-627b8634d29a.jpg"
+    },
+    {
+      "title": "Flucht Aus Darom: Eine LitRPG- und GameLit-Serie (Unabridged)",
+      "author": "Jason Cheek",
+      "series": "Die WELT - The World [German Edition] #10",
+      "narrator": "Bastian Scheibe",
+      "year": "2000",
+      "language": "German",
+      "genres": [],
+      "hours": 15.1,
+      "added": "2026-05-27",
+      "finished": "",
+      "progress": 10,
+      "cover": "hoerbuecher/covers/6a3d4d45-626d-4e8e-b60c-394b1baebe2b.jpg"
     },
     {
       "title": "Das Harvard-Konzept: Die unschlagbare Methode für beste Verhandlungsergebnisse",
@@ -1898,10 +1912,14 @@
           {
             "t": "Do 12.11.2026 · 28 min",
             "l": 2
+          },
+          {
+            "t": "Fr 13.11.2026 · 3,6 h",
+            "l": 4
           }
         ]
       }
     ],
-    "active_days": 217
+    "active_days": 218
   }
 }
