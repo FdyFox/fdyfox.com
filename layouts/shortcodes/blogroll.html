@@ -1,5 +1,5 @@
 {{- /* Blogroll aus data/blogroll.yaml */ -}}
-<div class="wiki-recent">
+<div class="wiki-stack">
 {{- range sort hugo.Data.blogroll "name" }}
   <div class="wiki-box">
     <div class="wiki-box-title">{{ .name }}{{ with .author }} · {{ . }}{{ end }}</div>

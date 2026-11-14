@@ -1,0 +1,21 @@
+{{- /* Kurzstatus des zuletzt gespielten WoW-Forever-Charakters aus data/wow/<slug>.json */ -}}
+{{- $chars := slice }}
+{{- range $slug, $d := hugo.Data.wow }}
+{{- $chars = $chars | append (merge $d (dict "sort" ($d.last_login | default $d.updated))) }}
+{{- end }}
+{{- with $chars }}
+{{- $d := index (sort . "sort" "desc") 0 }}
+{{- $c := $d.character }}
+<p class="wow-now" style="--wow-class: {{ partial "wow_class_color.html" $c.class | safeCSS }}">
+  {{- with resources.Get (printf "wow/%s/avatar.jpg" $d.slug) }}
+  <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">
+  {{- end }}
+  <span>
+    <strong class="wow-now-name">{{ $c.name }} {{ $c.surname }}</strong>
+    <span>Level {{ $c.level }} {{ $c.class }}{{ with $c.spec }} ({{ . }}){{ end }}{{ with $c.guild }} · &lt;{{ . }}&gt;{{ end }}</span>
+    <span class="wiki-meta">{{ $d.quests_completed }} Quests</span>
+  </span>
+</p>
+{{- else }}
+<p>Gerade keine Daten.</p>
+{{- end }}

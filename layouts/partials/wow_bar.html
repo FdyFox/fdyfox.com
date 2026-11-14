@@ -1,8 +1,10 @@
-{{- /* Fortschrittsbalken mit eigenem Maximum (Berufe, Ruf). Parameter: label, value, max, text */ -}}
+{{- /* Fortschrittsbalken im Spiel-Look, Text sitzt im Balken. Parameter: label, value, max, text, class (optional) */ -}}
 {{- $pct := 0 }}
 {{- if gt .max 0 }}{{ $pct = math.Min 100 (math.Round (mul 100 (div (float .value) .max))) }}{{ end }}
-<li title="{{ .label }}: {{ .text }}">
+<li{{ with .class }} class="{{ . }}"{{ end }} title="{{ .label }}: {{ .text }}">
   <span class="abs-bar-label">{{ .label }}</span>
-  <span class="abs-bar-track wow-track"><span class="abs-bar" style="width: {{ $pct }}%"></span></span>
-  <span class="abs-bar-value">{{ .text }}</span>
+  <span class="abs-bar-track wow-track">
+    <span class="abs-bar" style="width: {{ $pct }}%"></span>
+    <span class="wow-bar-text">{{ .text }}</span>
+  </span>
 </li>

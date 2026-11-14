@@ -1,0 +1,13 @@
+{{- /* Eine Wiki-Seite pro Charakter aus data/wow/<slug>.json (siehe scripts/wow-sync.py) */ -}}
+{{- range $slug, $d := hugo.Data.wow }}
+  {{- $c := $d.character }}
+  {{- $updated := time.AsTime $d.updated }}
+  {{- $.AddPage (dict
+      "path" $slug
+      "kind" "page"
+      "title" (printf "%s %s" $c.name $c.surname | strings.TrimSpace)
+      "dates" (dict "date" (time.AsTime ($d.created | default $d.updated)) "lastmod" $updated)
+      "description" (printf "Level %v %s %s" $c.level $c.race $c.class)
+      "params" (dict "wow" $slug)
+  ) }}
+{{- end }}

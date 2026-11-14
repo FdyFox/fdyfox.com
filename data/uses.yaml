@@ -1,0 +1,81 @@
+# Inhalt der Seite /uses (content/uses.md, Layout _default/uses.html).
+# Pro Eintrag eine Kachel:
+#   kind  wofür (klein, oben), optional
+#   name  was (fett)
+#   url   Link für den Namen, optional
+#   text  kurzer Zusatz, darf Markdown enthalten, optional
+
+stand: November 2026
+
+categories:
+  - name: Hardware
+    items:
+      - kind: PC
+        name: AMD Ryzen 5 5600X
+        text: NVIDIA GeForce RTX 3060 Ti, 32 GB RAM
+      - kind: Tastatur
+        name: Keychron K3 Max
+        url: https://www.keychron.com/
+        text: Flach, mechanisch, kabellos
+      - kind: Maus
+        name: Razer Naga Trinity
+        url: https://www.razer.com/gaming-mice/razer-naga-trinity
+        text: Mit austauschbaren Seitenplatten
+      - kind: Handy
+        name: Google Pixel 10 Pro
+        url: https://store.google.com/product/pixel_10_pro
+
+  - name: Editor & Shell
+    items:
+      - kind: Editor
+        name: code-server
+        url: https://github.com/coder/code-server
+        text: VS Code im Browser, als LXC-Container im Homelab. Überall dieselbe Umgebung.
+      - kind: Editor, schnell
+        name: Neovim
+        url: https://neovim.io/
+        text: Mit [LazyVim](https://www.lazyvim.org/)
+      - kind: Terminal
+        name: WezTerm
+        url: https://wezterm.org/
+      - kind: Shell
+        name: zsh
+        text: Oh My Zsh mit `git`, `zsh-autosuggestions`, `z`, `sudo` und `direnv`
+      - kind: Prompt
+        name: Starship
+        url: https://starship.rs/
+        text: Inspiration für den Header dieser Seite
+      - kind: Tool-Versionen
+        name: mise
+        url: https://mise.jdx.dev/
+        text: Python, Go, uv, ruff, Hugo, shellcheck, shfmt …
+
+  - name: Entwicklung
+    items:
+      - kind: Python-Tooling
+        name: uv und ruff
+        text: "[uv](https://docs.astral.sh/uv/), [ruff](https://docs.astral.sh/ruff/)"
+      - kind: Pair-Programmer
+        name: Claude Code
+        url: https://claude.com/claude-code
+        text: Mit Hooks, die mich [selbst erziehen](/bastelstube/selbsterziehung-durch-hooks/)
+      - kind: Git
+        name: Forgejo
+        url: https://forgejo.org/
+        text: Eigener Git-Server, dazu GitHub für Öffentliches
+
+  - name: Homelab
+    text: Was zu Hause läuft, von Proxmox und Ansible bis Jellyfin, steht ausführlich unter [Zu Hause](/wiki/homelab/zu-home/).
+
+  - name: Passwörter & Sicherheit
+    items:
+      - kind: Passwörter
+        name: 1Password
+        url: https://1password.com/
+        text: Inklusive CLI, auch Ansible holt seine Secrets von dort
+      - kind: Anmeldung
+        name: FIDO2-Hardware-Key
+        text: Wo es geht
+
+  - name: Diese Seite
+    text: "[Hugo](https://gohugo.io/) mit dem Theme [PaperMod](https://github.com/adityatelange/hugo-PaperMod), gehostet bei [all-inkl.com](https://all-inkl.com/), deployt per FTP. Mehr dazu auf der [About-Seite](/about/)."

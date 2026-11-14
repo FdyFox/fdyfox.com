@@ -1,0 +1,6 @@
+{{- /* Klassenfarbe wie im Spiel. Parameter: deutscher Klassenname */ -}}
+{{- $colors := dict
+    "Krieger" "#c69b6d" "Paladin" "#f48cba" "Jäger" "#aad372" "Schurke" "#fff468"
+    "Priester" "#ffffff" "Schamane" "#0070dd" "Magier" "#3fc7eb" "Hexenmeister" "#8788ee"
+    "Druide" "#ff7c0a" "Todesritter" "#c41e3a" }}
+{{- return (index $colors . | default "#ffd100") }}

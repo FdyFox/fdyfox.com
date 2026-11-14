@@ -1,0 +1,56 @@
+{{- define "main" }}
+{{- /* Wiki "Zu Hause": Hardware und Dienste aus data/homelab.yaml, Einleitung aus dem Markdown */}}
+{{- $d := hugo.Data.homelab }}
+{{- $lastmod := .Lastmod }}
+{{- with os.Stat "data/homelab.yaml" }}{{ if .ModTime.After $lastmod }}{{ $lastmod = .ModTime }}{{ end }}{{ end }}
+<article class="post-single wiki-page card-page">
+  <header class="post-header">
+    {{ partial "wiki_breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    {{- with $d.hardware }}
+    <h2 id="hardware">Hardware</h2>
+    <div class="cards cards-small">
+      {{- range . }}
+      <div class="card">
+        <span class="card-kicker">{{ .role }}</span>
+        <strong class="card-name">{{ .name }}</strong>
+        <span class="card-text">{{ .text | $.RenderString }}</span>
+      </div>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    {{- range $d.groups }}
+    <h2 id="{{ .name | anchorize }}">{{ .name }}</h2>
+    {{- with .text }}<p>{{ . | $.RenderString }}</p>{{ end }}
+    <div class="cards">
+      {{- range .services }}
+      <section class="card card-service{{ if eq .status "alt" }} card-retired{{ end }}">
+        <div class="card-head">
+          <h3 class="card-name" id="{{ .name | anchorize }}">{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
+          {{- with .status }}{{ partial "status.html" . }}{{ end }}
+        </div>
+        <p class="card-text">{{ .text | $.RenderString }}</p>
+      </section>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    <p class="card-legend">
+      {{- range slice "fest" "test" "selbst" "alt" }}{{ partial "status.html" . }}{{ end }}
+    </p>
+  </div>
+
+  <footer class="post-footer">
+    <p class="wiki-lastmod">Diese Seite wurde zuletzt am {{ $lastmod | time.Format "02.01.2006" }} bearbeitet.</p>
+  </footer>
+</article>
+{{- end }}

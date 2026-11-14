@@ -1,0 +1,3 @@
+{{- /* Status-Badge. Parameter: fest, test, selbst oder alt */ -}}
+{{- $labels := dict "fest" "fest integriert" "test" "evaluierend" "selbst" "selbstgemacht" "alt" "deprecated" }}
+<span class="status status-{{ . }}">{{ index $labels . | default . }}</span>

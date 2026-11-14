@@ -1,0 +1,32 @@
+{{- define "main" }}
+{{- /* /now: Text aus data/now.yaml, Einleitung aus content/now.md */}}
+{{- $d := hugo.Data.now }}
+<article class="post-single now-page">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- with $d.stand }}<div class="post-description">Stand: {{ . }}</div>{{ end }}
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    <div class="now-list">
+      {{- range $d.sections }}
+      <section class="now-row{{ with .widget }} now-{{ . }}{{ end }}">
+        <h2 class="now-label" id="{{ .name | anchorize }}">{{ .name }}</h2>
+        <div class="now-body">
+          {{- with .items }}
+          <ul class="card-list">
+            {{- range . }}<li>{{ . | $.RenderString }}</li>{{ end }}
+          </ul>
+          {{- end }}
+          {{- if eq .widget "wow" }}{{ partial "now_wow.html" . }}{{ end }}
+          {{- if eq .widget "hoerbuecher" }}{{ partial "now_hoerbuecher.html" . }}{{ end }}
+          {{- with .link }}<a class="card-more" href="{{ .url }}">{{ .text }} →</a>{{ end }}
+        </div>
+      </section>
+      {{- end }}
+    </div>
+  </div>
+</article>
+{{- end }}

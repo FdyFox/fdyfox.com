@@ -47,7 +47,7 @@ help:
 	@echo "  make page <name>    Neue Seite anlegen"
 	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
 	@echo "  make hoerbuecher    Hörbuch-Daten aus Audiobookshelf holen"
-	@echo "  make wow            WoW-Forever-Charakter aus der Blizzard API holen"
+	@echo "  make wow            WoW-Forever-Charaktere aus der Blizzard API holen"
 	@echo "  make sync           Alle Datenquellen aktualisieren (scripts/*-sync.py)"
 	@echo "  make open           Lokale Seite im Browser öffnen"
 

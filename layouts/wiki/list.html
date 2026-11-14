@@ -17,45 +17,52 @@
   </div>
   {{- end }}
 
+  {{- with .Sections }}
+  <div class="wiki-sections">
+    {{- range . }}
+    <section class="wiki-section">
+      {{- /* Optionales Logo: logo.png/.jpg/.webp/.svg im Ordner des Bereichs */}}
+      <a class="wiki-logo" href="{{ .Permalink }}" tabindex="-1" aria-hidden="true">
+        {{- with .Resources.GetMatch "logo.*" }}
+        {{- $img := . }}
+        {{- if ne .MediaType.SubType "svg" }}{{ $img = .Resize "x128 webp" }}{{ end }}
+        <img src="{{ $img.RelPermalink }}" alt="">
+        {{- end }}
+      </a>
+      <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+      <p class="wiki-desc">{{ .Description }}</p>
+      <ul class="wiki-list">
+        {{- range .Pages }}
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .IsSection }}{{ $n := len .RegularPagesRecursive }}<span class="wiki-meta">{{ $n }} {{ cond (eq $n 1) "Seite" "Seiten" }}</span>{{ end }}</li>
+        {{- end }}
+      </ul>
+    </section>
+    {{- end }}
+  </div>
+  {{- end }}
+
   {{- if $isRoot }}
   {{- $pages := .RegularPagesRecursive }}
   {{- with $pages }}
-  <div class="wiki-recent">
-    {{- with index .ByDate.Reverse 0 }}
-    <div class="wiki-box">
-      <div class="wiki-box-title">Neueste Seite</div>
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-      <span class="wiki-meta">{{ .Date | time.Format "02.01.2006" }} · {{ .Parent.Title }}</span>
+  {{- $newest := index .ByDate.Reverse 0 }}
+  <div class="wiki-box wiki-recent">
+    <div class="wiki-box-head">
+      <span class="wiki-box-title">Letzte Änderungen</span>
+      {{- $urls := slice }}
+      {{- range . }}{{ $urls = $urls | append .RelPermalink }}{{ end }}
+      <button type="button" class="wiki-random" data-pages="{{ jsonify $urls }}">Zufällige Seite →</button>
     </div>
-    {{- end }}
-    <div class="wiki-box">
-      <div class="wiki-box-title">Letzte Änderungen</div>
-      <ul class="wiki-list">
-        {{- range first 8 .ByLastmod.Reverse }}
-        <li>
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
-          <span class="wiki-meta">{{ .Lastmod | time.Format "02.01.2006" }} · {{ .Parent.Title }}</span>
-        </li>
-        {{- end }}
-      </ul>
-    </div>
-    {{- $urls := slice }}
-    {{- range . }}{{ $urls = $urls | append .RelPermalink }}{{ end }}
-    <button type="button" class="wiki-random" data-pages="{{ jsonify $urls }}">Zufällige Seite →</button>
-  </div>
-  {{- end }}
-  {{- end }}
-
-  {{- range .Sections }}
-  <section class="wiki-section">
-    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-    {{- with .Description }}<p class="wiki-desc">{{ . }}</p>{{ end }}
     <ul class="wiki-list">
-      {{- range .Pages }}
-      <li><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .IsSection }}<span class="wiki-meta">{{ len .RegularPagesRecursive }} Seiten</span>{{ end }}</li>
+      {{- range first 6 .ByLastmod.Reverse }}
+      <li>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        {{- if eq . $newest }}<span class="wiki-new">neu</span>{{ end }}
+        <span class="wiki-meta">{{ .Lastmod | time.Format "02.01.2006" }} · {{ .Parent.Title }}</span>
+      </li>
       {{- end }}
     </ul>
-  </section>
+  </div>
+  {{- end }}
   {{- end }}
 
   {{- if not $isRoot }}

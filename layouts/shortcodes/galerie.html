@@ -1,0 +1,73 @@
+{{- /*
+  Bildergalerie mit Vollbildansicht.
+
+  Bilder einzeln, mit Bildunterschrift aus dem Alt-Text (Reihenfolge wie angegeben):
+
+    {{< galerie >}}
+    ![Die Platine von oben](platine.jpg)
+    ![Fertig verbaut](gehaeuse.jpg)
+    {{< /galerie >}}
+
+  Alle Bilder des Beitrags, nach Dateiname sortiert (optional mit Muster):
+
+    {{< galerie />}}
+    {{< galerie muster="aufbau-*" />}}
+
+  Die Bilder müssen im Ordner des Beitrags liegen (Page-Bundle). Veröffentlicht
+  werden nur WebP-Versionen ohne Exif-Daten: ein quadratisches Vorschaubild und
+  eine große Version (max. 1600 px) für die Vollbildansicht.
+*/ -}}
+{{- $page := .Page }}
+{{- $items := slice }}
+{{- with strings.TrimSpace .Inner }}
+  {{- range findRESubmatch `!\[([^\]]*)\]\(([^)\s]+)\)` . }}
+    {{- $caption := index . 1 }}
+    {{- $path := index . 2 }}
+    {{- with $page.Resources.Get $path }}
+      {{- $items = $items | append (dict "res" . "caption" $caption) }}
+    {{- else }}
+      {{- errorf "galerie: Bild %q nicht im Beitrag gefunden (%s)" $path $.Position }}
+    {{- end }}
+  {{- end }}
+{{- else }}
+  {{- $pattern := .Get "muster" | default "*" }}
+  {{- range sort ($page.Resources.Match $pattern) "Name" }}
+    {{- if eq .ResourceType "image" }}
+      {{- $items = $items | append (dict "res" . "caption" (cond (ne .Title .Name) .Title "")) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- with $items }}
+{{- $id := printf "galerie-%d" $.Ordinal }}
+<div class="galerie" id="{{ $id }}">
+  {{- range . }}
+  {{- $img := .res }}
+  {{- if and (reflect.IsImageResourceProcessable $img) (le $img.FrameCount 1) }}
+    {{- $img = $img.Filter images.AutoOrient }}
+    {{- $thumb := $img.Process "fill 480x480 Smart webp" }}
+    {{- $full := $img }}
+    {{- if gt $img.Width 1600 }}{{ $full = $img.Process "resize 1600x webp" }}{{ else }}{{ $full = $img.Process "webp" }}{{ end }}
+  <figure class="galerie-item">
+    <a href="{{ $full.RelPermalink }}" data-width="{{ $full.Width }}" data-height="{{ $full.Height }}"{{ with .caption }} data-caption="{{ . }}"{{ end }}>
+      <img src="{{ $thumb.RelPermalink }}" width="240" height="240" alt="{{ .caption }}" loading="lazy">
+    </a>
+    {{- with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+  {{- else }}
+  <figure class="galerie-item">
+    <a href="{{ $img.RelPermalink }}"{{ with .caption }} data-caption="{{ . }}"{{ end }}>
+      <img src="{{ $img.RelPermalink }}" alt="{{ .caption }}" loading="lazy">
+    </a>
+    {{- with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+  {{- end }}
+  {{- end }}
+</div>
+{{- else }}
+{{- errorf "galerie: keine Bilder gefunden (%s)" .Position }}
+{{- end }}
+{{- /* Vollbildansicht: assets/js/galerie.js, läuft nur einmal pro Seite */}}
+{{- with resources.Get "js/galerie.js" | minify | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{- end }}

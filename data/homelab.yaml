@@ -1,0 +1,100 @@
+# Inhalt der Wiki-Seite "Zu Hause" (content/wiki/homelab/zu-home.md, Layout wiki/homelab.html).
+# Texte dürfen Markdown enthalten (Links, **fett**, `code`).
+#
+# Status: fest (fest integriert), test (evaluierend), selbst (selbstgemacht), alt (deprecated)
+
+# TODO: Platten der Nodes, Modell und Platten des NAS ergänzen
+hardware:
+  - name: Evoli
+    role: Proxmox-Node
+    text: Lenovo ThinkCentre M900 Tiny mit Core i5-6600T und 32 GB RAM
+  - name: Pikachu
+    role: Proxmox-Node
+    text: Lenovo ThinkCentre M900 Tiny mit Core i5-6600T und 32 GB RAM
+  - name: Hardbase
+    role: NAS
+    text: Synology-NAS
+  - name: UniFi Dream Router
+    role: Router
+    text: Router, Firewall und VLAN-Zentrale
+  - name: vServer
+    role: Cloud
+    text: "[Hetzner](https://www.hetzner.com/cloud/) CX23 als öffentlicher Eingang"
+
+groups:
+  - name: Docker-Container
+    text: Zwei LXC-Container dienen als Docker-Hosts, verwaltet mit [Komodo](https://komo.do/).
+    services:
+      - name: Komodo
+        url: https://komo.do/
+        status: fest
+        text: Verwaltet die Docker-Hosts und deployt die Stacks. Container, Logs und Updates habe ich damit an einer Stelle im Blick.
+      - name: meshcore-mux
+        url: https://github.com/FdyFox/meshcore-mux
+        status: selbst
+        text: Verteilt die eine TCP-Verbindung zu meinem MeshCore-Node auf mehrere Clients. Mehr dazu im [Beitrag zum MeshCore TCP-Node](/bastelstube/meshcore-tcp-node/).
+      - name: Minecraft
+        status: fest
+        text: Ein Minecraft-Server. Braucht man eben.
+      - name: Paperless-ngx
+        url: https://docs.paperless-ngx.com/
+        status: fest
+        text: Jeder Brief wird gescannt und landet hier – durchsuchbar, verschlagwortet und das Papier kann weg.
+
+  - name: Infrastruktur
+    services:
+      - name: AdGuard Home
+        url: https://adguard.com/de/adguard-home/overview.html
+        status: alt
+        text: DNS mit Werbe- und Trackingfilter, doppelt ausgelegt. Abgelöst durch den Adblocker des UniFi Dream Routers.
+      - name: Authentik
+        url: https://goauthentik.io/
+        status: fest
+        text: Single Sign-On für die Dienste, die selbst keine vernünftige Anmeldung mitbringen.
+      - name: Caddy
+        url: https://caddyserver.com/
+        status: fest
+        text: Reverse Proxy vor allem, was eine Weboberfläche hat. TLS kommt automatisch, die Vhosts generiert Ansible direkt aus den Host-Variablen der einzelnen Container.
+      - name: Forgejo
+        url: https://forgejo.org/
+        status: fest
+        text: Eigener Git-Server inklusive Actions-Runner, unter anderem für die Runner-Images, in denen Ansible läuft.
+      - name: Pangolin
+        url: https://github.com/fosrl/pangolin
+        status: fest
+        text: Läuft auf dem vServer bei Hetzner und gibt ausgewählte Anwendungen öffentlich frei. Die Verbindung nach Hause baut ein Tunnel von innen nach außen auf, zu Hause bleibt also weiterhin kein Port offen.
+
+  - name: Medien
+    services:
+      - name: Audiobookshelf
+        url: https://www.audiobookshelf.org/
+        status: fest
+        text: Hörbücher und Podcasts. Dazu [Libation](https://github.com/rmcrackan/Libation), das meine Audible-Bibliothek automatisch herunterlädt.
+      - name: Jellyfin
+        url: https://jellyfin.org/
+        status: fest
+        text: Der Medienserver, in einem eigenen Container und eigenem VLAN.
+
+  - name: Monitoring & Benachrichtigungen
+    services:
+      - name: ntfy
+        url: https://ntfy.sh/
+        status: fest
+        text: Push-Benachrichtigungen aufs Handy – von Uptime Kuma, Watchtower-Updates und allem anderen, was etwas zu sagen hat.
+      - name: Uptime Kuma
+        url: https://uptime.kuma.pet/
+        status: fest
+        text: Schaut regelmäßig, ob alles noch antwortet.
+
+  - name: Smart Home
+    services:
+      - name: Home Assistant
+        url: https://www.home-assistant.io/
+        status: fest
+        text: Die Zentrale für alles, was im Haus blinkt und misst, samt MQTT-Broker. Läuft in einem eigenen VLAN.
+
+# Vorlage für weitere Dienste:
+#      - name: Name
+#        url: https://link-zum-projekt
+#        status: test
+#        text: Ein, zwei Sätze, was der Dienst macht und warum er da ist.

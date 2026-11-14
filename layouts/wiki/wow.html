@@ -1,9 +1,17 @@
 {{- define "main" }}
-{{- $d := hugo.Data.wow }}
-<article class="post-single wiki-page">
-  <header class="post-header">
+{{- /* Übersicht aller Charaktere, Details auf den Unterseiten aus _content.gotmpl */}}
+{{- $chars := slice }}
+{{- range $slug, $d := hugo.Data.wow }}
+{{- $chars = $chars | append (merge $d (dict "sort" ($d.last_login | default $d.updated))) }}
+{{- end }}
+<article class="post-single wiki-page wow-page">
+  <header class="post-header wow-overview-header">
     {{ partial "wiki_breadcrumbs.html" . }}
+    {{- with partial "wiki_logo.html" (dict "page" . "height" 120) }}
+    <h1 class="post-title wow-logo-title"><img src="{{ .RelPermalink }}" alt="{{ $.Title }}"></h1>
+    {{- else }}
     <h1 class="post-title">{{ .Title }}</h1>
+    {{- end }}
     {{- if .Description }}
     <div class="post-description">{{ .Description }}</div>
     {{- end }}
@@ -12,92 +20,43 @@
   <div class="post-content md-content">
     {{ .Content }}
 
-    {{- if not $d }}
+    {{- if not $chars }}
     <p>Noch keine Daten - <code>make wow</code> ausführen.</p>
     {{- else }}
-    {{- $c := $d.character }}
-
-    <h2 id="charakter">{{ $c.name }} {{ $c.surname }}</h2>
-    <div class="wow-hero">
-      {{- with resources.Get "wow/main.png" }}
-      {{- $img := .Resize "x400 webp" }}
-      <img class="wow-render" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}"
-           alt="{{ $c.name }} {{ $c.surname }}, {{ $c.race }} ({{ $c.class }})">
-      {{- end }}
-      <dl class="wow-facts">
-        <dt>Volk</dt><dd>{{ $c.race }}</dd>
-        <dt>Klasse</dt><dd>{{ $c.class }}{{ with $c.spec }} · {{ . }}{{ end }}</dd>
-        <dt>Fraktion</dt><dd>{{ $c.faction }}</dd>
-        {{- with $c.guild }}<dt>Gilde</dt><dd>&lt;{{ . }}&gt;</dd>{{ end }}
-        {{- with $c.ruleset }}<dt>Regelwerk</dt><dd>{{ . }}</dd>{{ end }}
-      </dl>
-    </div>
-
-    <div class="abs-tiles">
-      <div class="abs-tile"><span class="abs-tile-value">{{ $c.level }}</span><span class="abs-tile-label">Level von 60</span></div>
-      <div class="abs-tile"><span class="abs-tile-value">{{ $c.item_level }}</span><span class="abs-tile-label">Itemlevel</span></div>
-      <div class="abs-tile"><span class="abs-tile-value">{{ $d.quests_completed }}</span><span class="abs-tile-label">Quests erledigt</span></div>
-      <div class="abs-tile"><span class="abs-tile-value">{{ $c.achievement_points }}</span><span class="abs-tile-label">Erfolgspunkte</span></div>
-    </div>
-
-    <div class="abs-grid">
-      {{- with $d.professions }}
-      <section class="abs-bars wow-progress">
-        <h3>Berufe</h3>
-        <ul>
-          {{- range (append .secondary .primary) }}
-          {{- partial "wow_bar.html" (dict "label" .name "value" .skill "max" .max "text" (printf "%v/%v" .skill .max)) }}
+    <div class="wow-roster">
+      {{- range sort $chars "sort" "desc" }}
+      {{- $c := .character }}
+      {{- $page := site.GetPage (printf "/wiki/spiele/wow-forever/%s" .slug) }}
+      <a class="wow-card wow-panel" href="{{ with $page }}{{ .RelPermalink }}{{ end }}"
+         style="--wow-class: {{ partial "wow_class_color.html" $c.class | safeCSS }}">
+        <span class="wow-card-portrait">
+          {{- with resources.Get (printf "wow/%s/main.png" .slug) }}
+          {{- $img := .Resize "x440 webp" }}
+          <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="">
+          {{- else }}
+          {{- with resources.Get (printf "wow/%s/avatar.jpg" .slug) }}
+          <img class="wow-card-avatar" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">
           {{- end }}
-        </ul>
-      </section>
-      {{- end }}
-
-      {{- with $d.reputations }}
-      <section class="abs-bars wow-progress">
-        <h3>Ruf</h3>
-        <ul>
-          {{- range . }}
-          {{- partial "wow_bar.html" (dict "label" .name "value" .value "max" .max "text" .standing) }}
           {{- end }}
-        </ul>
-      </section>
+        </span>
+        <span class="wow-card-name">{{ $c.name }} {{ $c.surname }}</span>
+        {{- with $c.guild }}<span class="wow-card-guild">&lt;{{ . }}&gt;</span>{{ end }}
+        <span class="wow-card-sub">Level {{ $c.level }} <span class="wow-card-class">{{ $c.class }}</span></span>
+        <span class="wow-card-meta">{{ with $c.spec }}{{ . }} · {{ end }}<span class="wow-faction-{{ $c.faction | lower | urlize }}">{{ $c.faction }}</span></span>
+        <span class="wow-track wow-card-xp" title="Level {{ $c.level }} von 60">
+          <span class="abs-bar" style="width: {{ math.Round (div (mul 100.0 $c.level) 60) }}%"></span>
+          <span class="wow-bar-text">{{ $c.level }} / 60</span>
+        </span>
+      </a>
       {{- end }}
     </div>
-
-    {{- with $d.equipment }}
-    <h2 id="ausruestung">Ausrüstung</h2>
-    <div class="wow-table-scroll">
-      <table class="wow-equipment">
-        <thead><tr><th>Platz</th><th>Gegenstand</th><th>iLvl</th></tr></thead>
-        <tbody>
-          {{- range . }}
-          <tr><td>{{ .slot }}</td><td class="wow-q-{{ .quality }}">{{ .name }}</td><td>{{ .level }}</td></tr>
-          {{- end }}
-        </tbody>
-      </table>
-    </div>
-    {{- end }}
-
-    {{- with $d.stats }}
-    <h2 id="werte">Werte</h2>
-    <dl class="wow-stats">
-      <div><dt>Leben</dt><dd>{{ .health }}</dd></div>
-      <div><dt>{{ $d.power_type | default "Energie" }}</dt><dd>{{ .power }}</dd></div>
-      <div><dt>Stärke</dt><dd>{{ .strength }}</dd></div>
-      <div><dt>Beweglichkeit</dt><dd>{{ .agility }}</dd></div>
-      <div><dt>Intelligenz</dt><dd>{{ .intellect }}</dd></div>
-      <div><dt>Ausdauer</dt><dd>{{ .stamina }}</dd></div>
-      <div><dt>Willenskraft</dt><dd>{{ .spirit }}</dd></div>
-      <div><dt>Rüstung</dt><dd>{{ .armor }}</dd></div>
-    </dl>
-    {{- end }}
-
     {{- end }}
   </div>
 
   <footer class="post-footer">
-    {{- with $d }}
-    <p class="wiki-lastmod">Daten aus der <a href="https://develop.battle.net/">Blizzard API</a>, Stand {{ time.Format "02.01.2006, 15:04" .updated }} Uhr.</p>
+    {{- with $chars }}
+    {{- $latest := index (sort . "updated" "desc") 0 }}
+    <p class="wiki-lastmod">Daten aus der <a href="https://develop.battle.net/">Blizzard API</a>, Stand {{ time.Format "02.01.2006, 15:04" $latest.updated }} Uhr.</p>
     {{- end }}
   </footer>
 </article>

@@ -1,0 +1,111 @@
+{{- define "main" }}
+{{- $d := index hugo.Data.wow .Params.wow }}
+<article class="post-single wiki-page wow-page">
+  <header class="post-header">
+    <div class="wow-header-bar">
+      {{ partial "wiki_breadcrumbs.html" . }}
+      {{- with partial "wiki_logo.html" (dict "page" . "height" 40) }}
+      <a class="wow-header-logo" href="{{ $.Parent.RelPermalink }}"><img src="{{ .RelPermalink }}" alt="{{ $.Parent.Title }}"></a>
+      {{- end }}
+    </div>
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    {{- if not $d }}
+    <p>Noch keine Daten - <code>make wow</code> ausführen.</p>
+    {{- else }}
+    {{- $c := $d.character }}
+    <div style="--wow-class: {{ partial "wow_class_color.html" $c.class | safeCSS }}">
+
+    <div class="wow-hero wow-panel">
+      {{- with resources.Get (printf "wow/%s/main.png" $d.slug) }}
+      {{- $img := .Resize "x400 webp" }}
+      <img class="wow-render" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}"
+           alt="{{ $c.name }} {{ $c.surname }}, {{ $c.race }} ({{ $c.class }})">
+      {{- end }}
+      <div class="wow-info">
+        <h1 class="wow-name">{{ $c.name }} {{ $c.surname }}</h1>
+        {{- with $c.guild }}
+        <p class="wow-guild">&lt;{{ . }}&gt;</p>
+        {{- end }}
+        <p class="wow-subtitle">Level {{ $c.level }} {{ $c.race }} <span class="wow-class-name">{{ $c.class }}</span></p>
+        <dl class="wow-facts">
+          {{- with $c.spec }}<dt>Spezialisierung</dt><dd>{{ . }}</dd>{{ end }}
+          <dt>Fraktion</dt><dd class="wow-faction-{{ $c.faction | lower | urlize }}">{{ $c.faction }}</dd>
+          {{- with $c.ruleset }}<dt>Regelwerk</dt><dd>{{ . }}</dd>{{ end }}
+        </dl>
+      </div>
+    </div>
+
+    <div class="abs-tiles wow-tiles">
+      <div class="abs-tile"><span class="abs-tile-value">{{ $c.level }}</span><span class="abs-tile-label">Level von 60</span></div>
+      <div class="abs-tile"><span class="abs-tile-value">{{ $c.item_level }}</span><span class="abs-tile-label">Itemlevel</span></div>
+      <div class="abs-tile"><span class="abs-tile-value">{{ $d.quests_completed }}</span><span class="abs-tile-label">Quests erledigt</span></div>
+      <div class="abs-tile"><span class="abs-tile-value">{{ $c.achievement_points }}</span><span class="abs-tile-label">Erfolgspunkte</span></div>
+    </div>
+
+    <div class="abs-grid">
+      {{- with $d.professions }}
+      <section class="abs-bars wow-progress wow-panel">
+        <h3>Berufe</h3>
+        <ul>
+          {{- range (append .secondary .primary) }}
+          {{- partial "wow_bar.html" (dict "label" .name "value" .skill "max" .max "text" (printf "%v/%v" .skill .max)) }}
+          {{- end }}
+        </ul>
+      </section>
+      {{- end }}
+
+      {{- with $d.reputations }}
+      <section class="abs-bars wow-progress wow-panel">
+        <h3>Ruf</h3>
+        <ul>
+          {{- range . }}
+          {{- partial "wow_bar.html" (dict "label" .name "value" .value "max" .max "text" .standing "class" (printf "wow-rep-%v" .tier)) }}
+          {{- end }}
+        </ul>
+      </section>
+      {{- end }}
+    </div>
+
+    {{- with $d.equipment }}
+    <h2 id="ausruestung">Ausrüstung</h2>
+    <div class="wow-table-scroll wow-panel">
+      <table class="wow-equipment">
+        <thead><tr><th>Platz</th><th>Gegenstand</th><th>iLvl</th></tr></thead>
+        <tbody>
+          {{- range . }}
+          <tr><td>{{ .slot }}</td><td class="wow-q-{{ .quality }}">{{ .name }}</td><td>{{ .level }}</td></tr>
+          {{- end }}
+        </tbody>
+      </table>
+    </div>
+    {{- end }}
+
+    {{- with $d.stats }}
+    <h2 id="werte">Werte</h2>
+    <dl class="wow-stats wow-panel">
+      <div><dt>Leben</dt><dd>{{ .health }}</dd></div>
+      <div><dt>{{ $d.power_type | default "Energie" }}</dt><dd>{{ .power }}</dd></div>
+      <div><dt>Stärke</dt><dd>{{ .strength }}</dd></div>
+      <div><dt>Beweglichkeit</dt><dd>{{ .agility }}</dd></div>
+      <div><dt>Intelligenz</dt><dd>{{ .intellect }}</dd></div>
+      <div><dt>Ausdauer</dt><dd>{{ .stamina }}</dd></div>
+      <div><dt>Willenskraft</dt><dd>{{ .spirit }}</dd></div>
+      <div><dt>Rüstung</dt><dd>{{ .armor }}</dd></div>
+    </dl>
+    {{- end }}
+    </div>
+
+    {{- end }}
+  </div>
+
+  <footer class="post-footer">
+    {{- with $d }}
+    <p class="wiki-lastmod">Daten aus der <a href="https://develop.battle.net/">Blizzard API</a>, Stand {{ time.Format "02.01.2006, 15:04" .updated }} Uhr.</p>
+    {{- end }}
+  </footer>
+</article>
+{{- end }}

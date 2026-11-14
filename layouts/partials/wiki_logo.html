@@ -1,0 +1,8 @@
+{{- /* Logo (logo.* im Ordner) einer Seite oder ihres Bereichs als verkleinertes Bild. Parameter: page, height */ -}}
+{{- $logo := or (.page.Resources.GetMatch "logo.*") (and .page.Parent (.page.Parent.Resources.GetMatch "logo.*")) }}
+{{- with $logo }}
+{{- $img := . }}
+{{- if ne .MediaType.SubType "svg" }}{{ $img = .Resize (printf "x%d webp" (mul $.height 2)) }}{{ end }}
+{{- return $img }}
+{{- end }}
+{{- return false }}

@@ -1,0 +1,30 @@
+{{- define "main" }}
+{{- /* /uses: Einträge aus data/uses.yaml als Kacheln, Einleitung aus content/uses.md */}}
+{{- $d := hugo.Data.uses }}
+<article class="post-single card-page">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- with $d.stand }}<div class="post-description">Stand: {{ . }}</div>{{ end }}
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    {{- range $d.categories }}
+    <h2 id="{{ .name | anchorize }}">{{ .name }}</h2>
+    {{- with .text }}<p>{{ . | $.RenderString }}</p>{{ end }}
+    {{- with .items }}
+    <div class="cards cards-small">
+      {{- range . }}
+      <div class="card">
+        {{- with .kind }}<span class="card-kicker">{{ . }}</span>{{ end }}
+        <strong class="card-name">{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</strong>
+        {{- with .text }}<span class="card-text">{{ . | $.RenderString }}</span>{{ end }}
+      </div>
+      {{- end }}
+    </div>
+    {{- end }}
+    {{- end }}
+  </div>
+</article>
+{{- end }}

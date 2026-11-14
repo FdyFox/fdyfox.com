@@ -1,0 +1,45 @@
+# Inhalt der Seite /now (content/now.md, Layout _default/now.html).
+# Wird überschrieben statt fortgeschrieben: alte Punkte einfach löschen.
+# Texte dürfen Markdown enthalten. widget: wow oder hoerbuecher bindet die Live-Daten ein.
+
+stand: November 2026
+
+# TODO: Abschnitt "Privat" ergänzen, wenn gewünscht – nur was öffentlich sein soll
+sections:
+  - name: Arbeit
+    items:
+      - Linux-Admin – und vermutlich bald Richtung Kubernetes unterwegs.
+
+  - name: Homelab
+    items:
+      - Läuft komplett über Ansible, gerade räume ich auf.
+      - Das [Glance](https://github.com/glanceapp/glance)-Dashboard baut sich jetzt selbst aus den Proxy-Einträgen.
+      - "Als Nächstes: mehr automatisieren, ausfallsicherer werden."
+    link:
+      text: Was zu Hause alles läuft
+      url: /wiki/homelab/zu-home/
+
+  - name: Funk
+    items:
+      - "[MeshCore](https://meshcore.co.uk/): Mein Node hängt per TCP im LAN und VPN, verteilt über [meshcore-mux](https://github.com/FdyFox/meshcore-mux)."
+    link:
+      text: Beitrag zum MeshCore TCP-Node
+      url: /bastelstube/meshcore-tcp-node/
+
+  - name: Diese Seite
+    items:
+      - Seit April 2026 blogge ich wieder, seit November ist die Seite Teil des [UberBlogr-Webrings](https://uberblogr.de/home/fdyfoxcom).
+      - "Neu dazugekommen: diese Seite, eine [/uses-Seite](/uses/) und [/.well-known/slashpages](/.well-known/slashpages)."
+      - "Vorsatz: öfter schreiben. Mal sehen."
+
+  - name: Am Zocken
+    widget: wow
+    link:
+      text: Mehr dazu im Wiki
+      url: /wiki/spiele/wow-forever/
+
+  - name: Auf den Ohren
+    widget: hoerbuecher
+    link:
+      text: Hörbuch-Statistik
+      url: /wiki/bibliothek/hoerbuecher/

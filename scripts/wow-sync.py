@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
-"""Holt den WoW-Forever-Charakter aus der Blizzard API und schreibt ihn nach data/wow.json.
+"""Holt die WoW-Forever-Charaktere aus der Blizzard API.
+
+Pro Charakter entstehen data/wow/<slug>.json und assets/wow/<slug>/ (Avatar, Ganzkörperbild).
+Daraus erzeugt content/wiki/spiele/wow-forever/_content.gotmpl je eine Wiki-Seite.
+Charaktere, die nicht mehr in der Liste stehen, werden samt Bildern entfernt.
 
 Konfiguration über .env bzw. Umgebungsvariablen (Fallback: ~/.config/bnet.env):
   BNET_CLIENT_ID      Client-ID von https://develop.battle.net
   BNET_CLIENT_SECRET  Client-Secret
-  WOW_CHARACTER       Slug "vorname-nachname" (Standard: fdy-fox)
+  WOW_CHARACTERS      Slugs "vorname-nachname", kommagetrennt (Standard: fdy-fox)
   WOW_REGION          eu, us, kr, tw (Standard: eu)
 """
 
 import base64
 import json
 import os
+import shutil
 import struct
 import sys
 import urllib.parse
@@ -23,8 +28,8 @@ from zoneinfo import ZoneInfo
 LOCAL = ZoneInfo("Europe/Berlin")
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_FILE = ROOT / "data" / "wow.json"
-IMAGE_DIR = ROOT / "assets" / "wow"
+DATA_DIR = ROOT / "data" / "wow"
+IMAGE_ROOT = ROOT / "assets" / "wow"
 IMAGES = {"avatar": "avatar.jpg", "main-raw": "main.png"}
 
 # Trotz locale=de_DE liefert die API manche Namen nur englisch.
@@ -116,15 +121,7 @@ def token(region):
     return res["access_token"]
 
 
-def main():
-    load_env()
-    for key in ("BNET_CLIENT_ID", "BNET_CLIENT_SECRET"):
-        if not os.environ.get(key):
-            sys.exit(f"Fehler: {key} fehlt in .env bzw. ~/.config/bnet.env")
-    region = os.environ.get("WOW_REGION", "eu")
-    slug = os.environ.get("WOW_CHARACTER", "fdy-fox")
-
-    headers = {"Authorization": "Bearer " + token(region)}
+def sync(slug, region, headers):
     base = f"https://{region}.api.blizzard.com/profile/wow/character/{slug}"
     query = f"?namespace=profile-forever-{region}&locale=de_DE"
 
@@ -141,15 +138,16 @@ def main():
     media = api("/character-media")
 
     # Bilder lokal ablegen, damit Besucher keine Requests an Blizzard auslösen
-    IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+    image_dir = IMAGE_ROOT / slug
+    image_dir.mkdir(parents=True, exist_ok=True)
     images = {}
     for asset in media.get("assets", []):
         if asset["key"] in IMAGES:
-            target = IMAGE_DIR / IMAGES[asset["key"]]
+            target = image_dir / IMAGES[asset["key"]]
             try:
                 image = get(asset["value"], raw=True)
                 target.write_bytes(trim_png(image) if target.suffix == ".png" else image)
-                images[asset["key"].removesuffix("-raw")] = f"wow/{target.name}"
+                images[asset["key"].removesuffix("-raw")] = f"wow/{slug}/{target.name}"
             except OSError as e:
                 print(f"Bild {asset['key']} fehlgeschlagen: {e}", file=sys.stderr)
 
@@ -165,8 +163,17 @@ def main():
             "max": tier.get("max_skill_points", p.get("max_skill_points", 0)),
         }
 
+    last_login = profile.get("last_login_timestamp")
+    now = datetime.now(LOCAL).isoformat(timespec="seconds")
+    data_file = DATA_DIR / f"{slug}.json"
+    # Erstes Abholen = Erstelldatum der Wiki-Seite, damit nicht jeder Sync sie zur "neuesten" macht
+    created = json.loads(data_file.read_text()).get("created", now) if data_file.exists() else now
     data = {
-        "updated": datetime.now(LOCAL).isoformat(timespec="seconds"),
+        "slug": slug,
+        "created": created,
+        "updated": now,
+        "last_login": (datetime.fromtimestamp(last_login / 1000, LOCAL).isoformat(timespec="seconds")
+                       if last_login else ""),
         "character": {
             "name": profile["name"],
             "surname": profile.get("surname", ""),
@@ -217,11 +224,40 @@ def main():
         ),
     }
 
-    DATA_FILE.parent.mkdir(exist_ok=True)
-    DATA_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    data_file.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     c = data["character"]
     print(f"→ {c['name']} {c['surname']}, Level {c['level']} {c['class']}, "
-          f"{data['quests_completed']} Quests → {DATA_FILE.relative_to(ROOT)}")
+          f"{data['quests_completed']} Quests → {data_file.relative_to(ROOT)}")
+
+
+def main():
+    load_env()
+    for key in ("BNET_CLIENT_ID", "BNET_CLIENT_SECRET"):
+        if not os.environ.get(key):
+            sys.exit(f"Fehler: {key} fehlt in .env bzw. ~/.config/bnet.env")
+    region = os.environ.get("WOW_REGION", "eu")
+    raw = os.environ.get("WOW_CHARACTERS") or os.environ.get("WOW_CHARACTER") or "fdy-fox"
+    slugs = [s.strip().lower() for s in raw.split(",") if s.strip()]
+
+    headers = {"Authorization": "Bearer " + token(region)}
+    failed = []
+    for slug in slugs:
+        try:
+            sync(slug, region, headers)
+        except Exception as e:  # ein kaputter Charakter soll die anderen nicht aufhalten
+            print(f"Fehler bei {slug}: {e}", file=sys.stderr)
+            failed.append(slug)
+
+    # Charaktere, die nicht mehr konfiguriert sind, verschwinden samt Bildern
+    for old in DATA_DIR.glob("*.json"):
+        if old.stem not in slugs:
+            old.unlink()
+            shutil.rmtree(IMAGE_ROOT / old.stem, ignore_errors=True)
+            print(f"✗ {old.stem} entfernt (nicht mehr in WOW_CHARACTERS)")
+
+    if failed:
+        sys.exit(f"Fehlgeschlagen: {', '.join(failed)}")
 
 
 if __name__ == "__main__":

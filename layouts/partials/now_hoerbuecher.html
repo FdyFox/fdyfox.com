@@ -1,0 +1,25 @@
+{{- /* Aktuell gehörte Hörbücher aus data/hoerbuecher.json (in_progress), mit Cover und Fortschritt */ -}}
+{{- with hugo.Data.hoerbuecher.in_progress }}
+<ul class="now-books">
+  {{- range sort . "progress" "desc" }}
+  {{- $title := replaceRE `\s*\((Unabridged|Ungekürzt)\)\s*$` "" .title }}
+  {{- /* Lange Untertitel abschneiden, kurze (z.B. Reihe "Magic 2.0, 3") behalten */ -}}
+  {{- $parts := split $title ": " }}
+  {{- if and (gt (len $parts) 1) (gt (len (index $parts 1)) 25) }}{{ $title = index $parts 0 }}{{ end }}
+  <li>
+    {{- with and .cover (resources.Get .cover) }}
+    {{- $img := .Resize "96x webp" }}
+    <img src="{{ $img.RelPermalink }}" width="48" height="{{ div (mul 48 $img.Height) $img.Width }}" alt="">
+    {{- end }}
+    <span class="now-book-info">
+      <em>{{ $title }}</em>
+      <span class="wiki-meta">{{ .author }}</span>
+      <span class="abs-bar-track now-book-track" title="{{ .progress }} %"><span class="abs-bar" style="width: {{ .progress }}%"></span></span>
+    </span>
+    <span class="now-book-pct">{{ .progress }} %</span>
+  </li>
+  {{- end }}
+</ul>
+{{- else }}
+<p>Gerade nichts – Zeit für ein neues Hörbuch.</p>
+{{- end }}
