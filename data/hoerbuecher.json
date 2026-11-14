@@ -1,15 +1,15 @@
 {
-  "updated": "2026-11-13",
+  "updated": "2026-11-14",
   "totals": {
     "books": 124,
-    "finished": 66,
+    "finished": 67,
     "library_hours": 1278,
     "listened_hours": 578
   },
   "finished_per_year": [
     [
       "2026",
-      25
+      26
     ],
     [
       "2025",
@@ -158,22 +158,6 @@
       "finished": "",
       "progress": 10,
       "cover": "hoerbuecher/covers/6a3d4d45-626d-4e8e-b60c-394b1baebe2b.jpg"
-    },
-    {
-      "title": "Das Harvard-Konzept: Die unschlagbare Methode für beste Verhandlungsergebnisse",
-      "author": "Roger Fisher, William Ury, Bruce Patton",
-      "series": "",
-      "narrator": "Herbert Schäfer",
-      "year": "2018",
-      "language": "German",
-      "genres": [
-        "Management & Leadership"
-      ],
-      "hours": 10.0,
-      "added": "2024-02-26",
-      "finished": "",
-      "progress": 7,
-      "cover": "hoerbuecher/covers/517a3b68-5b02-4aa9-8ae3-35ee987a6cf2.jpg"
     }
   ],
   "heatmap": {
@@ -1916,6 +1900,10 @@
           {
             "t": "Fr 13.11.2026 · 3,6 h",
             "l": 4
+          },
+          {
+            "t": "Sa 14.11.2026 · nichts gehört",
+            "l": 0
           }
         ]
       }
