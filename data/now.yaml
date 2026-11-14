@@ -31,6 +31,9 @@ sections:
       - Seit April 2026 blogge ich wieder, seit November ist die Seite Teil des [UberBlogr-Webrings](https://uberblogr.de/home/fdyfoxcom).
       - "Neu dazugekommen: diese Seite, eine [/uses-Seite](/uses/) und [/.well-known/slashpages](/.well-known/slashpages)."
       - "Vorsatz: öfter schreiben. Mal sehen."
+    link:
+      text: Was sich an der Seite geändert hat
+      url: /changelog/
 
   - name: Am Zocken
     widget: wow

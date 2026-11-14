@@ -1,0 +1,42 @@
+{{- define "main" }}
+{{- /* /changelog: Einträge aus data/changelog.json (Git-Trailer, scripts/changelog-sync.py)
+       und data/changelog_history.yaml (von Hand, aus der Zeit davor), nach Monat gruppiert */}}
+{{- $repo := "https://github.com/FdyFox/fdyfox.com/commit/" }}
+{{- $entries := slice }}
+{{- range (hugo.Data.changelog | default slice) | append (hugo.Data.changelog_history | default slice) }}
+{{- $date := time.AsTime (string .date) }}
+{{- $entries = $entries | append (merge . (dict "time" $date "month" ($date.Format "2006-01"))) }}
+{{- end }}
+<article class="post-single changelog-page">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    <div class="changelog">
+      {{- $months := slice }}
+      {{- range $entries }}{{ $months = $months | append .month }}{{ end }}
+      {{- range sort ($months | uniq) "value" "desc" }}
+      {{- $inMonth := sort (where $entries "month" .) "time" "desc" }}
+      <section class="changelog-month">
+        <h2 class="changelog-heading" id="{{ . }}">{{ time.Format "January 2006" (index $inMonth 0).time }}</h2>
+        <ol class="changelog-list">
+          {{- $prev := "" }}
+          {{- range $inMonth }}
+          {{- $day := time.Format "2.1." .time }}
+          <li>
+            <span class="changelog-date">{{ if ne $day $prev }}{{ $day }}{{ end }}</span>
+            <span class="changelog-text">{{ .text | $.RenderString }}</span>
+            <span class="changelog-commit">{{ with .commit }}<a href="{{ $repo }}{{ . }}" title="Commit {{ . }} auf GitHub">{{ . }}</a>{{ end }}</span>
+          </li>
+          {{- $prev = $day }}
+          {{- end }}
+        </ol>
+      </section>
+      {{- end }}
+    </div>
+  </div>
+</article>
+{{- end }}

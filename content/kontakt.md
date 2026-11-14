@@ -1,5 +1,6 @@
 ---
 title: "Kontakt"
+summary: "Wie man mich erreicht"
 layout: "kontakt"
 ---
 

@@ -31,7 +31,7 @@ isPlainText = true
 notAlternative = true
 
 [params.footer]
-text = "[/now](/now/) · [/uses](/uses/) · [/blogroll](/blogroll/) · [/kontakt](/kontakt/)\\\n[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
+text = "[/now](/now/) · [/slashes](/slashes/)\\\n[Impressum](/impressum/) · [Datenschutz](/datenschutz/)\\\n[←](https://uberblogr.de/prev/fdyfoxcom \"Vorheriger Blog im UberBlogr-Webring\") [UberBlogr Webring](https://uberblogr.de/home/fdyfoxcom) [→](https://uberblogr.de/next/fdyfoxcom \"Nächster Blog im UberBlogr-Webring\")"
 
 [params]
 commentsEndpoint = "/kommentare/api.php"
@@ -74,51 +74,73 @@ Notizen, Gedanken und Kram.
 In der **[Bastelstube](/bastelstube/)** gibt es Anleitungen, Lösungen und Basteleien rund um Technik.
 Persönliches, also Gedanken und was mich sonst so beschäftigt, steht im **[Logbuch](/logbuch/)**.'''
 
-# Slash-Pages für /.well-known/slashpages; category nach slashpages.net
+# Slash-Pages für /.well-known/slashpages und die Übersicht /slashes; category nach slashpages.net,
+# group ist die Überschrift auf /slashes, die Beschreibung kommt aus summary bzw. description der Seite
 [[params.slashpages]]
 page = "/about"
+group = "Über mich"
 category = "/about"
 
 [[params.slashpages]]
 page = "/now"
+group = "Über mich"
 category = "/now"
 
 [[params.slashpages]]
 page = "/uses"
+group = "Über mich"
 category = "/uses"
 
 [[params.slashpages]]
 page = "/blogroll"
+group = "Lesen"
 category = "/blogroll"
 
 [[params.slashpages]]
+page = "/slashes"
+group = "Die Seite"
+category = "/slashes"
+
+[[params.slashpages]]
+page = "/changelog"
+group = "Die Seite"
+category = "/changelog"
+
+[[params.slashpages]]
 page = "/kontakt"
+group = "Über mich"
 category = "/contact"
 
 [[params.slashpages]]
 page = "/logbuch"
+group = "Lesen"
 category = "/blog"
 text = "Logbuch"
 
 [[params.slashpages]]
 page = "/bastelstube"
+group = "Lesen"
 category = "/blog"
 text = "Bastelstube"
 
 [[params.slashpages]]
 page = "/wiki"
+group = "Lesen"
 category = "/wiki"
 
 [[params.slashpages]]
 page = "/search"
+group = "Die Seite"
 category = "/search"
 
 [[params.slashpages]]
 page = "/impressum"
+group = "Rechtliches"
 category = "/imprint"
 
 [[params.slashpages]]
 page = "/datenschutz"
+group = "Rechtliches"
 category = "/privacy"
 
 [[params.socialIcons]]
@@ -154,13 +176,18 @@ weight = 3
 name = "~/About"
 url = "/about/"
 weight = 4
+[[menu.main]]
+name = "~/*"
+title = "Alle Seiten auf einen Blick"
+url = "/slashes/"
+weight = 5
 # Kurz gehalten, damit das Menü neben dem Prompt in eine Zeile passt
 [[menu.main]]
 identifier = "search"
 name = "~/?"
 title = "Suche"
 url = "/search/"
-weight = 5
+weight = 6
 
 [taxonomies]
 tag = "tags"

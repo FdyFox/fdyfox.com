@@ -18,6 +18,10 @@ jobs:
       - name: Setup Hugo
         uses: jdx/mise-action@v5  # Version aus mise.toml
 
+      # data/changelog.json aus den "Changelog:"-Zeilen der Commits (nicht eingecheckt)
+      - name: Collect changelog
+        run: python3 scripts/changelog-sync.py
+
       - name: Build
         run: hugo --minify
 

@@ -32,7 +32,7 @@ KOMMENTARE_DOCKER := --user $$(id -u):$$(id -g) \
 
 .DEFAULT_GOAL := help
 
-.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki hoerbuecher wow sync open \
+.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki hoerbuecher wow changelog sync open \
         kommentare-start kommentare-stop kommentare-seed
 
 help:
@@ -48,10 +48,12 @@ help:
 	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
 	@echo "  make hoerbuecher    Hörbuch-Daten aus Audiobookshelf holen"
 	@echo "  make wow            WoW-Forever-Charaktere aus der Blizzard API holen"
+	@echo "  make changelog      Changelog aus den Commit-Messages sammeln"
 	@echo "  make sync           Alle Datenquellen aktualisieren (scripts/*-sync.py)"
 	@echo "  make open           Lokale Seite im Browser öffnen"
 
 dev:
+	@python3 scripts/changelog-sync.py
 	@echo "→ $(DEV_URL)"
 ifneq ($(DEV_OPEN),)
 	@( for i in $$(seq 40); do \
@@ -83,6 +85,7 @@ kommentare-seed: .kommentare-dev/config.php
 	@printf '%s\n' "<?php" "return ['admin_password_hash' => password_hash('admin', PASSWORD_DEFAULT), 'data_dir' => '/data', 'db_file' => 'kommentare.sqlite', 'cors' => true, 'language' => 'de', 'author_name' => 'Ferdy', 'allowed_sections' => ['logbuch', 'bastelstube']];" > $@
 
 build:
+	@python3 scripts/changelog-sync.py
 	$(HUGO) --minify
 
 clean:
@@ -123,6 +126,9 @@ hoerbuecher:
 
 wow:
 	python3 scripts/wow-sync.py
+
+changelog:
+	python3 scripts/changelog-sync.py
 
 # Führt jedes scripts/*-sync.py aus, neue Datenquellen sind damit automatisch dabei.
 # Ein Fehler bricht nicht ab, am Ende gibt es eine Zusammenfassung.

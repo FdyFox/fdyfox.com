@@ -1,5 +1,6 @@
 ---
 title: "Datenschutzerklärung"
+summary: "Was mit deinen Daten passiert"
 url: "/datenschutz/"
 layout: "page"
 noindex: true

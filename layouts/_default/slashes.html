@@ -1,0 +1,31 @@
+{{- define "main" }}
+{{- /* /slashes: Übersicht aus params.slashpages in hugo.toml, gruppiert nach group */}}
+{{- $groups := slice }}
+{{- range site.Params.slashpages }}{{ $groups = $groups | append (.group | default "Sonstiges") }}{{ end }}
+<article class="post-single card-page">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    {{- range $groups | uniq }}
+    {{- $group := . }}
+    <h2 id="{{ $group | anchorize }}">{{ $group }}</h2>
+    <div class="cards cards-small">
+      {{- range site.Params.slashpages }}
+      {{- if eq (.group | default "Sonstiges") $group }}
+      {{- with site.GetPage .page }}
+      <a class="card card-link" href="{{ .RelPermalink }}">
+        <strong class="card-name">/{{ path.Base .RelPermalink }}</strong>
+        <span class="card-text">{{ .Params.summary | default .Description }}</span>
+      </a>
+      {{- end }}
+      {{- end }}
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</article>
+{{- end }}

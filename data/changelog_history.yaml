@@ -1,0 +1,93 @@
+# Changelog-Einträge aus der Zeit vor den "Changelog:"-Zeilen in Commit-Messages.
+# Neue Einträge nicht hier, sondern als Trailer in die Commit-Message schreiben:
+#
+#   feat(): Add gallery shortcode
+#
+#   Changelog: Beiträge können jetzt Bildergalerien haben.
+#
+# scripts/changelog-sync.py sammelt sie nach data/changelog.json.
+
+- date: 2026-04-23
+  commit: 61a6968
+  text: Die Seite ist online, gebaut mit Hugo und dem Theme PaperMod.
+- date: 2026-04-25
+  commit: c945ec3
+  text: Codeblöcke in Catppuccin-Farben und Hinweis-Kästen für Tipps und Warnungen.
+- date: 2026-04-27
+  commit: 8b0e81e
+  text: Kontaktseite mit Formular.
+- date: 2026-04-27
+  commit: c3d17b6
+  text: Eigene 404-Seite.
+- date: 2026-04-27
+  commit: 183621a
+  text: Dunkles Design als Standard.
+- date: 2026-05-09
+  commit: 03b1b8f
+  text: Kontakt jetzt auch per Telegram.
+- date: 2026-05-13
+  commit: 99f594b
+  text: Header im Terminal-Stil, angelehnt an den Starship-Prompt.
+- date: 2026-05-22
+  commit: 415cf6f
+  text: Kontakt jetzt auch per Signal.
+- date: 2026-10-22
+  commit: 4499467
+  text: Neues [Wiki](/wiki/) mit Kategorien und Pfadnavigation.
+- date: 2026-10-22
+  commit: d77cecf
+  text: Wiki-Seite [Zu Hause](/wiki/homelab/zu-home/) über mein Homelab.
+- date: 2026-10-22
+  commit: 26b8e14
+  text: "[Hörbuch-Statistik](/wiki/bibliothek/hoerbuecher/) mit Daten aus Audiobookshelf."
+- date: 2026-11-01
+  commit: d37a97a
+  text: Die Seite ist jetzt Teil des [UberBlogr-Webrings](https://uberblogr.de/home/fdyfoxcom).
+- date: 2026-11-01
+  commit: 003c53e
+  text: Menü für kleine Bildschirme.
+- date: 2026-11-01
+  commit: 8d1ad12
+  text: Neue Seiten [/now](/now/) und [/uses](/uses/).
+- date: 2026-11-01
+  commit: c12f232
+  text: Übersicht der Slashpages unter [/.well-known/slashpages](/.well-known/slashpages).
+- date: 2026-11-01
+  commit: bd6303e
+  text: "[Blogroll](/blogroll/) mit OPML-Export."
+- date: 2026-11-01
+  commit: da7b535
+  text: security.txt für Sicherheitsmeldungen.
+- date: 2026-11-02
+  commit: 824734a
+  text: Amazon-Partnerlinks werden als solche gekennzeichnet.
+- date: 2026-11-03
+  commit: e35d70a
+  text: Der Blog ist aufgeteilt in [Logbuch](/logbuch/) und [Bastelstube](/bastelstube/).
+- date: 2026-11-06
+  commit: 5bfa246
+  text: Kommentare, selbst gebaut mit PHP und SQLite.
+- date: 2026-11-08
+  commit: 5c42c82
+  text: Ich kann jetzt auf Kommentare antworten.
+- date: 2026-11-08
+  commit: 461ce0b
+  text: Das Kommentarsystem ist jetzt ein eigenes Projekt, [hugo-php-comments](https://github.com/FdyFox/hugo-php-comments).
+- date: 2026-11-09
+  commit: 0a23553
+  text: Bilder werden als WebP ausgeliefert, ohne Exif-Daten.
+- date: 2026-11-12
+  commit: 513a508
+  text: "Neue Wiki-Seite zu [WoW: Forever](/wiki/spiele/wow-forever/) mit Daten aus der Blizzard API."
+- date: 2026-11-14
+  commit: 6e5b05b
+  text: "WoW: Forever im Spiel-Look und mit Platz für mehrere Charaktere."
+- date: 2026-11-14
+  commit: 6e5b05b
+  text: Neue Wiki-Übersicht mit Karten pro Bereich.
+- date: 2026-11-14
+  commit: 6e5b05b
+  text: "[/now](/now/), [/uses](/uses/) und [Zu Hause](/wiki/homelab/zu-home/) im neuen Design."
+- date: 2026-11-14
+  commit: 6e5b05b
+  text: Beiträge können jetzt Bildergalerien mit Vollbildansicht haben.

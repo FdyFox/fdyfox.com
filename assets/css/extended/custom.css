@@ -1418,3 +1418,59 @@ code {
   .galerie-lightbox figure { max-width: 100vw; }
   .galerie-prev, .galerie-next { top: auto; bottom: 0.6rem; transform: none; }
 }
+
+/* /changelog: Monat als Zwischenüberschrift, darunter Datum | Text | Commit */
+.changelog { margin-top: 1.5rem; }
+.changelog-month { margin-bottom: 1.8rem; }
+.post-content .changelog-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 0 0.6rem;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent2);
+}
+.post-content .changelog-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--tertiary);
+}
+.post-content .changelog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post-content .changelog-list li {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+  margin: 0;
+  padding: 0.3rem 0;
+  line-height: 1.5;
+}
+.changelog-date,
+.changelog-commit {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  color: var(--secondary);
+}
+.post-content .changelog-commit a { color: var(--secondary); box-shadow: none; }
+.post-content .changelog-commit a:hover { color: var(--accent); }
+@media (max-width: 600px) {
+  .post-content .changelog-list li { grid-template-columns: 3rem 1fr; gap: 0.7rem; }
+  .changelog-commit { display: none; }
+}
+
+/* /slashes: ganze Karte ist der Link */
+.post-content a.card-link { box-shadow: none; text-decoration: none; }
+.post-content a.card-link:hover { border-color: var(--accent); }
+.post-content a.card-link .card-name {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  color: var(--accent);
+}

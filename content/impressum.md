@@ -1,5 +1,6 @@
 ---
 title: "Impressum"
+summary: "Wer hinter der Seite steht"
 url: "/impressum/"
 layout: "page"
 noindex: true
