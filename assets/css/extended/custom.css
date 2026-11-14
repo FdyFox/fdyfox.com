@@ -1352,6 +1352,94 @@ code {
   text-align: center;
 }
 
+/* Galerie als Bühne: großes Bild, darunter scrollbare Vorschauleiste */
+.galerie-buehne { display: block; }
+.post-content .galerie-stage {
+  position: relative;
+  margin: 0;
+}
+/* Feste Höhe am Rahmen, das Foto selbst nur so groß wie angezeigt, damit die Ecken rund werden */
+.galerie-stage-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: min(70vh, 32rem);
+  box-shadow: none;
+  cursor: zoom-in;
+}
+.post-content .galerie-stage img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  border-radius: var(--radius);
+}
+.galerie-step {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.75);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+}
+.galerie-step-prev { left: 0.6rem; }
+.galerie-step-next { right: 0.6rem; }
+.galerie-stage:hover .galerie-step,
+.galerie-step:focus-visible { opacity: 1; }
+.galerie-step:hover { background: rgba(20, 20, 20, 0.9); border-color: rgba(255, 255, 255, 0.5); }
+@media (hover: none) { .galerie-step { opacity: 0.8; } }
+.galerie-stage-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.4rem 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+.galerie-stage-count {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.galerie-strip {
+  position: relative;
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  scrollbar-width: thin;
+}
+.galerie-strip a {
+  flex: 0 0 auto;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: none;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  opacity: 0.6;
+  transition: opacity 0.15s, outline-color 0.15s;
+}
+.galerie-strip a:hover { opacity: 1; }
+.galerie-strip a[aria-current] { opacity: 1; outline-color: var(--accent); }
+.post-content .galerie-strip img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin: 0;
+  object-fit: cover;
+}
+
 .galerie-lightbox {
   width: 100vw;
   height: 100vh;
@@ -1399,6 +1487,25 @@ code {
 }
 .galerie-lightbox button:hover,
 .galerie-lightbox button:focus-visible { background: rgba(255, 255, 255, 0.2); }
+.galerie-step,
+.galerie-prev,
+.galerie-next {
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.galerie-step[hidden] { display: none; }
+.galerie-step svg,
+.galerie-prev svg,
+.galerie-next svg {
+  width: 55%;
+  height: 55%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .galerie-close { top: calc(1rem + env(safe-area-inset-top, 0px)); right: 1rem; }
 .galerie-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
 .galerie-next { right: 1rem; top: 50%; transform: translateY(-50%); }

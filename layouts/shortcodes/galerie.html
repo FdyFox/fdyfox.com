@@ -13,9 +13,20 @@
     {{< galerie />}}
     {{< galerie muster="aufbau-*" />}}
 
+  Bildunterschriften dafür stehen in einer Datei bildunterschriften.yaml (oder
+  .json) irgendwo im Beitragsordner, Schlüssel ist der Dateiname:
+
+    bild-01.jpg: Die Hochöfen von außen
+    bild-02.jpg: Blick in die Möllerhalle
+
+  Ansicht: Standard ist die Bühne (ein großes Bild, darunter eine scrollbare
+  Leiste mit Vorschaubildern). Für ein Raster aus Vorschaubildern:
+
+    {{< galerie ansicht="raster" />}}
+
   Die Bilder müssen im Ordner des Beitrags liegen (Page-Bundle). Veröffentlicht
-  werden nur WebP-Versionen ohne Exif-Daten: ein quadratisches Vorschaubild und
-  eine große Version (max. 1600 px) für die Vollbildansicht.
+  werden nur WebP-Versionen ohne Exif-Daten: Vorschaubilder, eine mittlere
+  Version für die Bühne und eine große (max. 1600 px) für die Vollbildansicht.
 */ -}}
 {{- $page := .Page }}
 {{- $items := slice }}
@@ -31,41 +42,85 @@
   {{- end }}
 {{- else }}
   {{- $pattern := .Get "muster" | default "*" }}
+  {{- /* Unterschriften aus bildunterschriften.yaml/.json, Schlüssel: Dateiname oder Pfad im Beitrag */}}
+  {{- $captions := dict }}
+  {{- with $page.Resources.GetMatch "**bildunterschriften.{yaml,yml,json}" }}
+    {{- $captions = . | transform.Unmarshal | default dict }}
+  {{- end }}
   {{- range sort ($page.Resources.Match $pattern) "Name" }}
     {{- if eq .ResourceType "image" }}
-      {{- $items = $items | append (dict "res" . "caption" (cond (ne .Title .Name) .Title "")) }}
+      {{- $caption := or (index $captions .Name) (index $captions (path.Base .Name)) "" }}
+      {{- /* Fallback: title aus resources im Front Matter */}}
+      {{- if and (not $caption) (ne .Title .Name) }}{{ $caption = .Title }}{{ end }}
+      {{- $items = $items | append (dict "res" . "caption" (string $caption)) }}
     {{- end }}
   {{- end }}
 {{- end }}
 
-{{- with $items }}
-{{- $id := printf "galerie-%d" $.Ordinal }}
-<div class="galerie" id="{{ $id }}">
-  {{- range . }}
+{{- $mode := .Get "ansicht" | default "buehne" }}
+{{- if not (in (slice "buehne" "raster") $mode) }}
+  {{- errorf "galerie: ansicht muss buehne oder raster sein, nicht %q (%s)" $mode .Position }}
+{{- end }}
+
+{{- /* Pro Bild die benötigten Größen erzeugen */}}
+{{- $pics := slice }}
+{{- range $items }}
   {{- $img := .res }}
+  {{- $pic := dict "caption" .caption }}
   {{- if and (reflect.IsImageResourceProcessable $img) (le $img.FrameCount 1) }}
     {{- $img = $img.Filter images.AutoOrient }}
-    {{- $thumb := $img.Process "fill 480x480 Smart webp" }}
-    {{- $full := $img }}
-    {{- if gt $img.Width 1600 }}{{ $full = $img.Process "resize 1600x webp" }}{{ else }}{{ $full = $img.Process "webp" }}{{ end }}
-  <figure class="galerie-item">
-    <a href="{{ $full.RelPermalink }}" data-width="{{ $full.Width }}" data-height="{{ $full.Height }}"{{ with .caption }} data-caption="{{ . }}"{{ end }}>
-      <img src="{{ $thumb.RelPermalink }}" width="240" height="240" alt="{{ .caption }}" loading="lazy">
-    </a>
-    {{- with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
-  </figure>
+    {{- $full := $img.Process "webp" }}
+    {{- if gt $img.Width 1600 }}{{ $full = $img.Process "resize 1600x webp" }}{{ end }}
+    {{- $thumb := $img.Process (cond (eq $mode "raster") "fill 480x480 Smart webp" "fill 160x160 Smart webp") }}
+    {{- $pic = merge $pic (dict "full" $full.RelPermalink "thumb" $thumb.RelPermalink) }}
+    {{- if eq $mode "buehne" }}
+      {{- $pic = merge $pic (dict "stage" ($img.Process "fit 1400x1000 webp").RelPermalink) }}
+    {{- end }}
   {{- else }}
+    {{- $pic = merge $pic (dict "full" $img.RelPermalink "thumb" $img.RelPermalink "stage" $img.RelPermalink) }}
+  {{- end }}
+  {{- $pics = $pics | append $pic }}
+{{- end }}
+
+{{- if not $items }}{{ errorf "galerie: keine Bilder gefunden (%s)" .Position }}{{ end }}
+{{- with $pics }}
+{{- $id := printf "galerie-%d" $.Ordinal }}
+{{- if eq $mode "raster" }}
+<div class="galerie" id="{{ $id }}">
+  {{- range . }}
   <figure class="galerie-item">
-    <a href="{{ $img.RelPermalink }}"{{ with .caption }} data-caption="{{ . }}"{{ end }}>
-      <img src="{{ $img.RelPermalink }}" alt="{{ .caption }}" loading="lazy">
+    <a href="{{ .full }}"{{ with .caption }} data-caption="{{ . }}"{{ end }}>
+      <img src="{{ .thumb }}" width="240" height="240" alt="{{ .caption }}" loading="lazy">
     </a>
     {{- with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
   </figure>
-  {{- end }}
   {{- end }}
 </div>
 {{- else }}
-{{- errorf "galerie: keine Bilder gefunden (%s)" .Position }}
+{{- $first := index . 0 }}
+<div class="galerie galerie-buehne" id="{{ $id }}">
+  <figure class="galerie-stage">
+    <a class="galerie-stage-link" href="{{ $first.full }}" aria-label="Bild in groß anzeigen">
+      <img src="{{ $first.stage }}" alt="{{ $first.caption }}" loading="lazy">
+    </a>
+    {{- if gt (len .) 1 }}
+    <button type="button" class="galerie-step galerie-step-prev" aria-label="Vorheriges Bild" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button type="button" class="galerie-step galerie-step-next" aria-label="Nächstes Bild" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    {{- end }}
+  </figure>
+  <div class="galerie-stage-info">
+    <span class="galerie-stage-caption">{{ $first.caption }}</span>
+    <span class="galerie-stage-count">1 / {{ len . }}</span>
+  </div>
+  <div class="galerie-strip">
+    {{- range $i, $p := . }}
+    <a href="{{ $p.full }}" data-stage="{{ $p.stage }}"{{ with $p.caption }} data-caption="{{ . }}"{{ end }}{{ if eq $i 0 }} aria-current="true"{{ end }}>
+      <img src="{{ $p.thumb }}" width="80" height="80" alt="{{ $p.caption }}" loading="lazy">
+    </a>
+    {{- end }}
+  </div>
+</div>
+{{- end }}
 {{- end }}
 {{- /* Vollbildansicht: assets/js/galerie.js, läuft nur einmal pro Seite */}}
 {{- with resources.Get "js/galerie.js" | minify | fingerprint }}
