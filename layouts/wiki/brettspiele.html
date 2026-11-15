@@ -1,0 +1,44 @@
+{{- define "main" }}
+{{- /* Wiki-Brettspiele: Übersicht aller Spiele mit Eckdaten und Gesamtwertung */}}
+{{- $rows := slice }}
+{{- range .RegularPages.ByTitle }}
+{{- $rows = $rows | append (dict "page" . "w" (partial "brettspiel_wertung.html" .)) }}
+{{- end }}
+<article class="post-single wiki-page brettspiele">
+  <header class="post-header">
+    {{ partial "wiki_breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    {{- if not $rows }}
+    <p>Noch keine Spiele - <code>make brettspiel &lt;name&gt;</code> ausführen.</p>
+    {{- else }}
+    <h2 id="sammlung">Sammlung <span class="bg-count">{{ len $rows }} {{ cond (eq (len $rows) 1) "Spiel" "Spiele" }}</span></h2>
+    <div class="bg-table-wrap">
+      <table class="bg-table">
+        <thead>
+          <tr><th>Spiel</th><th class="bg-num">Spieler</th><th class="bg-num">Dauer</th><th class="bg-num">Wertung</th></tr>
+        </thead>
+        <tbody>
+          {{- range $rows }}
+          {{- $s := .page.Params.spiel | default dict }}
+          <tr>
+            <td><a href="{{ .page.Permalink }}">{{ .page.Title }}</a></td>
+            <td class="bg-num">{{ $s.spieler }}</td>
+            <td class="bg-num">{{ with $s.dauer }}{{ . }} min.{{ end }}</td>
+            <td class="bg-num">{{ with .w.gesamt }}{{ partial "brettspiel_sterne.html" . }}<span class="bg-score">{{ lang.FormatNumber 1 . }}</span>{{ else }}–{{ end }}</td>
+          </tr>
+          {{- end }}
+        </tbody>
+      </table>
+    </div>
+    {{- end }}
+  </div>
+</article>
+{{- end }}

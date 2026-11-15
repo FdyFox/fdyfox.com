@@ -1,0 +1,21 @@
+{{- /* Bewertung eines Brettspiels nach Kriterien.
+       .Params.bewertung ist entweder eine Zahl (nur Gesamtwertung) oder eine Map
+       mit den Kriterien aus dem Brettspiele-_index.md (optional "gesamt" als Override).
+       Rückgabe: dict "gesamt" (Zahl oder false) "einzeln" (slice von dict key/name/wert) */ -}}
+{{- $b := .Params.bewertung }}
+{{- $kriterien := .Parent.Params.kriterien | default slice }}
+{{- $einzeln := slice }}
+{{- $gesamt := false }}
+{{- if reflect.IsMap $b }}
+{{- $summe := 0.0 }}{{ $n := 0 }}
+{{- range $kriterien }}
+{{- $w := index $b .key }}
+{{- $einzeln = $einzeln | append (dict "key" .key "name" .name "beschreibung" .beschreibung "wert" $w) }}
+{{- with $w }}{{ $summe = add $summe (float .) }}{{ $n = add $n 1 }}{{ end }}
+{{- end }}
+{{- if not $n }}{{ $einzeln = slice }}{{ end }}
+{{- with $b.gesamt }}{{ $gesamt = float . }}{{ else }}{{ if $n }}{{ $gesamt = div $summe $n }}{{ end }}{{ end }}
+{{- else if $b }}
+{{- $gesamt = float $b }}
+{{- end }}
+{{- return dict "gesamt" $gesamt "einzeln" $einzeln }}

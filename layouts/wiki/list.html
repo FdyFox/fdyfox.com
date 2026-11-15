@@ -31,9 +31,15 @@
       </a>
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
       <p class="wiki-desc">{{ .Description }}</p>
+      {{- /* Höchstens 5 Einträge (zuletzt bearbeitete zuerst), sonst wird die Karte zu lang.
+             Mit "karte_nur_link: true" im _index.md des Bereichs nur der Link zur Übersicht. */}}
+      {{- $max := cond (.Params.karte_nur_link | default false) 0 5 }}
       <ul class="wiki-list">
-        {{- range .Pages }}
+        {{- range first $max .Pages.ByLastmod.Reverse }}
         <li><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .IsSection }}{{ $n := len .RegularPagesRecursive }}<span class="wiki-meta">{{ $n }} {{ cond (eq $n 1) "Seite" "Seiten" }}</span>{{ end }}</li>
+        {{- end }}
+        {{- if gt (len .Pages) $max }}
+        <li><a href="{{ .Permalink }}">Zur Übersicht</a></li>
         {{- end }}
       </ul>
     </section>

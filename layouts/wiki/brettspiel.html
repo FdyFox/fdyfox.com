@@ -1,0 +1,83 @@
+{{- define "main" }}
+{{- /* Wiki-Brettspiel: Steckbrief aus .Params.spiel, Partien aus .Params.partien */}}
+{{- $s := .Params.spiel | default dict }}
+{{- $st := partial "brettspiel_stats.html" . }}
+{{- $w := partial "brettspiel_wertung.html" . }}
+<article class="post-single wiki-page brettspiel">
+  <header class="post-header">
+    {{ partial "wiki_breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  <div class="post-content md-content">
+    <div class="bg-top">
+      <section class="bg-facts wiki-box">
+        <div class="wiki-box-title">Steckbrief</div>
+        {{- with .Resources.GetMatch "cover.*" }}
+        {{- $img := . }}
+        {{- if ne .MediaType.SubType "svg" }}{{ $img = .Resize "400x webp" }}{{ end }}
+        <img class="bg-cover" src="{{ $img.RelPermalink }}" alt="Schachtel von {{ $.Title }}">
+        {{- end }}
+        <dl>
+          {{- with $s.typ }}<dt>Typ</dt><dd>{{ . }}</dd>{{ end }}
+          {{- with $s.spieler }}<dt>Spieler</dt><dd>{{ . }}</dd>{{ end }}
+          {{- with $s.dauer }}<dt>Dauer</dt><dd>{{ . }} min.</dd>{{ end }}
+          {{- with $s.alter }}<dt>Alter</dt><dd>{{ . }}+</dd>{{ end }}
+          {{- with $s.komplexitaet }}<dt>Komplexität</dt><dd>{{ lang.FormatNumber 1 . }}/5</dd>{{ end }}
+          {{- with $s.autoren }}<dt>{{ cond (gt (len .) 1) "Autoren" "Autor" }}</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
+          {{- with $s.illustration }}<dt>Illustration</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
+          {{- with $s.verlag }}<dt>Verlag</dt><dd>{{ . }}</dd>{{ end }}
+          {{- with $s.jahr }}<dt>Erschienen</dt><dd>{{ . }}</dd>{{ end }}
+        </dl>
+        {{- with $s.bgg }}
+        <a class="bg-bgg" href="https://boardgamegeek.com/boardgame/{{ . }}" target="_blank" rel="noopener">BoardGameGeek →</a>
+        {{- end }}
+      </section>
+
+      {{- if $w.gesamt }}
+      <section class="bg-rating wiki-box" id="bewertung">
+        <div class="wiki-box-title">Bewertung</div>
+        <dl>
+          {{- range $w.einzeln }}
+          <dt>{{ with .beschreibung }}<abbr class="bg-hint" title="{{ . }}">{{ end }}{{ .name }}{{ with .beschreibung }}</abbr>{{ end }}</dt>
+          <dd>{{ with .wert }}{{ partial "brettspiel_sterne.html" . }}{{ else }}<span class="wiki-meta">–</span>{{ end }}</dd>
+          <dd class="bg-num">{{ with .wert }}{{ lang.FormatNumber 1 . }}{{ end }}</dd>
+          {{- end }}
+          <dt class="bg-rating-total">Gesamt</dt>
+          <dd class="bg-rating-total">{{ partial "brettspiel_sterne.html" $w.gesamt }}</dd>
+          <dd class="bg-rating-total bg-num">{{ lang.FormatNumber 1 $w.gesamt }}</dd>
+        </dl>
+      </section>
+      {{- end }}
+    </div>
+
+    {{- partial "anchored_headings.html" .Content -}}
+
+    {{- if $st.partien }}
+    <h2 id="partien">Partien</h2>
+    <p class="bg-summary">{{ $st.gespielt }} gespielt, {{ $st.gewonnen }} gewonnen</p>
+    <ul class="bg-plays">
+      {{- range $st.partien }}
+      <li>
+        <div class="bg-play-head">
+          <time datetime="{{ .datum.Format "2006-01-02" }}">{{ .datum | time.Format "02.01.2006" }}</time>
+          {{- with .spieler }}<span class="wiki-meta">{{ . }} Spieler</span>{{ end }}
+          {{- if isset . "gewonnen" }}
+          <span class="bg-result {{ cond .gewonnen "bg-won" "bg-lost" }}">{{ cond .gewonnen "gewonnen" "verloren" }}</span>
+          {{- end }}
+        </div>
+        {{- with .notiz }}<div class="bg-play-note">{{ . | $.RenderString }}</div>{{ end }}
+      </li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+
+  <footer class="post-footer">
+    <p class="wiki-lastmod">Diese Seite wurde zuletzt am {{ .Lastmod | time.Format "02.01.2006" }} bearbeitet.</p>
+  </footer>
+</article>
+{{- end }}

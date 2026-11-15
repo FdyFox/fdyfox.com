@@ -1,0 +1,9 @@
+{{- /* Partien eines Brettspiels nach Datum absteigend, plus Zähler. Parameter: Seite */ -}}
+{{- $partien := slice }}
+{{- range .Params.partien }}
+{{- $partien = $partien | append (merge . (dict "datum" (time.AsTime .datum))) }}
+{{- end }}
+{{- if $partien }}{{ $partien = sort $partien "datum" "desc" }}{{ end }}
+{{- $gewonnen := 0 }}
+{{- range $partien }}{{ if .gewonnen }}{{ $gewonnen = add $gewonnen 1 }}{{ end }}{{ end }}
+{{- return dict "partien" $partien "gespielt" (len $partien) "gewonnen" $gewonnen "zuletzt" (cond (gt (len $partien) 0) (index $partien 0).datum false) }}
