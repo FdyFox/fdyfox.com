@@ -97,11 +97,13 @@ deploy: build
 
 logbuch:
 	$(eval NAME := $(or $(filter-out $@,$(MAKECMDGOALS)),$(shell date +%F)))
-	@if [ -e content/$@/$(NAME).md ]; then \
-	   echo "→ Eintrag existiert bereits: content/$@/$(NAME).md"; \
+	$(eval DIR := content/$@/$(shell echo $(NAME) | grep -oE '^[0-9]{4}-[0-9]{2}' | tr - /))
+	$(eval DIR := $(or $(filter-out content/$@/,$(DIR)),content/$@/$(shell date +%Y/%m)))
+	@if [ -e $(DIR)/$(NAME)/index.md ]; then \
+	   echo "→ Eintrag existiert bereits: $(DIR)/$(NAME)/index.md"; \
 	 else \
-	   $(HUGO) new content/$@/$(NAME).md && \
-	   echo "→ Eintrag erstellt: content/$@/$(NAME).md"; \
+	   $(HUGO) new $(DIR)/$(NAME)/index.md && \
+	   echo "→ Eintrag erstellt: $(DIR)/$(NAME)/index.md"; \
 	 fi
 
 bastelstube:

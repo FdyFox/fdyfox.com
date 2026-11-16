@@ -189,6 +189,10 @@ title = "Suche"
 url = "/search/"
 weight = 6
 
+# Logbuch liegt in content/logbuch/JJJJ/MM/, die URL bleibt /logbuch/<dateiname>/
+[permalinks.page]
+logbuch = "/logbuch/:contentbasename/"
+
 [taxonomies]
 tag = "tags"
 category = "categories"
