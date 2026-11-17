@@ -21,7 +21,7 @@ echo "→ Upload via FTP..."
 lftp -c "
   set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate yes;
   open ftp://$FTP_USER:$FTP_PASS@$FTP_HOST;
-  mirror --reverse --delete --exclude ^kommentare/daten/ --parallel=8 --verbose public/ $FTP_PATH
+  mirror --reverse --delete --exclude ^kommentare/daten/ --exclude ^\.ftp-deploy-sync-state\.json$ --parallel=8 --verbose public/ $FTP_PATH
 "
 
 echo "✓ Deploy abgeschlossen."

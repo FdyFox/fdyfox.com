@@ -37,13 +37,29 @@ jobs:
             echo "::warning::COMMENT_ADMIN_PASSWORD fehlt, die Kommentar-Verwaltung ist deaktiviert"
           fi
 
+      # server-dir muss mit / enden, egal wie FTP_PATH hinterlegt ist
+      - name: Prepare FTP path
+        if: github.event_name == 'push'
+        id: ftp
+        env:
+          FTP_PATH: ${{ secrets.FTP_PATH }}
+        run: echo "dir=${FTP_PATH%/}/" >> "$GITHUB_OUTPUT"
+
+      # Lädt nur Dateien hoch, deren Inhalt sich geändert hat, und löscht nur, was
+      # weggefallen ist. Grundlage ist eine Liste mit Prüfsummen auf dem Server
+      # (.ftp-deploy-sync-state.json). Dateien, die nie über die Action hochgeladen
+      # wurden (z.B. kommentare/daten/), fasst sie nicht an.
       # Bei Pull Requests (z.B. Renovate-Updates) nur testweise bauen
       - name: Deploy via FTP
         if: github.event_name == 'push'
-        run: |
-          sudo apt-get install -y lftp
-          lftp -c "
-            set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate yes;
-            open ftp://${{ secrets.FTP_USER }}:${{ secrets.FTP_PASS }}@${{ secrets.FTP_HOST }};
-            mirror --reverse --delete --exclude ^kommentare/daten/ --parallel=8 public/ ${{ secrets.FTP_PATH }}
-          "
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          protocol: ftps
+          security: strict
+          local-dir: ./public/
+          server-dir: ${{ steps.ftp.outputs.dir }}
+          exclude: |
+            kommentare/daten/**

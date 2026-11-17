@@ -1,15 +1,15 @@
 {
-  "updated": "2026-11-14",
+  "updated": "2026-11-17",
   "totals": {
-    "books": 124,
-    "finished": 67,
-    "library_hours": 1278,
-    "listened_hours": 578
+    "books": 125,
+    "finished": 68,
+    "library_hours": 1288,
+    "listened_hours": 584
   },
   "finished_per_year": [
     [
       "2026",
-      26
+      27
     ],
     [
       "2025",
@@ -23,7 +23,7 @@
   "hours_per_year": [
     [
       "2026",
-      220
+      226
     ],
     [
       "2025",
@@ -60,6 +60,10 @@
       4
     ],
     [
+      "Scott Meyer",
+      3
+    ],
+    [
       "J.K. Rowling",
       3
     ],
@@ -70,10 +74,6 @@
     [
       "Vasily Mahanenko, Eva Leitner",
       3
-    ],
-    [
-      "Andreas Suchanek",
-      2
     ]
   ],
   "top_series": [
@@ -106,22 +106,22 @@
       4
     ],
     [
+      "Magic 2.0",
+      3
+    ],
+    [
       "Harry Potter",
       3
     ],
     [
       "Welt der Verwandelten",
       3
-    ],
-    [
-      "Die 12 Häuser der Magie",
-      2
     ]
   ],
   "languages": [
     [
       "German",
-      115
+      116
     ],
     [
       "English",
@@ -130,20 +130,20 @@
   ],
   "in_progress": [
     {
-      "title": "Abenteuer lass nach: Magic 2.0, 3",
-      "author": "Scott Meyer",
-      "series": "Magic 2.0 #3",
-      "narrator": "Marco Sven Reinbold",
-      "year": "2018",
+      "title": "Server \"Erde\" (Buch 1): Eine LitRPG-Abenteuer Serie (Unabridged)",
+      "author": "Vladimir Koshcheev, Vasily Mahanenko",
+      "series": "Server \"Erde\" #1",
+      "narrator": "Chris Chord",
+      "year": "2026",
       "language": "German",
       "genres": [
-        "Humor"
+        "Action & Abenteuer, Superhelden"
       ],
-      "hours": 12.9,
-      "added": "2025-06-24",
+      "hours": 10.5,
+      "added": "2026-11-17",
       "finished": "",
-      "progress": 61,
-      "cover": "hoerbuecher/covers/12efe539-2035-4f51-92d8-627b8634d29a.jpg"
+      "progress": 3,
+      "cover": "hoerbuecher/covers/d003a485-c1c6-4971-a068-d5acc1f7703e.jpg"
     },
     {
       "title": "Flucht Aus Darom: Eine LitRPG- und GameLit-Serie (Unabridged)",
@@ -162,39 +162,6 @@
   ],
   "heatmap": {
     "weeks": [
-      {
-        "month": "",
-        "days": [
-          {
-            "t": "Mo 10.11.2025 · 1,9 h",
-            "l": 4
-          },
-          {
-            "t": "Di 11.11.2025 · 46 min",
-            "l": 2
-          },
-          {
-            "t": "Mi 12.11.2025 · 2,4 h",
-            "l": 4
-          },
-          {
-            "t": "Do 13.11.2025 · 1,7 h",
-            "l": 4
-          },
-          {
-            "t": "Fr 14.11.2025 · 4,8 h",
-            "l": 4
-          },
-          {
-            "t": "Sa 15.11.2025 · 1,9 h",
-            "l": 4
-          },
-          {
-            "t": "So 16.11.2025 · 41 min",
-            "l": 2
-          }
-        ]
-      },
       {
         "month": "",
         "days": [
@@ -732,7 +699,7 @@
           },
           {
             "t": "Di 10.03.2026 · 24 min",
-            "l": 1
+            "l": 2
           },
           {
             "t": "Mi 11.03.2026 · 1,1 h",
@@ -992,7 +959,7 @@
         "days": [
           {
             "t": "Mo 04.05.2026 · 1,6 h",
-            "l": 3
+            "l": 4
           },
           {
             "t": "Di 05.05.2026 · 33 min",
@@ -1256,7 +1223,7 @@
         "days": [
           {
             "t": "Mo 29.06.2026 · 1,6 h",
-            "l": 3
+            "l": 4
           },
           {
             "t": "Di 30.06.2026 · 1,3 h",
@@ -1466,7 +1433,7 @@
           },
           {
             "t": "Do 13.08.2026 · 1,6 h",
-            "l": 3
+            "l": 4
           },
           {
             "t": "Fr 14.08.2026 · 1,8 h",
@@ -1904,10 +1871,27 @@
           {
             "t": "Sa 14.11.2026 · nichts gehört",
             "l": 0
+          },
+          {
+            "t": "So 15.11.2026 · nichts gehört",
+            "l": 0
+          }
+        ]
+      },
+      {
+        "month": "",
+        "days": [
+          {
+            "t": "Mo 16.11.2026 · 4,1 h",
+            "l": 4
+          },
+          {
+            "t": "Di 17.11.2026 · 1,1 h",
+            "l": 3
           }
         ]
       }
     ],
-    "active_days": 218
+    "active_days": 213
   }
 }

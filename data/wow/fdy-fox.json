@@ -1,12 +1,12 @@
 {
   "slug": "fdy-fox",
   "created": "2026-11-12T22:00:00+01:00",
-  "updated": "2026-11-14T22:44:45+01:00",
-  "last_login": "2026-11-13T14:48:30+01:00",
+  "updated": "2026-11-17T23:22:41+01:00",
+  "last_login": "2026-11-17T23:21:48+01:00",
   "character": {
     "name": "Fdy",
     "surname": "Fox",
-    "level": 23,
+    "level": 28,
     "race": "Himmelsgeborener der Windformer",
     "class": "Schamane",
     "spec": "Verstärkung",
@@ -14,7 +14,7 @@
     "faction": "Horde",
     "guild": "NUMBED",
     "ruleset": "Normal",
-    "item_level": 16,
+    "item_level": 19,
     "achievement_points": 0
   },
   "images": {
@@ -22,17 +22,17 @@
     "avatar": "wow/fdy-fox/avatar.jpg"
   },
   "stats": {
-    "health": 469,
-    "power": 948,
-    "strength": 67,
-    "agility": 36,
-    "intellect": 52,
-    "stamina": 43,
-    "spirit": 50,
-    "armor": 497
+    "health": 674,
+    "power": 1038,
+    "strength": 72,
+    "agility": 39,
+    "intellect": 48,
+    "stamina": 56,
+    "spirit": 55,
+    "armor": 549
   },
   "power_type": "Mana",
-  "quests_completed": 239,
+  "quests_completed": 292,
   "professions": {
     "primary": [
       {
@@ -42,24 +42,36 @@
       },
       {
         "name": "Kräuterkunde",
-        "skill": 162,
+        "skill": 182,
         "max": 225
       }
     ],
     "secondary": [
       {
         "name": "Kochkunst",
-        "skill": 16,
+        "skill": 32,
         "max": 75
       },
       {
+        "name": "Angeln",
+        "skill": 225,
+        "max": 225
+      },
+      {
         "name": "Erste Hilfe",
-        "skill": 35,
-        "max": 75
+        "skill": 133,
+        "max": 225
       }
     ]
   },
   "equipment": [
+    {
+      "slot": "Kopf",
+      "name": "Stirnband aus Taurajo",
+      "level": 23,
+      "quality": "common",
+      "id": 279391
+    },
     {
       "slot": "Schultern",
       "name": "Starre Schultern der Magie",
@@ -76,10 +88,10 @@
     },
     {
       "slot": "Brust",
-      "name": "Sporenbedeckte Tunika",
-      "level": 15,
+      "name": "Rindenhüllentunika",
+      "level": 25,
       "quality": "uncommon",
-      "id": 5341
+      "id": 5316
     },
     {
       "slot": "Taille",
@@ -132,17 +144,17 @@
     },
     {
       "slot": "Rücken",
-      "name": "Efeustoffumhang des Gorillas",
-      "level": 25,
+      "name": "Weisenumhang des Kanalisierers",
+      "level": 28,
       "quality": "uncommon",
-      "id": 9794
+      "id": 6614
     },
     {
       "slot": "Waffenhand",
-      "name": "Kräftiger Kampfhammer des Gorillas",
-      "level": 25,
+      "name": "Demolierhammer",
+      "level": 26,
       "quality": "uncommon",
-      "id": 15259
+      "id": 5322
     },
     {
       "slot": "Distanzwaffe",
@@ -154,24 +166,24 @@
   ],
   "reputations": [
     {
-      "name": "Windformer",
+      "name": "Thunder Bluff",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 3260,
+      "value": 5032,
       "max": 6000
     },
     {
       "name": "Orgrimmar",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 2356,
+      "value": 3906,
       "max": 6000
     },
     {
-      "name": "Thunder Bluff",
+      "name": "Windformer",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 2320,
+      "value": 3260,
       "max": 6000
     },
     {
@@ -185,22 +197,22 @@
       "name": "Darkspear",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 586,
+      "value": 1742,
+      "max": 6000
+    },
+    {
+      "name": "Undercity",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 580,
       "max": 6000
     },
     {
       "name": "Ratchet",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 2870,
-      "max": 3000
-    },
-    {
-      "name": "Undercity",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 2611,
-      "max": 3000
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 70,
+      "max": 6000
     },
     {
       "name": "Versorgung und Logistik Durotar",
@@ -213,35 +225,35 @@
       "name": "Everlook",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1685,
+      "value": 1785,
       "max": 3000
     },
     {
       "name": "Booty Bay",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1685,
+      "value": 1785,
       "max": 3000
     },
     {
       "name": "Gadgetzan",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1685,
+      "value": 1785,
       "max": 3000
     },
     {
       "name": "Powderfuse",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1685,
+      "value": 1785,
       "max": 3000
     },
     {
       "name": "Der Irdene Ring",
       "standing": "Neutral",
       "tier": 3,
-      "value": 700,
+      "value": 800,
       "max": 3000
     }
   ]
