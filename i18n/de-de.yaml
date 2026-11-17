@@ -1,0 +1,6 @@
+# Das Theme bringt nur de.yaml mit, die Seite läuft aber als de-de
+- id: prev_page
+  translation: "Neuer"
+
+- id: next_page
+  translation: "Älter"
