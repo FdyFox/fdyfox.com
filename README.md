@@ -4,7 +4,7 @@ Persönliche Website von Ferdinand Berger — gebaut mit [Hugo](https://gohugo.i
 
 ## Voraussetzungen
 
-- [mise](https://mise.jdx.dev/) - installiert die in `mise.toml` festgelegte Hugo-Extended-Version (`mise install`)
+- [mise](https://mise.jdx.dev/) - installiert die in `mise.toml` festgelegte Hugo-Version (`mise install`)
 - `lftp` für FTP-Deployment
 - Docker (optional) - für die Kommentare in der lokalen Entwicklung (PHP-Container)
 
