@@ -1,0 +1,171 @@
+{
+  "slug": "merlin-fox",
+  "created": "2026-11-18T16:16:03+01:00",
+  "updated": "2026-11-18T22:46:21+01:00",
+  "last_login": "2026-11-18T22:40:08+01:00",
+  "character": {
+    "name": "Merlin",
+    "surname": "Fox",
+    "level": 13,
+    "race": "Untoter",
+    "class": "Magier",
+    "spec": "Arkan",
+    "gender": "Männlich",
+    "faction": "Horde",
+    "guild": "",
+    "ruleset": "Normal",
+    "item_level": 5,
+    "achievement_points": 0
+  },
+  "images": {
+    "main": "wow/merlin-fox/main.png",
+    "avatar": "wow/merlin-fox/avatar.jpg"
+  },
+  "stats": {
+    "health": 242,
+    "power": 561,
+    "strength": 20,
+    "agility": 20,
+    "intellect": 40,
+    "stamina": 25,
+    "spirit": 42,
+    "armor": 123
+  },
+  "power_type": "Mana",
+  "quests_completed": 80,
+  "professions": {
+    "primary": [
+      {
+        "name": "Schneiderei",
+        "skill": 41,
+        "max": 75
+      },
+      {
+        "name": "Verzauberkunst",
+        "skill": 1,
+        "max": 75
+      }
+    ],
+    "secondary": [
+      {
+        "name": "Kochkunst",
+        "skill": 5,
+        "max": 75
+      },
+      {
+        "name": "Erste Hilfe",
+        "skill": 1,
+        "max": 75
+      }
+    ]
+  },
+  "equipment": [
+    {
+      "slot": "Hemd",
+      "name": "Lehrlingshemd",
+      "level": 1,
+      "quality": "common",
+      "id": 6096
+    },
+    {
+      "slot": "Brust",
+      "name": "Weiße Leinenrobe",
+      "level": 10,
+      "quality": "uncommon",
+      "id": 6241
+    },
+    {
+      "slot": "Taille",
+      "name": "Lehrlingsschärpe",
+      "level": 12,
+      "quality": "common",
+      "id": 3442
+    },
+    {
+      "slot": "Beine",
+      "name": "Flickenflügelhose",
+      "level": 11,
+      "quality": "uncommon",
+      "id": 281283
+    },
+    {
+      "slot": "Füße",
+      "name": "Flachsstiefel",
+      "level": 5,
+      "quality": "common",
+      "id": 3274
+    },
+    {
+      "slot": "Handgelenke",
+      "name": "Flachs-Armschienen",
+      "level": 5,
+      "quality": "common",
+      "id": 6060
+    },
+    {
+      "slot": "Hände",
+      "name": "Schwere Leinenhandschuhe",
+      "level": 10,
+      "quality": "uncommon",
+      "id": 4307
+    },
+    {
+      "slot": "Rücken",
+      "name": "Verstärktes Leinencape",
+      "level": 12,
+      "quality": "uncommon",
+      "id": 2580
+    },
+    {
+      "slot": "Waffenhand",
+      "name": "Arkaner Stab",
+      "level": 10,
+      "quality": "uncommon",
+      "id": 9514
+    },
+    {
+      "slot": "Distanzwaffe",
+      "name": "Feuerzauberstab",
+      "level": 12,
+      "quality": "uncommon",
+      "id": 5069
+    }
+  ],
+  "reputations": [
+    {
+      "name": "Undercity",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 5170,
+      "max": 6000
+    },
+    {
+      "name": "Orgrimmar",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 2121,
+      "max": 3000
+    },
+    {
+      "name": "Darkspear",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 2121,
+      "max": 3000
+    },
+    {
+      "name": "Argentumdämmerung",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 650,
+      "max": 3000
+    },
+    {
+      "name": "Thunder Bluff",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 621,
+      "max": 3000
+    }
+  ]
+}

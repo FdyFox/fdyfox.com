@@ -1,12 +1,12 @@
 {
   "slug": "fdy-fox",
   "created": "2026-11-12T22:00:00+01:00",
-  "updated": "2026-11-17T23:22:41+01:00",
-  "last_login": "2026-11-17T23:21:48+01:00",
+  "updated": "2026-11-18T22:46:18+01:00",
+  "last_login": "2026-11-18T19:36:13+01:00",
   "character": {
     "name": "Fdy",
     "surname": "Fox",
-    "level": 28,
+    "level": 29,
     "race": "Himmelsgeborener der Windformer",
     "class": "Schamane",
     "spec": "Verstärkung",
@@ -22,17 +22,17 @@
     "avatar": "wow/fdy-fox/avatar.jpg"
   },
   "stats": {
-    "health": 674,
-    "power": 1038,
-    "strength": 72,
-    "agility": 39,
-    "intellect": 48,
-    "stamina": 56,
+    "health": 714,
+    "power": 1116,
+    "strength": 81,
+    "agility": 46,
+    "intellect": 51,
+    "stamina": 58,
     "spirit": 55,
-    "armor": 549
+    "armor": 568
   },
   "power_type": "Mana",
-  "quests_completed": 292,
+  "quests_completed": 308,
   "professions": {
     "primary": [
       {
@@ -42,7 +42,7 @@
       },
       {
         "name": "Kräuterkunde",
-        "skill": 182,
+        "skill": 186,
         "max": 225
       }
     ],
@@ -59,7 +59,7 @@
       },
       {
         "name": "Erste Hilfe",
-        "skill": 133,
+        "skill": 134,
         "max": 225
       }
     ]
@@ -102,10 +102,10 @@
     },
     {
       "slot": "Beine",
-      "name": "Späherhose der Magie",
-      "level": 24,
+      "name": "Zänkergamaschen des Tigers",
+      "level": 27,
       "quality": "uncommon",
-      "id": 6587
+      "id": 15336
     },
     {
       "slot": "Füße",
@@ -144,10 +144,10 @@
     },
     {
       "slot": "Rücken",
-      "name": "Weisenumhang des Kanalisierers",
+      "name": "Dokebi-Cape",
       "level": 28,
       "quality": "uncommon",
-      "id": 6614
+      "id": 14582
     },
     {
       "slot": "Waffenhand",
@@ -169,14 +169,14 @@
       "name": "Thunder Bluff",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 5032,
+      "value": 5907,
       "max": 6000
     },
     {
       "name": "Orgrimmar",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 3906,
+      "value": 4125,
       "max": 6000
     },
     {
@@ -197,14 +197,14 @@
       "name": "Darkspear",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 1742,
+      "value": 1961,
       "max": 6000
     },
     {
       "name": "Undercity",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 580,
+      "value": 798,
       "max": 6000
     },
     {
