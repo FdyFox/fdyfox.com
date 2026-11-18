@@ -29,7 +29,9 @@ def load_env():
             line = line.strip()
             if line and not line.startswith("#") and "=" in line:
                 key, value = line.split("=", 1)
-                os.environ.setdefault(key.strip(), value.strip().strip("\"'"))
+                # Überschreibt bewusst: VS Code (python.terminal.useEnvFile) setzt die
+                # Werte nur beim Öffnen des Terminals, danach wären sie veraltet.
+                os.environ[key.strip()] = value.strip().strip("\"'")
 
 
 def api(path, raw=False):

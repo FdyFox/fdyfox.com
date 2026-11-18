@@ -97,13 +97,19 @@ def trim_png(data, pad=24):
 
 
 def load_env():
-    for env_file in (ROOT / ".env", Path.home() / ".config" / "bnet.env"):
+    # .env im Repo gewinnt auch gegen schon gesetzte Variablen: VS Code lädt sie per
+    # python.terminal.useEnvFile nur beim Öffnen des Terminals, danach wäre sie veraltet.
+    for env_file, override in ((ROOT / ".env", True), (Path.home() / ".config" / "bnet.env", False)):
         if env_file.exists():
             for line in env_file.read_text().splitlines():
                 line = line.strip().removeprefix("export ")
                 if line and not line.startswith("#") and "=" in line:
                     key, value = line.split("=", 1)
-                    os.environ.setdefault(key.strip(), value.strip().strip("\"'"))
+                    key, value = key.strip(), value.strip().strip("\"'")
+                    if override:
+                        os.environ[key] = value
+                    else:
+                        os.environ.setdefault(key, value)
 
 
 def get(url, headers=None, data=None, raw=False):
