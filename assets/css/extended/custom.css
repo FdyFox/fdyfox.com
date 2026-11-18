@@ -1772,6 +1772,10 @@ code {
   align-items: center;
   gap: 0.35rem;
 }
+/* Als Flex-Container greift text-align: right nicht mehr */
+.paginav .next .title {
+  justify-content: flex-end;
+}
 .pager-icon {
   width: 1em;
   height: 1em;
