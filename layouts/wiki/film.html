@@ -1,0 +1,89 @@
+{{- define "main" }}
+{{- /* Wiki-Film: Steckbrief aus .Params.film, Sichtungen aus .Params.gesehen */}}
+{{- $f := .Params.film | default dict }}
+{{- $w := partial "brettspiel_wertung.html" . }}
+{{- $gesehen := slice }}
+{{- range .Params.gesehen }}
+{{- $gesehen = $gesehen | append (merge . (dict "datum" (time.AsTime .datum))) }}
+{{- end }}
+{{- if $gesehen }}{{ $gesehen = sort $gesehen "datum" "desc" }}{{ end }}
+<article class="post-single wiki-page film">
+  <header class="post-header">
+    {{ partial "wiki_breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  <div class="post-content md-content">
+    {{- /* Ein Kasten: Poster links, rechts Wertung, Eckdaten-Zeile und Steckbrief */}}
+    {{- $cover := .Resources.GetMatch "cover.*" }}
+    {{- $square := and $cover (ne $cover.MediaType.SubType "svg") (lt (div (float $cover.Height) $cover.Width) 1.2) }}
+    <section class="film-hero wiki-box{{ if not $cover }} film-no-cover{{ end }}{{ if $square }} is-square{{ end }}">
+      {{- with $cover }}
+      {{- $img := . }}
+      {{- if ne .MediaType.SubType "svg" }}{{ $img = .Resize "500x webp" }}{{ end }}
+      <img class="film-poster" src="{{ $img.RelPermalink }}" alt="Poster von {{ $.Title }}">
+      {{- end }}
+      <div class="film-info">
+        <div class="film-head">
+          {{- with $w.gesamt }}
+          <div class="film-rating" id="bewertung">
+            {{ partial "brettspiel_sterne.html" . }}
+            <span class="film-score">{{ lang.FormatNumber 1 . }}<span> / 5</span></span>
+          </div>
+          {{- end }}
+
+          {{- /* Eckdaten als Zeile; FSK 0 ist ein gültiger Wert, deshalb nicht per "with" */}}
+          {{- $fsk := printf "%v" $f.fsk }}
+          <div class="film-meta">
+            {{- with $f.jahr }}<span>{{ . }}</span>{{ end }}
+            {{- with $f.laufzeit }}<span>{{ . }} min.</span>{{ end }}
+            {{- if not (in (slice "" "<nil>") $fsk) }}<span class="film-fsk film-fsk-{{ $fsk }}" title="Freigegeben ab {{ $fsk }} Jahren">FSK {{ $fsk }}</span>{{ end }}
+          </div>
+          {{- with $f.genres }}
+          <div class="film-genres">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+          {{- end }}
+        </div>
+
+        <dl class="film-facts">
+          {{- with $f.originaltitel }}{{ if ne . $.Title }}<dt>Originaltitel</dt><dd>{{ . }}</dd>{{ end }}{{ end }}
+          {{- with $f.regie }}<dt>Regie</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
+          {{- with $f.drehbuch }}<dt>Drehbuch</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
+          {{- with $f.darsteller }}<dt>Darsteller</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
+          {{- with $f.land }}<dt>{{ cond (gt (len .) 1) "Länder" "Land" }}</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
+        </dl>
+
+        {{- if or $f.tmdb $f.imdb }}
+        <div class="film-links">
+          {{- with $f.tmdb }}<a class="bg-bgg" href="https://www.themoviedb.org/movie/{{ . }}" target="_blank" rel="noopener">TMDB →</a>{{ end }}
+          {{- with $f.imdb }}<a class="bg-bgg" href="https://www.imdb.com/title/{{ . }}/" target="_blank" rel="noopener">IMDb →</a>{{ end }}
+        </div>
+        {{- end }}
+      </div>
+    </section>
+
+    {{- partial "anchored_headings.html" .Content -}}
+
+    {{- if $gesehen }}
+    <h2 id="gesehen">Gesehen</h2>
+    <ol class="film-seen">
+      {{- range $gesehen }}
+      <li>
+        <div class="film-seen-head">
+          <time datetime="{{ .datum.Format "2006-01-02" }}">{{ .datum | time.Format "02.01.2006" }}</time>
+          {{- with .wo }}<span class="film-seen-wo">{{ . }}</span>{{ end }}
+        </div>
+        {{- with .notiz }}<div class="film-seen-note">{{ . | $.RenderString }}</div>{{ end }}
+      </li>
+      {{- end }}
+    </ol>
+    {{- end }}
+  </div>
+
+  <footer class="post-footer">
+    <p class="wiki-lastmod">Diese Seite wurde zuletzt am {{ .Lastmod | time.Format "02.01.2006" }} bearbeitet.</p>
+  </footer>
+</article>
+{{- end }}

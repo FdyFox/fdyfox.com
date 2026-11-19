@@ -1,0 +1,44 @@
+{{- define "main" }}
+{{- /* Wiki-Filme: Übersicht aller Filme mit Eckdaten und Wertung */}}
+{{- $rows := slice }}
+{{- range .RegularPages.ByTitle }}
+{{- $rows = $rows | append (dict "page" . "w" (partial "brettspiel_wertung.html" .)) }}
+{{- end }}
+<article class="post-single wiki-page filme">
+  <header class="post-header">
+    {{ partial "wiki_breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  <div class="post-content md-content">
+    {{ .Content }}
+
+    {{- if not $rows }}
+    <p>Noch keine Filme - <code>make film &lt;name&gt;</code> ausführen.</p>
+    {{- else }}
+    <h2 id="sammlung">Sammlung <span class="bg-count">{{ len $rows }} {{ cond (eq (len $rows) 1) "Film" "Filme" }}</span></h2>
+    <div class="bg-table-wrap">
+      <table class="bg-table">
+        <thead>
+          <tr><th>Film</th><th class="bg-num">Jahr</th><th class="bg-num">Laufzeit</th><th class="bg-num">Wertung</th></tr>
+        </thead>
+        <tbody>
+          {{- range $rows }}
+          {{- $f := .page.Params.film | default dict }}
+          <tr>
+            <td><a href="{{ .page.Permalink }}">{{ .page.Title }}</a></td>
+            <td class="bg-num">{{ $f.jahr }}</td>
+            <td class="bg-num">{{ with $f.laufzeit }}{{ . }} min.{{ end }}</td>
+            <td class="bg-num">{{ with .w.gesamt }}{{ partial "brettspiel_sterne.html" . }}<span class="bg-score">{{ lang.FormatNumber 1 . }}</span>{{ else }}–{{ end }}</td>
+          </tr>
+          {{- end }}
+        </tbody>
+      </table>
+    </div>
+    {{- end }}
+  </div>
+</article>
+{{- end }}

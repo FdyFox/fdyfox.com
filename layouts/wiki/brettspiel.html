@@ -13,46 +13,66 @@
   </header>
 
   <div class="post-content md-content">
-    <div class="bg-top">
-      <section class="bg-facts wiki-box">
-        <div class="wiki-box-title">Steckbrief</div>
-        {{- with .Resources.GetMatch "cover.*" }}
-        {{- $img := . }}
-        {{- if ne .MediaType.SubType "svg" }}{{ $img = .Resize "400x webp" }}{{ end }}
-        <img class="bg-cover" src="{{ $img.RelPermalink }}" alt="Schachtel von {{ $.Title }}">
-        {{- end }}
-        <dl>
-          {{- with $s.typ }}<dt>Typ</dt><dd>{{ . }}</dd>{{ end }}
-          {{- with $s.spieler }}<dt>Spieler</dt><dd>{{ . }}</dd>{{ end }}
-          {{- with $s.dauer }}<dt>Dauer</dt><dd>{{ . }} min.</dd>{{ end }}
-          {{- with $s.alter }}<dt>Alter</dt><dd>{{ . }}+</dd>{{ end }}
-          {{- with $s.komplexitaet }}<dt>Komplexität</dt><dd>{{ lang.FormatNumber 1 . }}/5</dd>{{ end }}
+    {{- /* Gleicher Aufbau wie bei Filmen (film-*-Klassen): Schachtel links, rechts
+           Gesamtwertung, Eckdaten-Zeile und Steckbrief; Einzelwertungen darunter */}}
+    {{- $cover := .Resources.GetMatch "cover.*" }}
+    {{- $square := and $cover (ne $cover.MediaType.SubType "svg") (lt (div (float $cover.Height) $cover.Width) 1.2) }}
+    <section class="film-hero bg-hero wiki-box{{ if not $cover }} film-no-cover{{ end }}{{ if $square }} is-square{{ end }}">
+      {{- with $cover }}
+      {{- $img := . }}
+      {{- if ne .MediaType.SubType "svg" }}{{ $img = .Resize "500x webp" }}{{ end }}
+      <img class="film-poster" src="{{ $img.RelPermalink }}" alt="Schachtel von {{ $.Title }}">
+      {{- end }}
+      <div class="film-info">
+        <div class="film-head">
+          {{- with $w.gesamt }}
+          <a class="film-rating" href="#bewertung" title="Zu den Einzelwertungen">
+            {{ partial "brettspiel_sterne.html" . }}
+            <span class="film-score">{{ lang.FormatNumber 1 . }}<span> / 5</span></span>
+          </a>
+          {{- end }}
+
+          <div class="film-meta">
+            {{- with $s.spieler }}<span>{{ . }} Spieler</span>{{ end }}
+            {{- with $s.dauer }}<span>{{ . }} min.</span>{{ end }}
+            {{- with $s.alter }}<span>ab {{ . }}</span>{{ end }}
+          </div>
+          {{- if or $s.typ $s.komplexitaet }}
+          <div class="film-genres">
+            {{- with $s.typ }}<span>{{ . }}</span>{{ end }}
+            {{- with $s.komplexitaet }}<span title="Komplexität laut BoardGameGeek (1 = leicht, 5 = schwer)">Komplexität {{ lang.FormatNumber 1 . }}/5</span>{{ end }}
+          </div>
+          {{- end }}
+        </div>
+
+        <dl class="film-facts">
           {{- with $s.autoren }}<dt>{{ cond (gt (len .) 1) "Autoren" "Autor" }}</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
           {{- with $s.illustration }}<dt>Illustration</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
           {{- with $s.verlag }}<dt>Verlag</dt><dd>{{ . }}</dd>{{ end }}
           {{- with $s.jahr }}<dt>Erschienen</dt><dd>{{ . }}</dd>{{ end }}
         </dl>
-        {{- with $s.bgg }}
-        <a class="bg-bgg" href="https://boardgamegeek.com/boardgame/{{ . }}" target="_blank" rel="noopener">BoardGameGeek →</a>
-        {{- end }}
-      </section>
 
-      {{- if $w.gesamt }}
-      <section class="bg-rating wiki-box" id="bewertung">
-        <div class="wiki-box-title">Bewertung</div>
-        <dl>
-          {{- range $w.einzeln }}
+        {{- with $s.bgg }}
+        <div class="film-links">
+          <a class="bg-bgg" href="https://boardgamegeek.com/boardgame/{{ . }}" target="_blank" rel="noopener">BoardGameGeek →</a>
+        </div>
+        {{- end }}
+      </div>
+    </section>
+
+    {{- with $w.einzeln }}
+    <section class="bg-criteria wiki-box" id="bewertung">
+      <div class="wiki-box-title">Bewertung im Detail</div>
+      <dl>
+        {{- range . }}
+        <div>
           <dt>{{ with .beschreibung }}<abbr class="bg-hint" title="{{ . }}">{{ end }}{{ .name }}{{ with .beschreibung }}</abbr>{{ end }}</dt>
-          <dd>{{ with .wert }}{{ partial "brettspiel_sterne.html" . }}{{ else }}<span class="wiki-meta">–</span>{{ end }}</dd>
-          <dd class="bg-num">{{ with .wert }}{{ lang.FormatNumber 1 . }}{{ end }}</dd>
-          {{- end }}
-          <dt class="bg-rating-total">Gesamt</dt>
-          <dd class="bg-rating-total">{{ partial "brettspiel_sterne.html" $w.gesamt }}</dd>
-          <dd class="bg-rating-total bg-num">{{ lang.FormatNumber 1 $w.gesamt }}</dd>
-        </dl>
-      </section>
-      {{- end }}
-    </div>
+          <dd>{{ with .wert }}{{ partial "brettspiel_sterne.html" . }}<span class="bg-num">{{ lang.FormatNumber 1 . }}</span>{{ else }}<span class="wiki-meta">–</span>{{ end }}</dd>
+        </div>
+        {{- end }}
+      </dl>
+    </section>
+    {{- end }}
 
     {{- partial "anchored_headings.html" .Content -}}
 

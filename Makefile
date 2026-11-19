@@ -32,7 +32,7 @@ KOMMENTARE_DOCKER := --user $$(id -u):$$(id -g) \
 
 .DEFAULT_GOAL := help
 
-.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki brettspiel hoerbuecher wow changelog sync open \
+.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki brettspiel film hoerbuecher wow changelog sync open \
         kommentare-start kommentare-stop kommentare-seed
 
 help:
@@ -47,6 +47,7 @@ help:
 	@echo "  make page <name>    Neue Seite anlegen"
 	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
 	@echo "  make brettspiel <name> [bgg-id] Neues Brettspiel anlegen, Steckbrief von BoardGameGeek"
+	@echo "  make film <name> [tmdb-id] Neuen Film anlegen, Steckbrief und Poster von TMDB"
 	@echo "  make hoerbuecher    Hörbuch-Daten aus Audiobookshelf holen"
 	@echo "  make wow            WoW-Forever-Charaktere aus der Blizzard API holen"
 	@echo "  make changelog      Changelog aus den Commit-Messages sammeln"
@@ -128,6 +129,11 @@ brettspiel:
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	@test -n "$(ARGS)" || (echo "Fehler: Name oder BGG-ID fehlt. Beispiel: make brettspiel azul  oder  make brettspiel azul 230802" && exit 1)
 	@HUGO=$(HUGO) python3 scripts/brettspiel-neu.py $(ARGS)
+
+film:
+	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
+	@test -n "$(ARGS)" || (echo "Fehler: Name oder TMDB-ID fehlt. Beispiel: make film matrix  oder  make film matrix 603" && exit 1)
+	@HUGO=$(HUGO) python3 scripts/film-neu.py $(ARGS)
 
 hoerbuecher:
 	python3 scripts/abs-sync.py

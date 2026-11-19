@@ -21,7 +21,7 @@ Sonja ist heute wieder nach Baden-Württemberg gefahren. Dieses Mal kommt sie le
 
 ## Filmnachmittag
 
-Am späten Nachmittag habe ich mit den Kindern noch "Plötzlich Prinzessin" geschaut. :)
+Am späten Nachmittag habe ich mit den Kindern noch [Plötzlich Prinzessin](/wiki/filme/ploetzlich-prinzessin/) geschaut. :)
 
 ## Neues auf der Seite: Brettspiele im Wiki
 
