@@ -24,7 +24,7 @@ spiel:
   jahr:
   bgg:                 # BoardGameGeek-ID aus der URL
 # Partien, neueste egal wo – wird nach Datum sortiert
-partien: []
+partien:
 #  - datum: {{ now.Format "2006-01-02" }}
 #    spieler: 4
 #    gewonnen: false

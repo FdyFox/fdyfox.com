@@ -1,6 +1,9 @@
 ---
 title: "Arme Ritter"
-description: ""
+description: |-
+  Sich gegenseitig mit Spielkarten ausstechen!
+
+  Den Autor dieses tollen Spiels kennen wir sogar persönlich. Arme Ritter eignet sich unserer Meinung nach super als Spiel für zwischendurch - und ist bei uns nebenbei auch noch ein Rechentrainer für die Kinder.
 date: 2026-11-15T21:31:51+01:00
 draft: false
 # Bewertung, je 1–5 (halbe erlaubt). Kriterien stehen in brettspiele/_index.md.
@@ -34,5 +37,3 @@ partien: []
 # Bildunterschriften optional in bilder/bildunterschriften.yaml ("datei.jpg: Text").
 # cover.* direkt im Ordner ist das Schachtelbild im Steckbrief.
 ---
-
-Den Autor dieses tollen Spiels kennen wir sogar persönlich! Arme Ritter eignet sich unserer Meinung nach super als Spiel für zwischendurch – und ist bei uns nebenbei auch noch ein Rechentrainer für die Kinder.

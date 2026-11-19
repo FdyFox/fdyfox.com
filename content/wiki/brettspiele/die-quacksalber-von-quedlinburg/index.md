@@ -1,6 +1,9 @@
 ---
 title: "Die Quacksalber von Quedlinburg"
-description: "Kessel füllen, hoffen, dass er nicht explodiert."
+description: |-
+  Kessel füllen und hoffen, dass er nicht explodiert!
+
+  Wir spielen das Spiel sehr gerne als Familie. Es ist ziemlich ausgeglichen und lässt sich auch mit kleineren Kindern super spielen, weil der strategische Teil nicht zu sehr ins Gewicht fällt.
 date: 2026-11-15T12:18:36+01:00
 draft: false
 # Bewertung, je 1–5 (halbe erlaubt). Kriterien stehen in brettspiele/_index.md.
@@ -34,5 +37,3 @@ partien: []
 # Bildunterschriften optional in bilder/bildunterschriften.yaml ("datei.jpg: Text").
 # cover.* direkt im Ordner ist das Schachtelbild im Steckbrief.
 ---
-
-Wir spielen das Spiel sehr gerne als Familie. Es ist ziemlich ausgeglichen und lässt sich auch mit kleineren Kindern super spielen, weil der strategische Teil nicht zu sehr ins Gewicht fällt.

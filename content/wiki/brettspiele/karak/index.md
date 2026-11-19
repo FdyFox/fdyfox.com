@@ -1,6 +1,9 @@
 ---
 title: "Karak"
-description: ""
+description: |-
+  Ein schöner Dungeon-Crawler, bei welchem jeder seinen Helden spielt und dessen Fertigkeiten einsetzen muss.
+
+  Eines der meistgespielten Spiele bei uns im Haus!
 date: 2026-11-15T21:26:19+01:00
 draft: false
 # Bewertung, je 1–5 (halbe erlaubt). Kriterien stehen in brettspiele/_index.md.
@@ -34,5 +37,3 @@ partien: []
 # Bildunterschriften optional in bilder/bildunterschriften.yaml ("datei.jpg: Text").
 # cover.* direkt im Ordner ist das Schachtelbild im Steckbrief.
 ---
-
-Eines der am meist gespielten Spiele bei uns im Haus!
