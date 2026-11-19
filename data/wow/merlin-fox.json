@@ -1,12 +1,12 @@
 {
   "slug": "merlin-fox",
   "created": "2026-11-18T16:16:03+01:00",
-  "updated": "2026-11-18T22:46:21+01:00",
-  "last_login": "2026-11-18T22:40:08+01:00",
+  "updated": "2026-11-19T23:03:24+01:00",
+  "last_login": "2026-11-19T22:59:08+01:00",
   "character": {
     "name": "Merlin",
     "surname": "Fox",
-    "level": 13,
+    "level": 18,
     "race": "Untoter",
     "class": "Magier",
     "spec": "Arkan",
@@ -14,7 +14,7 @@
     "faction": "Horde",
     "guild": "",
     "ruleset": "Normal",
-    "item_level": 5,
+    "item_level": 6,
     "achievement_points": 0
   },
   "images": {
@@ -22,17 +22,17 @@
     "avatar": "wow/merlin-fox/avatar.jpg"
   },
   "stats": {
-    "health": 242,
-    "power": 561,
-    "strength": 20,
-    "agility": 20,
-    "intellect": 40,
-    "stamina": 25,
-    "spirit": 42,
-    "armor": 123
+    "health": 327,
+    "power": 786,
+    "strength": 22,
+    "agility": 23,
+    "intellect": 49,
+    "stamina": 27,
+    "spirit": 51,
+    "armor": 148
   },
   "power_type": "Mana",
-  "quests_completed": 80,
+  "quests_completed": 141,
   "professions": {
     "primary": [
       {
@@ -42,7 +42,7 @@
       },
       {
         "name": "Verzauberkunst",
-        "skill": 1,
+        "skill": 25,
         "max": 75
       }
     ],
@@ -54,7 +54,7 @@
       },
       {
         "name": "Erste Hilfe",
-        "skill": 1,
+        "skill": 41,
         "max": 75
       }
     ]
@@ -90,10 +90,10 @@
     },
     {
       "slot": "Füße",
-      "name": "Flachsstiefel",
-      "level": 5,
+      "name": "Aufklärer-Stiefel",
+      "level": 14,
       "quality": "common",
-      "id": 3274
+      "id": 3454
     },
     {
       "slot": "Handgelenke",
@@ -104,17 +104,17 @@
     },
     {
       "slot": "Hände",
-      "name": "Schwere Leinenhandschuhe",
-      "level": 10,
+      "name": "Barbarische Stoffhandschuhe",
+      "level": 15,
       "quality": "uncommon",
-      "id": 4307
+      "id": 3308
     },
     {
       "slot": "Rücken",
-      "name": "Verstärktes Leinencape",
-      "level": 12,
+      "name": "Kundschafter-Umhang des Falken",
+      "level": 17,
       "quality": "uncommon",
-      "id": 2580
+      "id": 15501
     },
     {
       "slot": "Waffenhand",
@@ -125,32 +125,74 @@
     },
     {
       "slot": "Distanzwaffe",
-      "name": "Feuerzauberstab",
-      "level": 12,
-      "quality": "uncommon",
-      "id": 5069
+      "name": "Glimmender Zauberstab",
+      "level": 20,
+      "quality": "common",
+      "id": 5208
     }
   ],
   "reputations": [
     {
       "name": "Undercity",
-      "standing": "Freundlich",
-      "tier": 4,
-      "value": 5170,
-      "max": 6000
+      "standing": "Wohlwollend",
+      "tier": 5,
+      "value": 1208,
+      "max": 12000
     },
     {
       "name": "Orgrimmar",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 2121,
-      "max": 3000
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 1838,
+      "max": 6000
     },
     {
       "name": "Darkspear",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 218,
+      "max": 6000
+    },
+    {
+      "name": "Ratchet",
       "standing": "Neutral",
       "tier": 3,
-      "value": 2121,
+      "value": 1860,
+      "max": 3000
+    },
+    {
+      "name": "Thunder Bluff",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1775,
+      "max": 3000
+    },
+    {
+      "name": "Everlook",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1180,
+      "max": 3000
+    },
+    {
+      "name": "Booty Bay",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1180,
+      "max": 3000
+    },
+    {
+      "name": "Gadgetzan",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1180,
+      "max": 3000
+    },
+    {
+      "name": "Powderfuse",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 1180,
       "max": 3000
     },
     {
@@ -158,13 +200,6 @@
       "standing": "Neutral",
       "tier": 3,
       "value": 650,
-      "max": 3000
-    },
-    {
-      "name": "Thunder Bluff",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 621,
       "max": 3000
     }
   ]
