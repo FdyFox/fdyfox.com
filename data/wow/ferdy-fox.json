@@ -1,0 +1,176 @@
+{
+  "slug": "ferdy-fox",
+  "created": "2026-11-21T23:55:49+01:00",
+  "updated": "2026-11-21T23:55:49+01:00",
+  "last_login": "2026-11-21T23:51:48+01:00",
+  "character": {
+    "name": "Ferdy",
+    "surname": "Fox",
+    "level": 10,
+    "race": "Himmelsgeborener des Hohen Ordens",
+    "class": "Magier",
+    "spec": "Arkan",
+    "gender": "Weiblich",
+    "faction": "Allianz",
+    "guild": "",
+    "ruleset": "Normal",
+    "item_level": 3,
+    "achievement_points": 0
+  },
+  "images": {
+    "main": "wow/ferdy-fox/main.png",
+    "avatar": "wow/ferdy-fox/avatar.jpg"
+  },
+  "stats": {
+    "health": 187,
+    "power": 486,
+    "strength": 18,
+    "agility": 26,
+    "intellect": 38,
+    "stamina": 23,
+    "spirit": 30,
+    "armor": 99
+  },
+  "power_type": "Mana",
+  "quests_completed": 71,
+  "professions": {
+    "primary": [
+      {
+        "name": "Alchemie",
+        "skill": 11,
+        "max": 75
+      },
+      {
+        "name": "Kräuterkunde",
+        "skill": 29,
+        "max": 75
+      }
+    ],
+    "secondary": [
+      {
+        "name": "Kochkunst",
+        "skill": 8,
+        "max": 75
+      },
+      {
+        "name": "Angeln",
+        "skill": 1,
+        "max": 75
+      },
+      {
+        "name": "Erste Hilfe",
+        "skill": 16,
+        "max": 75
+      }
+    ]
+  },
+  "equipment": [
+    {
+      "slot": "Hemd",
+      "name": "Hemd des Lehrlings von Thendal",
+      "level": 1,
+      "quality": "common",
+      "id": 271655
+    },
+    {
+      "slot": "Beine",
+      "name": "Flickwerkgamaschen",
+      "level": 7,
+      "quality": "common",
+      "id": 263422
+    },
+    {
+      "slot": "Füße",
+      "name": "Feldstiefel des Bauern",
+      "level": 10,
+      "quality": "common",
+      "id": 257340
+    },
+    {
+      "slot": "Handgelenke",
+      "name": "Elegante Manschetten",
+      "level": 10,
+      "quality": "common",
+      "id": 263425
+    },
+    {
+      "slot": "Hände",
+      "name": "Handschuhe des Waldläufers von Thendal",
+      "level": 5,
+      "quality": "common",
+      "id": 257264
+    },
+    {
+      "slot": "Ring 1",
+      "name": "Uraltes Erbstück",
+      "level": 1,
+      "quality": "common",
+      "id": 264908
+    },
+    {
+      "slot": "Rücken",
+      "name": "Einfacher Umhang des Jägers",
+      "level": 8,
+      "quality": "uncommon",
+      "id": 257943
+    },
+    {
+      "slot": "Waffenhand",
+      "name": "Stecken des Novizen",
+      "level": 5,
+      "quality": "common",
+      "id": 257282
+    },
+    {
+      "slot": "Distanzwaffe",
+      "name": "Wünschelrute",
+      "level": 6,
+      "quality": "common",
+      "id": 263428
+    }
+  ],
+  "reputations": [
+    {
+      "name": "Der Hohe Orden",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 2005,
+      "max": 6000
+    },
+    {
+      "name": "Stormwind",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 100,
+      "max": 6000
+    },
+    {
+      "name": "Kirin Tor",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 0,
+      "max": 6000
+    },
+    {
+      "name": "Ironforge",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 2000,
+      "max": 3000
+    },
+    {
+      "name": "Gnomeregangnome",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 2000,
+      "max": 3000
+    },
+    {
+      "name": "Darnassus",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 500,
+      "max": 3000
+    }
+  ]
+}

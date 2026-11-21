@@ -1,12 +1,12 @@
 {
   "slug": "merlin-fox",
   "created": "2026-11-18T16:16:03+01:00",
-  "updated": "2026-11-19T23:03:24+01:00",
-  "last_login": "2026-11-19T22:59:08+01:00",
+  "updated": "2026-11-21T23:55:46+01:00",
+  "last_login": "2026-11-21T16:23:57+01:00",
   "character": {
     "name": "Merlin",
     "surname": "Fox",
-    "level": 18,
+    "level": 22,
     "race": "Untoter",
     "class": "Magier",
     "spec": "Arkan",
@@ -14,7 +14,7 @@
     "faction": "Horde",
     "guild": "",
     "ruleset": "Normal",
-    "item_level": 6,
+    "item_level": 9,
     "achievement_points": 0
   },
   "images": {
@@ -22,27 +22,27 @@
     "avatar": "wow/merlin-fox/avatar.jpg"
   },
   "stats": {
-    "health": 327,
-    "power": 786,
-    "strength": 22,
-    "agility": 23,
-    "intellect": 49,
-    "stamina": 27,
-    "spirit": 51,
-    "armor": 148
+    "health": 291,
+    "power": 480,
+    "strength": 5,
+    "agility": 5,
+    "intellect": 23,
+    "stamina": 14,
+    "spirit": 22,
+    "armor": 33
   },
   "power_type": "Mana",
-  "quests_completed": 141,
+  "quests_completed": 188,
   "professions": {
     "primary": [
       {
         "name": "Schneiderei",
-        "skill": 41,
+        "skill": 44,
         "max": 75
       },
       {
         "name": "Verzauberkunst",
-        "skill": 25,
+        "skill": 39,
         "max": 75
       }
     ],
@@ -50,6 +50,11 @@
       {
         "name": "Kochkunst",
         "skill": 5,
+        "max": 75
+      },
+      {
+        "name": "Angeln",
+        "skill": 28,
         "max": 75
       },
       {
@@ -76,10 +81,10 @@
     },
     {
       "slot": "Taille",
-      "name": "Lehrlingsschärpe",
-      "level": 12,
-      "quality": "common",
-      "id": 3442
+      "name": "Graslandschärpe",
+      "level": 20,
+      "quality": "uncommon",
+      "id": 6477
     },
     {
       "slot": "Beine",
@@ -90,38 +95,38 @@
     },
     {
       "slot": "Füße",
-      "name": "Aufklärer-Stiefel",
-      "level": 14,
-      "quality": "common",
-      "id": 3454
+      "name": "Ritual-Sandalen des Schattenschutzes",
+      "level": 20,
+      "quality": "uncommon",
+      "id": 14129
     },
     {
       "slot": "Handgelenke",
-      "name": "Flachs-Armschienen",
-      "level": 5,
-      "quality": "common",
-      "id": 6060
+      "name": "Mystikerarmreifen",
+      "level": 17,
+      "quality": "uncommon",
+      "id": 14366
     },
     {
       "slot": "Hände",
-      "name": "Barbarische Stoffhandschuhe",
-      "level": 15,
+      "name": "Wanderer-Handschuhe",
+      "level": 16,
       "quality": "uncommon",
-      "id": 3308
+      "id": 5337
     },
     {
       "slot": "Rücken",
-      "name": "Kundschafter-Umhang des Falken",
+      "name": "Kundschafter-Umhang der Intelligenz",
       "level": 17,
       "quality": "uncommon",
       "id": 15501
     },
     {
       "slot": "Waffenhand",
-      "name": "Arkaner Stab",
-      "level": 10,
+      "name": "Windreiterstab",
+      "level": 20,
       "quality": "uncommon",
-      "id": 9514
+      "id": 5306
     },
     {
       "slot": "Distanzwaffe",
@@ -136,63 +141,63 @@
       "name": "Undercity",
       "standing": "Wohlwollend",
       "tier": 5,
-      "value": 1208,
+      "value": 2193,
       "max": 12000
     },
     {
       "name": "Orgrimmar",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 1838,
+      "value": 3067,
       "max": 6000
     },
     {
       "name": "Darkspear",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 218,
+      "value": 1072,
+      "max": 6000
+    },
+    {
+      "name": "Thunder Bluff",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 127,
       "max": 6000
     },
     {
       "name": "Ratchet",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1860,
-      "max": 3000
-    },
-    {
-      "name": "Thunder Bluff",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 1775,
+      "value": 2485,
       "max": 3000
     },
     {
       "name": "Everlook",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1180,
+      "value": 1492,
       "max": 3000
     },
     {
       "name": "Booty Bay",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1180,
+      "value": 1492,
       "max": 3000
     },
     {
       "name": "Gadgetzan",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1180,
+      "value": 1492,
       "max": 3000
     },
     {
       "name": "Powderfuse",
       "standing": "Neutral",
       "tier": 3,
-      "value": 1180,
+      "value": 1492,
       "max": 3000
     },
     {
@@ -200,6 +205,13 @@
       "standing": "Neutral",
       "tier": 3,
       "value": 650,
+      "max": 3000
+    },
+    {
+      "name": "Der Irdene Ring",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 100,
       "max": 3000
     }
   ]
