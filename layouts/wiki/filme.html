@@ -17,7 +17,7 @@
     {{ .Content }}
 
     {{- if not $rows }}
-    <p>Noch keine Filme - <code>make film &lt;name&gt;</code> ausführen.</p>
+    <p>Noch keine Filme - <code>./create film &lt;name&gt;</code> ausführen.</p>
     {{- else }}
     <h2 id="sammlung">Sammlung <span class="bg-count">{{ len $rows }} {{ cond (eq (len $rows) 1) "Film" "Filme" }}</span></h2>
     <div class="bg-table-wrap">

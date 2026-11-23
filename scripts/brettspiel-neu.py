@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Legt ein neues Brettspiel im Wiki an und füllt den Steckbrief von BoardGameGeek.
 
-Aufrufe (über make):
-  make brettspiel <name>          sucht <name>, übernimmt einen eindeutigen Treffer
-                                  (Name darf Leerzeichen haben: make brettspiel Arme Ritter 86322)
-  make brettspiel <name> <bgg-id> nimmt genau dieses Spiel, Seite heißt <name>
-  make brettspiel <bgg-id>        Seitenname aus dem (deutschen) Spielnamen
+Aufrufe (über ./create):
+  ./create brettspiel <name>          sucht <name>, übernimmt einen eindeutigen Treffer
+                                      (Name darf Leerzeichen haben: ./create brettspiel Arme Ritter 86322)
+  ./create brettspiel <name> <bgg-id> nimmt genau dieses Spiel, Seite heißt <name>
+  ./create brettspiel <bgg-id>        Seitenname aus dem (deutschen) Spielnamen
 
 Erzeugt content/wiki/brettspiele/<name>/index.md aus archetypes/brettspiel.md und lädt
 das Schachtelbild als cover.<ext> daneben. Bewertung und Partien bleiben leer.
@@ -15,7 +15,7 @@ Quellen, beide ohne Key:
     Nicht dokumentiert, kann sich jederzeit ändern – dann hier anpassen.
   - Wikidata: Suche nach Namen (BGG selbst hat keine offene Suche) und deutscher Titel.
 
-  HUGO  Pfad zu hugo (setzt das Makefile)
+  HUGO  Pfad zu hugo (setzt ./create)
 """
 
 import json
@@ -201,11 +201,11 @@ def download_cover(url, folder):
 
 
 def main():
-    # make zerlegt "Arme Ritter" in zwei Wörter – deshalb: letzte Angabe ist die ID,
+    # Ohne Anführungszeichen kommt "Arme Ritter" als zwei Wörter an – deshalb: letzte Angabe ist die ID,
     # wenn sie wie eine aussieht, alles davor ist der Name
     args = sys.argv[1:]
     if not args:
-        sys.exit("Aufruf: make brettspiel <name> [<bgg-id>]  oder  make brettspiel <bgg-id>")
+        sys.exit("Aufruf: ./create brettspiel <name> [<bgg-id>]  oder  ./create brettspiel <bgg-id>")
 
     slug, gid, de = None, None, None
     if bgg_id(args[-1]):
@@ -217,7 +217,7 @@ def main():
         try:
             exact, hits = search(slug)
         except Exception as e:
-            sys.exit(f"Suche bei Wikidata fehlgeschlagen ({e}). Mit ID aufrufen: make brettspiel {slug} <bgg-id>")
+            sys.exit(f"Suche bei Wikidata fehlgeschlagen ({e}). Mit ID aufrufen: ./create brettspiel {slug} <bgg-id>")
         if len(exact) == 1:
             gid, de = exact[0][0], exact[0][1]
             print(f"Gefunden: {exact[0][1]} ({exact[0][2]}) – BGG-ID {gid}")
@@ -225,10 +225,10 @@ def main():
             shown = exact or hits
             if not shown:
                 sys.exit(f"Nichts zu „{slug}“ gefunden (Wikidata kennt nicht jedes Spiel).\n"
-                         f"BGG-ID aus der Adresse auf boardgamegeek.com nehmen: make brettspiel {slug} <bgg-id>")
+                         f"BGG-ID aus der Adresse auf boardgamegeek.com nehmen: ./create brettspiel {slug} <bgg-id>")
             print(f"{'Mehrere' if exact else 'Keine eindeutigen'} Treffer zu „{slug}“ – bitte mit ID aufrufen:")
             for h in shown:
-                print(f"  make brettspiel {slugify(h[1])} {h[0]}   # {h[1]}{f' ({h[2]})' if h[2] else ''}")
+                print(f"  ./create brettspiel {slugify(h[1])} {h[0]}   # {h[1]}{f' ({h[2]})' if h[2] else ''}")
             sys.exit(1)
 
     game = thing(gid)

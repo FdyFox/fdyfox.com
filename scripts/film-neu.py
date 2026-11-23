@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Legt einen neuen Film im Wiki an und füllt den Steckbrief von TMDB.
 
-Aufrufe (über make):
-  make film <name>             sucht <name>, übernimmt einen eindeutigen Treffer
-                               (Name darf Leerzeichen haben: make film Zurück in die Zukunft)
-  make film <name> <tmdb-id>   nimmt genau diesen Film, Seite heißt <name>
-  make film <tmdb-url>         Seitenname aus dem deutschen Titel
+Aufrufe (über ./create):
+  ./create film <name>             sucht <name>, übernimmt einen eindeutigen Treffer
+                                   (Name darf Leerzeichen haben: ./create film Zurück in die Zukunft)
+  ./create film <name> <tmdb-id>   nimmt genau diesen Film, Seite heißt <name>
+  ./create film <tmdb-url>         Seitenname aus dem deutschen Titel
 
-Eine reine Zahl allein gilt als Name (make film 1917), nicht als ID – für die ID
+Eine reine Zahl allein gilt als Name (./create film 1917), nicht als ID – für die ID
 die TMDB-Adresse nehmen oder einen Namen davor schreiben.
 
 Erzeugt content/wiki/filme/<name>/index.md aus archetypes/film.md und lädt das
@@ -16,7 +16,7 @@ deutsche Poster als cover.jpg daneben. Bewertung und Sichtungen bleiben leer.
 Konfiguration über .env bzw. Umgebungsvariablen:
   TMDB_API_KEY  API-Key (v3) oder Lesezugriffs-Token (v4) von themoviedb.org,
                 kostenlos unter Einstellungen → API
-  HUGO          Pfad zu hugo (setzt das Makefile)
+  HUGO          Pfad zu hugo (setzt ./create)
 """
 
 import json
@@ -168,15 +168,24 @@ def main():
     if not os.environ.get("TMDB_API_KEY"):
         sys.exit("Fehler: TMDB_API_KEY fehlt in .env (kostenlos auf themoviedb.org → Einstellungen → API)")
 
-    # make zerlegt "Zurück in die Zukunft" in Wörter – deshalb: letzte Angabe ist die ID,
+    # Ohne Anführungszeichen kommt "Zurück in die Zukunft" in Wörtern an – deshalb: letzte Angabe ist die ID,
     # wenn sie eine URL ist oder eine Zahl hinter einem Namen, alles davor ist der Name
     args = sys.argv[1:]
     if not args:
-        sys.exit("Aufruf: make film <name> [<tmdb-id>]  oder  make film <tmdb-url>")
+        sys.exit("Aufruf: ./create film <name> [<tmdb-id>]  oder  ./create film <tmdb-url>")
 
     slug, mid = None, None
-    if "themoviedb.org" in args[-1] or (len(args) > 1 and tmdb_id(args[-1])):
+    if "themoviedb.org" in args[-1]:
         mid, args = tmdb_id(args[-1]), args[:-1]
+    elif len(args) > 1 and tmdb_id(args[-1]):
+        # Zahl am Ende kann auch zum Titel gehören („Plötzlich Prinzessin 2“):
+        # passt der ganze Name eindeutig auf einen Film, gewinnt der Titel
+        exact, _ = search(" ".join(args))
+        if len(exact) == 1:
+            mid = exact[0][0]
+            print(f"Gefunden: {exact[0][1]} ({exact[0][3]}) – TMDB-ID {mid}")
+        else:
+            mid, args = tmdb_id(args[-1]), args[:-1]
     if args:
         slug = slugify(" ".join(args))
 
@@ -189,11 +198,11 @@ def main():
             shown = exact or hits
             if not shown:
                 sys.exit(f"Nichts zu „{' '.join(args)}“ gefunden. TMDB-ID aus der Adresse auf "
-                         f"themoviedb.org nehmen: make film {slug} <tmdb-id>")
+                         f"themoviedb.org nehmen: ./create film {slug} <tmdb-id>")
             print(f"{'Mehrere' if exact else 'Keine eindeutigen'} Treffer zu „{' '.join(args)}“ – bitte mit ID aufrufen:")
             for h in shown:
                 orig = f" / {h[2]}" if h[2] != h[1] else ""
-                print(f"  make film {slugify(h[1])} {h[0]}   # {h[1]}{orig}{f' ({h[3]})' if h[3] else ''}")
+                print(f"  ./create film {slugify(h[1])} {h[0]}   # {h[1]}{orig}{f' ({h[3]})' if h[3] else ''}")
             sys.exit(1)
 
     film = movie(mid)

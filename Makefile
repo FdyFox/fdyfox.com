@@ -32,7 +32,7 @@ KOMMENTARE_DOCKER := --user $$(id -u):$$(id -g) \
 
 .DEFAULT_GOAL := help
 
-.PHONY: help dev drafts build clean deploy logbuch bastelstube page wiki brettspiel film hoerbuecher wow changelog sync open \
+.PHONY: help dev drafts build clean deploy hoerbuecher wow changelog sync open \
         kommentare-start kommentare-stop kommentare-seed
 
 help:
@@ -42,17 +42,13 @@ help:
 	@echo "  make build          Seite bauen (public/)"
 	@echo "  make clean          public/ löschen"
 	@echo "  make deploy         Bauen und per FTP deployen"
-	@echo "  make logbuch [name]     Logbuch-Eintrag anlegen (ohne Name: heute)"
-	@echo "  make bastelstube <name> Neuen Bastelstube-Beitrag anlegen"
-	@echo "  make page <name>    Neue Seite anlegen"
-	@echo "  make wiki <kat/name> Neue Wiki-Seite anlegen"
-	@echo "  make brettspiel <name> [bgg-id] Neues Brettspiel anlegen, Steckbrief von BoardGameGeek"
-	@echo "  make film <name> [tmdb-id] Neuen Film anlegen, Steckbrief und Poster von TMDB"
 	@echo "  make hoerbuecher    Hörbuch-Daten aus Audiobookshelf holen"
 	@echo "  make wow            WoW-Forever-Charaktere aus der Blizzard API holen"
 	@echo "  make changelog      Changelog aus den Commit-Messages sammeln"
 	@echo "  make sync           Alle Datenquellen aktualisieren (scripts/*-sync.py)"
 	@echo "  make open           Lokale Seite im Browser öffnen"
+	@echo ""
+	@echo "Neue Inhalte (Logbuch, Wiki, Film, …) legt ./create an, ohne Argumente mit Menü."
 
 dev:
 	@python3 scripts/changelog-sync.py
@@ -96,45 +92,6 @@ clean:
 deploy: build
 	@bash deploy.sh
 
-logbuch:
-	$(eval NAME := $(or $(filter-out $@,$(MAKECMDGOALS)),$(shell date +%F)))
-	$(eval DIR := content/$@/$(shell echo $(NAME) | grep -oE '^[0-9]{4}-[0-9]{2}' | tr - /))
-	$(eval DIR := $(or $(filter-out content/$@/,$(DIR)),content/$@/$(shell date +%Y/%m)))
-	@if [ -e $(DIR)/$(NAME)/index.md ]; then \
-	   echo "→ Eintrag existiert bereits: $(DIR)/$(NAME)/index.md"; \
-	 else \
-	   $(HUGO) new $(DIR)/$(NAME)/index.md && \
-	   echo "→ Eintrag erstellt: $(DIR)/$(NAME)/index.md"; \
-	 fi
-
-bastelstube:
-	$(eval NAME := $(filter-out $@,$(MAKECMDGOALS)))
-	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make $@ mein-beitrag" && exit 1)
-	$(HUGO) new content/$@/$(NAME).md
-	@echo "→ Beitrag erstellt: content/$@/$(NAME).md"
-
-page:
-	$(eval NAME := $(filter-out $@,$(MAKECMDGOALS)))
-	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make page ueber-mich" && exit 1)
-	$(HUGO) new content/$(NAME).md
-	@echo "→ Seite erstellt: content/$(NAME).md"
-
-wiki:
-	$(eval NAME := $(filter-out $@,$(MAKECMDGOALS)))
-	@test -n "$(NAME)" || (echo "Fehler: Name fehlt. Beispiel: make wiki homelab/proxmox" && exit 1)
-	$(HUGO) new --kind wiki content/wiki/$(NAME).md
-	@echo "→ Wiki-Seite erstellt: content/wiki/$(NAME).md"
-
-brettspiel:
-	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
-	@test -n "$(ARGS)" || (echo "Fehler: Name oder BGG-ID fehlt. Beispiel: make brettspiel azul  oder  make brettspiel azul 230802" && exit 1)
-	@HUGO=$(HUGO) python3 scripts/brettspiel-neu.py $(ARGS)
-
-film:
-	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
-	@test -n "$(ARGS)" || (echo "Fehler: Name oder TMDB-ID fehlt. Beispiel: make film matrix  oder  make film matrix 603" && exit 1)
-	@HUGO=$(HUGO) python3 scripts/film-neu.py $(ARGS)
-
 hoerbuecher:
 	python3 scripts/abs-sync.py
 
@@ -155,9 +112,6 @@ sync:
 	 done; \
 	 if [ -n "$$failed" ]; then echo "✗ Fehlgeschlagen:$$failed"; exit 1; fi; \
 	 echo "✓ Alle Datenquellen aktualisiert"
-
-%:
-	@:
 
 open:
 	$(BROWSER) -c "start http://localhost:1313"

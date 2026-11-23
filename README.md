@@ -20,12 +20,17 @@ Die Seite ist dann unter [http://localhost:1313](http://localhost:1313) erreichb
 ## Neuen Inhalt erstellen
 
 ```bash
-make logbuch                  # Logbuch-Eintrag für heute (content/logbuch/JJJJ-MM-TT.md)
-make logbuch mein-thema       # Logbuch-Eintrag mit eigenem Namen
-make bastelstube mein-thema   # Bastelstube-Beitrag
-make wiki homelab/proxmox     # Wiki-Seite (Kategorie/Name)
-make page ueber-mich          # Einzelne Seite
+./create                                   # Menü: Art auswählen, Name eingeben
+./create logbuch                           # Logbuch-Eintrag für heute
+./create logbuch mein-thema                # Logbuch-Eintrag mit eigenem Namen
+./create bastelstube mein-thema            # Bastelstube-Beitrag
+./create wiki homelab/proxmox              # Wiki-Seite (Kategorie/Name)
+./create page ueber-mich                   # Einzelne Seite
+./create brettspiel azul [bgg-id]          # Brettspiel, Steckbrief von BoardGameGeek
+./create film "Plötzlich Prinzessin 2"     # Film, Steckbrief und Poster von TMDB (optional mit TMDB-ID)
 ```
+
+Namen mit Leerzeichen gehören in Anführungszeichen. Server, Build, Deploy und Sync laufen weiter über `make` (`make help`).
 
 Neue Inhalte starten als Entwurf. Zum Veröffentlichen `draft: false` setzen.
 
@@ -117,7 +122,7 @@ content/
 ├── search.md          # Suchseite
 ├── impressum.md
 └── datenschutz.md
-archetypes/            # Vorlagen für make logbuch / wiki / page
+archetypes/            # Vorlagen für ./create
 data/
 ├── blogroll.yaml      # Blogroll (auch als /blogroll.opml)
 └── hoerbuecher.json   # von make hoerbuecher erzeugt

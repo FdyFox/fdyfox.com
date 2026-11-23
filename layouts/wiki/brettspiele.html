@@ -17,7 +17,7 @@
     {{ .Content }}
 
     {{- if not $rows }}
-    <p>Noch keine Spiele - <code>make brettspiel &lt;name&gt;</code> ausführen.</p>
+    <p>Noch keine Spiele - <code>./create brettspiel &lt;name&gt;</code> ausführen.</p>
     {{- else }}
     <h2 id="sammlung">Sammlung <span class="bg-count">{{ len $rows }} {{ cond (eq (len $rows) 1) "Spiel" "Spiele" }}</span></h2>
     <div class="bg-table-wrap">
