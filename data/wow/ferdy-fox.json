@@ -1,12 +1,12 @@
 {
   "slug": "ferdy-fox",
   "created": "2026-11-21T23:55:49+01:00",
-  "updated": "2026-11-23T00:13:14+01:00",
-  "last_login": "2026-11-23T00:12:28+01:00",
+  "updated": "2026-11-23T22:49:13+01:00",
+  "last_login": "2026-11-23T22:46:36+01:00",
   "character": {
     "name": "Ferdy",
     "surname": "Fox",
-    "level": 16,
+    "level": 21,
     "race": "Himmelsgeborener des Hohen Ordens",
     "class": "Magier",
     "spec": "Arkan",
@@ -14,7 +14,7 @@
     "faction": "Allianz",
     "guild": "",
     "ruleset": "Normal",
-    "item_level": 6,
+    "item_level": 7,
     "achievement_points": 0
   },
   "images": {
@@ -22,27 +22,27 @@
     "avatar": "wow/ferdy-fox/avatar.jpg"
   },
   "stats": {
-    "health": 307,
-    "power": 795,
-    "strength": 19,
-    "agility": 27,
-    "intellect": 52,
-    "stamina": 28,
-    "spirit": 43,
-    "armor": 175
+    "health": 402,
+    "power": 1125,
+    "strength": 20,
+    "agility": 28,
+    "intellect": 68,
+    "stamina": 31,
+    "spirit": 50,
+    "armor": 172
   },
   "power_type": "Mana",
-  "quests_completed": 140,
+  "quests_completed": 195,
   "professions": {
     "primary": [
       {
         "name": "Alchemie",
-        "skill": 37,
-        "max": 75
+        "skill": 62,
+        "max": 150
       },
       {
         "name": "Kräuterkunde",
-        "skill": 78,
+        "skill": 128,
         "max": 150
       }
     ],
@@ -54,13 +54,13 @@
       },
       {
         "name": "Angeln",
-        "skill": 28,
+        "skill": 44,
         "max": 75
       },
       {
         "name": "Erste Hilfe",
-        "skill": 47,
-        "max": 75
+        "skill": 89,
+        "max": 150
       }
     ]
   },
@@ -74,10 +74,10 @@
     },
     {
       "slot": "Brust",
-      "name": "Robe des Erntearbeiters",
+      "name": "Einfache Bluse der Intelligenz",
       "level": 15,
       "quality": "uncommon",
-      "id": 1561
+      "id": 9749
     },
     {
       "slot": "Taille",
@@ -102,17 +102,17 @@
     },
     {
       "slot": "Handgelenke",
-      "name": "Windsongarmreif",
-      "level": 13,
+      "name": "Waldhainarmschützer",
+      "level": 18,
       "quality": "uncommon",
-      "id": 263336
+      "id": 5315
     },
     {
       "slot": "Hände",
-      "name": "Welldrip-Handschuhe",
-      "level": 14,
+      "name": "Immergrünhandschuhe",
+      "level": 18,
       "quality": "uncommon",
-      "id": 15401
+      "id": 7738
     },
     {
       "slot": "Ring 1",
@@ -122,28 +122,28 @@
       "id": 264908
     },
     {
-      "slot": "Rücken",
-      "name": "Ureinwohnercape",
-      "level": 14,
-      "quality": "common",
-      "id": 14116
-    },
-    {
       "slot": "Waffenhand",
-      "name": "Ausbalancierter Bauernstecken",
-      "level": 13,
+      "name": "Eichendrosselstab",
+      "level": 14,
       "quality": "uncommon",
-      "id": 257343
+      "id": 15397
     },
     {
       "slot": "Distanzwaffe",
-      "name": "Feuerzauberstab",
-      "level": 12,
+      "name": "Mondsteinzauberstab",
+      "level": 18,
       "quality": "uncommon",
-      "id": 5069
+      "id": 15204
     }
   ],
   "reputations": [
+    {
+      "name": "Stormwind",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 3446,
+      "max": 6000
+    },
     {
       "name": "Der Hohe Orden",
       "standing": "Freundlich",
@@ -159,10 +159,24 @@
       "max": 6000
     },
     {
-      "name": "Stormwind",
+      "name": "Darnassus",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 1415,
+      "value": 1685,
+      "max": 6000
+    },
+    {
+      "name": "Gnomeregangnome",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 977,
+      "max": 6000
+    },
+    {
+      "name": "Ironforge",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 946,
       "max": 6000
     },
     {
@@ -171,27 +185,6 @@
       "tier": 4,
       "value": 0,
       "max": 6000
-    },
-    {
-      "name": "Gnomeregangnome",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 2815,
-      "max": 3000
-    },
-    {
-      "name": "Ironforge",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 2652,
-      "max": 3000
-    },
-    {
-      "name": "Darnassus",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 1985,
-      "max": 3000
     }
   ]
 }

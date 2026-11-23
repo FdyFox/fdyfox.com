@@ -1,15 +1,15 @@
 {
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "totals": {
-    "books": 125,
-    "finished": 68,
-    "library_hours": 1288,
-    "listened_hours": 588
+    "books": 126,
+    "finished": 69,
+    "library_hours": 1298,
+    "listened_hours": 594
   },
   "finished_per_year": [
     [
       "2026",
-      27
+      28
     ],
     [
       "2025",
@@ -23,7 +23,7 @@
   "hours_per_year": [
     [
       "2026",
-      230
+      236
     ],
     [
       "2025",
@@ -121,7 +121,7 @@
   "languages": [
     [
       "German",
-      116
+      117
     ],
     [
       "English",
@@ -130,20 +130,20 @@
   ],
   "in_progress": [
     {
-      "title": "Server \"Erde\" (Buch 1): Eine LitRPG-Abenteuer Serie (Unabridged)",
-      "author": "Vladimir Koshcheev, Vasily Mahanenko",
-      "series": "Server \"Erde\" #1",
+      "title": "Server „Erde“: Buch 2 (Unabridged)",
+      "author": "Vasily Mahanenko, Vladimir Koshcheev",
+      "series": "Server \"Erde\" #2",
       "narrator": "Chris Chord",
       "year": "2026",
       "language": "German",
       "genres": [
-        "Action & Abenteuer, Superhelden"
+        "Action & Abenteuer"
       ],
-      "hours": 10.5,
-      "added": "2026-11-17",
+      "hours": 9.1,
+      "added": "2026-11-23",
       "finished": "",
-      "progress": 48,
-      "cover": "hoerbuecher/covers/d003a485-c1c6-4971-a068-d5acc1f7703e.jpg"
+      "progress": 7,
+      "cover": "hoerbuecher/covers/19eb4ecd-22b5-4b9d-ac31-d48dcf6e5e22.jpg"
     },
     {
       "title": "Flucht Aus Darom: Eine LitRPG- und GameLit-Serie (Unabridged)",
@@ -699,7 +699,7 @@
           },
           {
             "t": "Di 17.03.2026 · 25 min",
-            "l": 2
+            "l": 1
           },
           {
             "t": "Mi 18.03.2026 · nichts gehört",
@@ -827,7 +827,7 @@
         "days": [
           {
             "t": "Mo 13.04.2026 · 25 min",
-            "l": 2
+            "l": 1
           },
           {
             "t": "Di 14.04.2026 · nichts gehört",
@@ -1623,7 +1623,7 @@
           },
           {
             "t": "Di 29.09.2026 · 25 min",
-            "l": 2
+            "l": 1
           },
           {
             "t": "Mi 30.09.2026 · 22 min",
@@ -1639,7 +1639,7 @@
           },
           {
             "t": "Sa 03.10.2026 · 25 min",
-            "l": 2
+            "l": 1
           },
           {
             "t": "So 04.10.2026 · 13 min",
@@ -1788,7 +1788,7 @@
           },
           {
             "t": "Di 03.11.2026 · 1,6 h",
-            "l": 4
+            "l": 3
           },
           {
             "t": "Mi 04.11.2026 · 53 min",
@@ -1882,12 +1882,12 @@
         "month": "",
         "days": [
           {
-            "t": "Mo 23.11.2026 · nichts gehört",
-            "l": 0
+            "t": "Mo 23.11.2026 · 5,6 h",
+            "l": 4
           }
         ]
       }
     ],
-    "active_days": 215
+    "active_days": 216
   }
 }
