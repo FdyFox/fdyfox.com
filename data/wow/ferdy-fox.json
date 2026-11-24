@@ -1,12 +1,12 @@
 {
   "slug": "ferdy-fox",
   "created": "2026-11-21T23:55:49+01:00",
-  "updated": "2026-11-23T22:49:13+01:00",
-  "last_login": "2026-11-23T22:46:36+01:00",
+  "updated": "2026-11-24T22:16:21+01:00",
+  "last_login": "2026-11-24T22:16:05+01:00",
   "character": {
     "name": "Ferdy",
     "surname": "Fox",
-    "level": 21,
+    "level": 25,
     "race": "Himmelsgeborener des Hohen Ordens",
     "class": "Magier",
     "spec": "Arkan",
@@ -14,7 +14,7 @@
     "faction": "Allianz",
     "guild": "",
     "ruleset": "Normal",
-    "item_level": 7,
+    "item_level": 11,
     "achievement_points": 0
   },
   "images": {
@@ -22,49 +22,56 @@
     "avatar": "wow/ferdy-fox/avatar.jpg"
   },
   "stats": {
-    "health": 402,
-    "power": 1125,
-    "strength": 20,
-    "agility": 28,
-    "intellect": 68,
-    "stamina": 31,
-    "spirit": 50,
-    "armor": 172
+    "health": 465,
+    "power": 1401,
+    "strength": 22,
+    "agility": 32,
+    "intellect": 80,
+    "stamina": 33,
+    "spirit": 67,
+    "armor": 215
   },
   "power_type": "Mana",
-  "quests_completed": 195,
+  "quests_completed": 242,
   "professions": {
     "primary": [
       {
         "name": "Alchemie",
-        "skill": 62,
+        "skill": 78,
         "max": 150
       },
       {
         "name": "Kräuterkunde",
-        "skill": 128,
-        "max": 150
+        "skill": 161,
+        "max": 225
       }
     ],
     "secondary": [
       {
         "name": "Kochkunst",
         "skill": 75,
-        "max": 75
+        "max": 150
       },
       {
         "name": "Angeln",
-        "skill": 44,
-        "max": 75
+        "skill": 101,
+        "max": 150
       },
       {
         "name": "Erste Hilfe",
-        "skill": 89,
+        "skill": 128,
         "max": 150
       }
     ]
   },
   "equipment": [
+    {
+      "slot": "Hals",
+      "name": "Nachbildung einer Mondsichelhalskette",
+      "level": 26,
+      "quality": "uncommon",
+      "id": 281290
+    },
     {
       "slot": "Hemd",
       "name": "Hemd des Lehrlings von Thendal",
@@ -74,17 +81,17 @@
     },
     {
       "slot": "Brust",
-      "name": "Einfache Bluse der Intelligenz",
-      "level": 15,
+      "name": "Roben der Antike",
+      "level": 25,
       "quality": "uncommon",
-      "id": 9749
+      "id": 5812
     },
     {
       "slot": "Taille",
-      "name": "Schärpe des Kummers",
-      "level": 11,
+      "name": "Reliktjäger-Gürtel",
+      "level": 20,
       "quality": "uncommon",
-      "id": 263402
+      "id": 11936
     },
     {
       "slot": "Beine",
@@ -109,10 +116,10 @@
     },
     {
       "slot": "Hände",
-      "name": "Immergrünhandschuhe",
-      "level": 18,
+      "name": "Rituelle Handschuhe der Intelligenz",
+      "level": 20,
       "quality": "uncommon",
-      "id": 7738
+      "id": 14124
     },
     {
       "slot": "Ring 1",
@@ -120,6 +127,13 @@
       "level": 1,
       "quality": "common",
       "id": 264908
+    },
+    {
+      "slot": "Rücken",
+      "name": "Grunzercape der Intelligenz",
+      "level": 19,
+      "quality": "uncommon",
+      "id": 15508
     },
     {
       "slot": "Waffenhand",
@@ -141,7 +155,14 @@
       "name": "Stormwind",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 3446,
+      "value": 4852,
+      "max": 6000
+    },
+    {
+      "name": "Darnassus",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 3497,
       "max": 6000
     },
     {
@@ -159,24 +180,17 @@
       "max": 6000
     },
     {
-      "name": "Darnassus",
-      "standing": "Freundlich",
-      "tier": 4,
-      "value": 1685,
-      "max": 6000
-    },
-    {
       "name": "Gnomeregangnome",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 977,
+      "value": 1915,
       "max": 6000
     },
     {
       "name": "Ironforge",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 946,
+      "value": 1865,
       "max": 6000
     },
     {
@@ -185,6 +199,41 @@
       "tier": 4,
       "value": 0,
       "max": 6000
+    },
+    {
+      "name": "Ratchet",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 600,
+      "max": 3000
+    },
+    {
+      "name": "Everlook",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 550,
+      "max": 3000
+    },
+    {
+      "name": "Booty Bay",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 550,
+      "max": 3000
+    },
+    {
+      "name": "Gadgetzan",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 550,
+      "max": 3000
+    },
+    {
+      "name": "Powderfuse",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 550,
+      "max": 3000
     }
   ]
 }
