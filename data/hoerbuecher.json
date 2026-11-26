@@ -1,15 +1,15 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-26",
   "totals": {
-    "books": 126,
-    "finished": 69,
-    "library_hours": 1298,
-    "listened_hours": 594
+    "books": 127,
+    "finished": 70,
+    "library_hours": 1322,
+    "listened_hours": 601
   },
   "finished_per_year": [
     [
       "2026",
-      28
+      29
     ],
     [
       "2025",
@@ -23,7 +23,7 @@
   "hours_per_year": [
     [
       "2026",
-      236
+      243
     ],
     [
       "2025",
@@ -121,7 +121,7 @@
   "languages": [
     [
       "German",
-      117
+      118
     ],
     [
       "English",
@@ -130,20 +130,20 @@
   ],
   "in_progress": [
     {
-      "title": "Server „Erde“: Buch 2 (Unabridged)",
-      "author": "Vasily Mahanenko, Vladimir Koshcheev",
-      "series": "Server \"Erde\" #2",
-      "narrator": "Chris Chord",
-      "year": "2026",
+      "title": "Primal Hunter (Unabridged)",
+      "author": "Zogarth",
+      "series": "Primal Hunter #1",
+      "narrator": "Jim Lacher",
+      "year": "2025",
       "language": "German",
       "genres": [
-        "Action & Abenteuer"
+        "Epic Fantasy, Action & Abenteuer, Militär"
       ],
-      "hours": 9.1,
-      "added": "2026-11-23",
+      "hours": 24.3,
+      "added": "2026-11-26",
       "finished": "",
-      "progress": 7,
-      "cover": "hoerbuecher/covers/19eb4ecd-22b5-4b9d-ac31-d48dcf6e5e22.jpg"
+      "progress": 1,
+      "cover": "hoerbuecher/covers/94b15031-75e8-43b7-b85b-b516ee70dcd3.jpg"
     },
     {
       "title": "Flucht Aus Darom: Eine LitRPG- und GameLit-Serie (Unabridged)",
@@ -156,7 +156,7 @@
       "hours": 15.1,
       "added": "2026-05-27",
       "finished": "",
-      "progress": 10,
+      "progress": 14,
       "cover": "hoerbuecher/covers/6a3d4d45-626d-4e8e-b60c-394b1baebe2b.jpg"
     }
   ],
@@ -1884,10 +1884,22 @@
           {
             "t": "Mo 23.11.2026 · 5,6 h",
             "l": 4
+          },
+          {
+            "t": "Di 24.11.2026 · 5,8 h",
+            "l": 4
+          },
+          {
+            "t": "Mi 25.11.2026 · 37 min",
+            "l": 2
+          },
+          {
+            "t": "Do 26.11.2026 · 53 min",
+            "l": 2
           }
         ]
       }
     ],
-    "active_days": 216
+    "active_days": 219
   }
 }

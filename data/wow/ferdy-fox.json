@@ -1,12 +1,12 @@
 {
   "slug": "ferdy-fox",
   "created": "2026-11-21T23:55:49+01:00",
-  "updated": "2026-11-24T22:16:21+01:00",
-  "last_login": "2026-11-24T22:16:05+01:00",
+  "updated": "2026-11-26T22:16:31+01:00",
+  "last_login": "2026-11-26T22:10:58+01:00",
   "character": {
     "name": "Ferdy",
     "surname": "Fox",
-    "level": 25,
+    "level": 28,
     "race": "Himmelsgeborener des Hohen Ordens",
     "class": "Magier",
     "spec": "Arkan",
@@ -14,7 +14,7 @@
     "faction": "Allianz",
     "guild": "",
     "ruleset": "Normal",
-    "item_level": 11,
+    "item_level": 0,
     "achievement_points": 0
   },
   "images": {
@@ -22,17 +22,17 @@
     "avatar": "wow/ferdy-fox/avatar.jpg"
   },
   "stats": {
-    "health": 465,
-    "power": 1401,
-    "strength": 22,
+    "health": 542,
+    "power": 1671,
+    "strength": 23,
     "agility": 32,
-    "intellect": 80,
-    "stamina": 33,
-    "spirit": 67,
-    "armor": 215
+    "intellect": 93,
+    "stamina": 36,
+    "spirit": 78,
+    "armor": 246
   },
   "power_type": "Mana",
-  "quests_completed": 242,
+  "quests_completed": 294,
   "professions": {
     "primary": [
       {
@@ -42,7 +42,7 @@
       },
       {
         "name": "Kräuterkunde",
-        "skill": 161,
+        "skill": 184,
         "max": 225
       }
     ],
@@ -59,7 +59,7 @@
       },
       {
         "name": "Erste Hilfe",
-        "skill": 128,
+        "skill": 135,
         "max": 150
       }
     ]
@@ -68,84 +68,98 @@
     {
       "slot": "Hals",
       "name": "Nachbildung einer Mondsichelhalskette",
-      "level": 26,
+      "level": 0,
       "quality": "uncommon",
       "id": 281290
     },
     {
+      "slot": "Schultern",
+      "name": "Seidenmantel von Gamn",
+      "level": 0,
+      "quality": "uncommon",
+      "id": 2913
+    },
+    {
       "slot": "Hemd",
       "name": "Hemd des Lehrlings von Thendal",
-      "level": 1,
+      "level": 0,
       "quality": "common",
       "id": 271655
     },
     {
       "slot": "Brust",
       "name": "Roben der Antike",
-      "level": 25,
+      "level": 0,
       "quality": "uncommon",
       "id": 5812
     },
     {
       "slot": "Taille",
       "name": "Reliktjäger-Gürtel",
-      "level": 20,
+      "level": 0,
       "quality": "uncommon",
       "id": 11936
     },
     {
       "slot": "Beine",
       "name": "Zauberbinder-Hose",
-      "level": 16,
+      "level": 0,
       "quality": "uncommon",
       "id": 2970
     },
     {
       "slot": "Füße",
       "name": "Windgepeitschte Pantoffeln",
-      "level": 13,
+      "level": 0,
       "quality": "uncommon",
       "id": 263339
     },
     {
       "slot": "Handgelenke",
       "name": "Waldhainarmschützer",
-      "level": 18,
+      "level": 0,
       "quality": "uncommon",
       "id": 5315
     },
     {
       "slot": "Hände",
       "name": "Rituelle Handschuhe der Intelligenz",
-      "level": 20,
+      "level": 0,
       "quality": "uncommon",
       "id": 14124
     },
     {
       "slot": "Ring 1",
       "name": "Uraltes Erbstück",
-      "level": 1,
+      "level": 0,
       "quality": "common",
       "id": 264908
     },
     {
+      "slot": "Ring 2",
+      "name": "Ring des eisernen Willens",
+      "level": 0,
+      "quality": "uncommon",
+      "id": 1319
+    },
+    {
       "slot": "Rücken",
       "name": "Grunzercape der Intelligenz",
-      "level": 19,
+      "level": 0,
       "quality": "uncommon",
       "id": 15508
     },
     {
       "slot": "Waffenhand",
-      "name": "Eichendrosselstab",
-      "level": 14,
+      "name": "Rute des Eiszapfens",
+      "level": 0,
       "quality": "uncommon",
-      "id": 15397
+      "id": 2950
     },
     {
       "slot": "Distanzwaffe",
       "name": "Mondsteinzauberstab",
-      "level": 18,
+      "level": 0,
       "quality": "uncommon",
       "id": 15204
     }
@@ -153,16 +167,23 @@
   "reputations": [
     {
       "name": "Stormwind",
-      "standing": "Freundlich",
-      "tier": 4,
-      "value": 4852,
-      "max": 6000
+      "standing": "Wohlwollend",
+      "tier": 5,
+      "value": 996,
+      "max": 12000
     },
     {
       "name": "Darnassus",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 3497,
+      "value": 4191,
+      "max": 6000
+    },
+    {
+      "name": "Ironforge",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 3271,
       "max": 6000
     },
     {
@@ -173,24 +194,17 @@
       "max": 6000
     },
     {
+      "name": "Gnomeregangnome",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 2727,
+      "max": 6000
+    },
+    {
       "name": "Druiden der Nachtklaue",
       "standing": "Freundlich",
       "tier": 4,
       "value": 2100,
-      "max": 6000
-    },
-    {
-      "name": "Gnomeregangnome",
-      "standing": "Freundlich",
-      "tier": 4,
-      "value": 1915,
-      "max": 6000
-    },
-    {
-      "name": "Ironforge",
-      "standing": "Freundlich",
-      "tier": 4,
-      "value": 1865,
       "max": 6000
     },
     {
@@ -215,13 +229,6 @@
       "max": 3000
     },
     {
-      "name": "Booty Bay",
-      "standing": "Neutral",
-      "tier": 3,
-      "value": 550,
-      "max": 3000
-    },
-    {
       "name": "Gadgetzan",
       "standing": "Neutral",
       "tier": 3,
@@ -230,6 +237,13 @@
     },
     {
       "name": "Powderfuse",
+      "standing": "Neutral",
+      "tier": 3,
+      "value": 550,
+      "max": 3000
+    },
+    {
+      "name": "Booty Bay",
       "standing": "Neutral",
       "tier": 3,
       "value": 550,
