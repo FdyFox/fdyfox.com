@@ -1,10 +1,10 @@
 {
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "totals": {
     "books": 127,
     "finished": 70,
     "library_hours": 1322,
-    "listened_hours": 601
+    "listened_hours": 603
   },
   "finished_per_year": [
     [
@@ -23,7 +23,7 @@
   "hours_per_year": [
     [
       "2026",
-      243
+      245
     ],
     [
       "2025",
@@ -142,7 +142,7 @@
       "hours": 24.3,
       "added": "2026-11-26",
       "finished": "",
-      "progress": 1,
+      "progress": 7,
       "cover": "hoerbuecher/covers/94b15031-75e8-43b7-b85b-b516ee70dcd3.jpg"
     },
     {
@@ -1896,10 +1896,18 @@
           {
             "t": "Do 26.11.2026 · 53 min",
             "l": 2
+          },
+          {
+            "t": "Fr 27.11.2026 · 1,5 h",
+            "l": 3
+          },
+          {
+            "t": "Sa 28.11.2026 · nichts gehört",
+            "l": 0
           }
         ]
       }
     ],
-    "active_days": 219
+    "active_days": 220
   }
 }

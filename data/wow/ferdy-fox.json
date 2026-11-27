@@ -1,18 +1,18 @@
 {
   "slug": "ferdy-fox",
   "created": "2026-11-21T23:55:49+01:00",
-  "updated": "2026-11-26T22:16:31+01:00",
-  "last_login": "2026-11-26T22:10:58+01:00",
+  "updated": "2026-11-28T00:25:57+01:00",
+  "last_login": "2026-11-27T22:45:38+01:00",
   "character": {
     "name": "Ferdy",
     "surname": "Fox",
-    "level": 28,
+    "level": 31,
     "race": "Himmelsgeborener des Hohen Ordens",
     "class": "Magier",
     "spec": "Arkan",
     "gender": "Weiblich",
     "faction": "Allianz",
-    "guild": "",
+    "guild": "Excaliburs Erben",
     "ruleset": "Normal",
     "item_level": 0,
     "achievement_points": 0
@@ -22,17 +22,17 @@
     "avatar": "wow/ferdy-fox/avatar.jpg"
   },
   "stats": {
-    "health": 542,
-    "power": 1671,
+    "health": 718,
+    "power": 1809,
     "strength": 23,
-    "agility": 32,
-    "intellect": 93,
-    "stamina": 36,
-    "spirit": 78,
-    "armor": 246
+    "agility": 33,
+    "intellect": 97,
+    "stamina": 48,
+    "spirit": 85,
+    "armor": 263
   },
   "power_type": "Mana",
-  "quests_completed": 294,
+  "quests_completed": 343,
   "professions": {
     "primary": [
       {
@@ -42,7 +42,7 @@
       },
       {
         "name": "Kräuterkunde",
-        "skill": 184,
+        "skill": 192,
         "max": 225
       }
     ],
@@ -59,7 +59,7 @@
       },
       {
         "name": "Erste Hilfe",
-        "skill": 135,
+        "skill": 141,
         "max": 150
       }
     ]
@@ -74,10 +74,10 @@
     },
     {
       "slot": "Schultern",
-      "name": "Seidenmantel von Gamn",
+      "name": "Feen-Mantel",
       "level": 0,
       "quality": "uncommon",
-      "id": 2913
+      "id": 5820
     },
     {
       "slot": "Hemd",
@@ -102,10 +102,10 @@
     },
     {
       "slot": "Beine",
-      "name": "Zauberbinder-Hose",
+      "name": "Sumpflandbeinkleider",
       "level": 0,
       "quality": "uncommon",
-      "id": 2970
+      "id": 4505
     },
     {
       "slot": "Füße",
@@ -158,10 +158,10 @@
     },
     {
       "slot": "Distanzwaffe",
-      "name": "Mondsteinzauberstab",
+      "name": "Ausgrabungsrute",
       "level": 0,
       "quality": "uncommon",
-      "id": 15204
+      "id": 5246
     }
   ],
   "reputations": [
@@ -169,21 +169,28 @@
       "name": "Stormwind",
       "standing": "Wohlwollend",
       "tier": 5,
-      "value": 996,
+      "value": 2140,
       "max": 12000
     },
     {
       "name": "Darnassus",
-      "standing": "Freundlich",
-      "tier": 4,
-      "value": 4191,
-      "max": 6000
+      "standing": "Wohlwollend",
+      "tier": 5,
+      "value": 235,
+      "max": 12000
     },
     {
       "name": "Ironforge",
       "standing": "Freundlich",
       "tier": 4,
-      "value": 3271,
+      "value": 4883,
+      "max": 6000
+    },
+    {
+      "name": "Gnomeregangnome",
+      "standing": "Freundlich",
+      "tier": 4,
+      "value": 3477,
       "max": 6000
     },
     {
@@ -191,13 +198,6 @@
       "standing": "Freundlich",
       "tier": 4,
       "value": 2760,
-      "max": 6000
-    },
-    {
-      "name": "Gnomeregangnome",
-      "standing": "Freundlich",
-      "tier": 4,
-      "value": 2727,
       "max": 6000
     },
     {
